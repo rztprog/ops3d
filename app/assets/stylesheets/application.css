@@ -1,0 +1,12 @@
+/* Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Graphical variables */
+@import "config/fonts.css";
+@import "config/colors.css";
+
+/* Partials */
+@import "components/index.css";
+@import "pages/index.css";
