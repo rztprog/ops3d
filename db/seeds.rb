@@ -16,6 +16,8 @@ end
 admin = User.find_or_create_by!(email: "admin@ops3d.local") do |user|
   user.first_name = "Admin"
   user.last_name = "Ops3d"
+  user.password = "password123"
+  user.password_confirmation = "password123"
   user.admin = true
 end
 
