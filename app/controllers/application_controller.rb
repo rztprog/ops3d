@@ -4,4 +4,11 @@ class ApplicationController < ActionController::Base
 
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
+
+  # Guest_token pour le panier
+  before_action :set_guest_token
+
+  def set_guest_token
+    session[:guest_token] ||= SecureRandom.uuid
+  end
 end
