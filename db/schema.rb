@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_08_165401) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_12_155952) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -79,13 +79,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_08_165401) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "product_images", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.bigint "product_id", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_product_images_on_product_id"
-  end
-
   create_table "products", force: :cascade do |t|
     t.boolean "available", default: true, null: false
     t.bigint "category_id", null: false
@@ -119,6 +112,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_08_165401) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
-  add_foreign_key "product_images", "products"
   add_foreign_key "products", "categories"
 end
