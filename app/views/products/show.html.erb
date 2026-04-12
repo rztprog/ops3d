@@ -1,3 +1,9 @@
+<% if @product.images.attached? %>
+  <% @product.images.each do |image| %>
+    <%= image_tag image, class: "w-full h-auto" %>
+  <% end %>
+<% end %>
+
 <h1 class="text-2xl font-bold"><%= @product.name %></h1>
 
 <p class="mt-4">

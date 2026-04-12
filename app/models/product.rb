@@ -13,4 +13,8 @@ class Product < ApplicationRecord
   scope :published, -> { where(published: true) }
   scope :available, -> { where(available: true) }
   scope :visible, -> { where(published: true, available: true) }
+
+  class Product < ApplicationRecord
+    has_many_attached :images
+  end
 end

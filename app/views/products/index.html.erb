@@ -2,6 +2,11 @@
 <div class="grid grid-cols-3 gap-6">
   <% @products.each do |product| %>
     <%= link_to product_path(product) do  %>
+      <% if product.images.attached? %>
+        <% product.images.each do |image| %>
+          <%= image_tag image, class: "w-full h-auto" %>
+        <% end %>
+      <% end %>
       <div class="border p-4 rounded">
         <h2 class="font-bold text-lg">
           <%= product.name %>
