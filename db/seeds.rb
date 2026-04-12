@@ -19,7 +19,8 @@ Category.destroy_all
 User.destroy_all
 
 puts "Creating settings..."
-Ops3dSetting.create!(
+settings = Ops3dSetting.first_or_initialize
+settings.update!(
   shipping_mode: "flat_rate",
   shipping_price_cents: 490
 )
