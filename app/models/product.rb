@@ -1,8 +1,8 @@
 class Product < ApplicationRecord
   belongs_to :category
 
-  has_many :product_images, dependent: :destroy
   has_many :cart_items, dependent: :restrict_with_exception
+  has_many_attached :images
   has_many :order_items, dependent: :nullify
 
   validates :name, presence: true
@@ -13,8 +13,4 @@ class Product < ApplicationRecord
   scope :published, -> { where(published: true) }
   scope :available, -> { where(available: true) }
   scope :visible, -> { where(published: true, available: true) }
-
-  class Product < ApplicationRecord
-    has_many_attached :images
-  end
 end
