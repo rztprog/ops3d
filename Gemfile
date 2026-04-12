@@ -43,7 +43,9 @@ gem "image_processing", "~> 1.2"
 # Style
 gem "autoprefixer-rails"
 gem "tailwindcss-rails"
-gem "devise", "~> 5.0", ">= 5.0.3"
+gem "devise"
+gem "cloudinary"
+gem "activestorage-cloudinary-service"
 
 group :development, :test do
   gem "dotenv-rails"
