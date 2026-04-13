@@ -1,0 +1,41 @@
+<h2 class="text-2xl font-bold text-center mb-6 text-[color:var(--dark)]">Inscription</h2>
+
+<div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+    <div class="mb-4">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, class: "mt-1 block w-full border rounded px-3 py-2" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: "mt-1 block w-full border rounded px-3 py-2" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "mt-1 block w-full border rounded px-3 py-2" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "mt-1 block w-full border rounded px-3 py-2" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: "mt-1 block w-full border rounded px-3 py-2" %>
+    </div>
+
+    <div>
+      <%= f.submit "S'inscrire",
+          class: "w-full bg-[color:var(--dark)] text-white py-2 rounded hover:bg-[color:var(--light)] cursor-pointer" %>
+    </div>
+
+  <% end %>
+
+  <div class="mt-4 text-center text-sm">
+    <%= link_to "Déjà un compte ?", new_user_session_path, class: "text-[color:var(--dark)] hover:underline" %>
+  </div>
+</div>
