@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
   # Guest_token pour le panier
   before_action :set_guest_token
 
+  # Autorise les champs devise
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   # Rend le current_cart dispo dans toutes vues
   helper_method :current_cart
 
@@ -57,5 +60,11 @@ class ApplicationController < ActionController::Base
     # Supprime le guest_cart et le guest_token une fois mergé
     guest_cart.destroy
     session[:guest_token] = nil
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :first_name, :last_name ])
   end
 end
