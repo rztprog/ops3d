@@ -32,8 +32,14 @@
               new_user_session_path,
               class: "hover:text-[color:var(--light)] text-sm" %>
 
-          <%= link_to "Mon panier", cart_path,
-              class: "hover:text-[color:var(--light)] px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= link_to cart_path, class: "hover:text-[color:var(--light)] px-3 py-2 rounded-md text-sm font-medium" do %>
+            Mon panier
+            <% if current_cart.cart_items.any? %>
+              <span class="ml-1 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                <%= current_cart.cart_items.sum(:quantity) %>
+              </span>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
 
