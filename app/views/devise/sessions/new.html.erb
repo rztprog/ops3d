@@ -20,6 +20,9 @@
           <span class="ml-2 text-sm">Se souvenir de moi</span>
         </label>
       <% end %>
+      <%if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <p><%= link_to "Mot de passe oublié ?", new_password_path(resource_name), class: "text-sm hover:underline text-[color:var(--dark)]" %></p>
+      <% end %>
     </div>
 
     <div>
@@ -32,7 +35,6 @@
   <div class="mt-4 text-center text-sm">
     <%= link_to "Créer un compte", new_user_registration_path, class: "text-[color:var(--dark)] hover:underline" %>
   </div>
-  <%= render "devise/shared/links" %>
 </div>
 
 
