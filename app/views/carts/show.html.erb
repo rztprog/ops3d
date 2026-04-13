@@ -1,4 +1,10 @@
-<div>
-  <h1 class="font-bold text-4xl">Carts#show</h1>
-  <p>Find me in app/views/carts/show.html.erb</p>
-</div>
+<h1>Mon panier</h1>
+
+<%= session[:guest_token] %>
+<% @cart.cart_items.each do |item| %>
+  <div>
+    <strong><%= item.product.name %></strong>
+    <p>Quantité : <%= item.quantity %></p>
+    <p>Prix : <%= number_to_currency(item.product.price_cents / 100.0, unit: "€") %></p>
+  </div>
+<% end %>
