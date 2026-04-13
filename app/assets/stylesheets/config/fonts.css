@@ -7,6 +7,13 @@
   --headers-font: "Nunito", "Helvetica", "sans-serif";
 }
 
+.black-ops-one {
+  font-family: "Black Ops One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 /*
  To use a font file (.woff) uncomment following lines
  @font-face {
