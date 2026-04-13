@@ -1,6 +1,6 @@
 class CartItemsController < ApplicationController
   def create
-    @cart = current_cart
+    @cart = ensure_cart
     product = Product.find(params[:product_id])
 
     cart_item = @cart.cart_items.find_by(product: product)
@@ -15,14 +15,14 @@ class CartItemsController < ApplicationController
   end
 
   def update
-    cart_item = current_cart.cart_items.find(params[:id])
+    cart_item = ensure_cart.cart_items.find(params[:id])
     cart_item.update!(quantity: params[:quantity])
 
     redirect_to cart_path
   end
 
   def destroy
-    cart_item = current_cart.cart_items.find(params[:id])
+    cart_item = ensure_cart.cart_items.find(params[:id])
     cart_item.destroy
 
     redirect_to cart_path

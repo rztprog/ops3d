@@ -8,7 +8,18 @@ class ApplicationController < ActionController::Base
   # Guest_token pour le panier
   before_action :set_guest_token
 
+  # Rend le current_cart dispo dans toutes vues
+  helper_method :current_cart
+
   def current_cart
+    if user_signed_in?
+      current_user.cart
+    else
+      Cart.find_by(guest_token: session[:guest_token])
+    end
+  end
+
+  def ensure_cart
     if user_signed_in?
       current_user.cart || current_user.create_cart
     else
@@ -20,7 +31,7 @@ class ApplicationController < ActionController::Base
     session[:guest_token] ||= SecureRandom.uuid
   end
 
-  # Override la fonction pour merge si connecté
+  # Override la fonction pour merge after_sign_in_path_for si on se connecte
   def after_sign_in_path_for(resource)
     merge_carts if session[:guest_token].present?
     super
