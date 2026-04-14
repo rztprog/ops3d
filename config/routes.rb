@@ -28,4 +28,8 @@ Rails.application.routes.draw do
   resources :cart_items, only: [ :create, :update, :destroy ]
 
   resources :orders, only: [ :new, :create, :show, :index ]
+
+  namespace :admin do
+    root "dashboard#index"
+  end
 end
