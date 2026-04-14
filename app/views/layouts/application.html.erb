@@ -32,8 +32,8 @@
     <!-- Navbar -->
     <%= render 'shared/navbar' %>
     <!-- Notice -->
-    <div class="container mx-auto px-5">
-      <div class="flex justify-end mt-2">
+    <div class="container mx-auto px-5 flex justify-end">
+      <div class="fixed">
         <% flash.each do |type, message| %>
           <% next if message.blank? %>
 
@@ -48,7 +48,10 @@
             end
           %>
 
-          <div class="max-w-sm rounded-xl border px-4 py-3 text-sm shadow-lg <%= classes %>">
+          <div 
+            data-controller="flash"
+            data-flash-delay-value="3500" 
+            class="mt-2 max-w-sm rounded-xl border px-4 py-3 text-sm shadow-lg transition-all duration-300 ease-out opacity-0 -translate-y-2 <%= classes %>">
             <%= message %>
           </div>
         <% end %>
