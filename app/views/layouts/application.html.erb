@@ -29,7 +29,30 @@
   </head>
 
   <body class="bg-gray-100">
+    <!-- Navbar -->
     <%= render 'shared/navbar' %>
+    <!-- Notice -->
+    <div class="top-4 right-4 z-50 flex flex-col gap-3">
+      <% flash.each do |type, message| %>
+        <% next if message.blank? %>
+
+        <% classes =
+          case type.to_sym
+          when :notice
+            "bg-green-50 text-green-800 border-green-200"
+          when :alert
+            "bg-red-50 text-red-800 border-red-200"
+          else
+            "bg-gray-50 text-gray-800 border-gray-200"
+          end
+        %>
+
+        <div class="min-w-[250px] max-w-sm rounded-xl border px-4 py-3 text-sm shadow-lg <%= classes %>">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+    <!-- Layout -->
     <main class="container mx-auto mt-28 px-5">
       <%= yield %>
     </main>
