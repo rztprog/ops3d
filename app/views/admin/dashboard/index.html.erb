@@ -1,0 +1,46 @@
+<div class="mb-8">
+  <h1 class="text-3xl font-bold text-gray-900">Dashboard admin</h1>
+  <p class="mt-2 text-sm text-gray-500">
+    Vue d’ensemble de ton activité et de ton catalogue.
+  </p>
+</div>
+
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+  <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+    <p class="text-sm text-gray-500">Produits</p>
+    <p class="mt-2 text-3xl font-bold text-gray-900"><%= @products_count %></p>
+  </div>
+
+  <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+    <p class="text-sm text-gray-500">Catégories</p>
+    <p class="mt-2 text-3xl font-bold text-gray-900"><%= @categories_count %></p>
+  </div>
+
+  <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+    <p class="text-sm text-gray-500">Commandes</p>
+    <p class="mt-2 text-3xl font-bold text-gray-900"><%= @orders_count %></p>
+  </div>
+
+  <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+    <p class="text-sm text-gray-500">Utilisateurs</p>
+    <p class="mt-2 text-3xl font-bold text-gray-900"><%= @users_count %></p>
+  </div>
+</div>
+
+<div class="mt-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+  <h2 class="text-lg font-semibold text-gray-900">Suite logique</h2>
+
+  <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <%= link_to "Gérer les produits",
+      "#",
+      class: "rounded-xl border border-gray-200 px-4 py-4 text-sm font-medium text-gray-700 hover:bg-gray-50" %>
+
+    <%= link_to "Gérer les catégories",
+      "#",
+      class: "rounded-xl border border-gray-200 px-4 py-4 text-sm font-medium text-gray-700 hover:bg-gray-50" %>
+
+    <%= link_to "Voir les commandes",
+      "#",
+      class: "rounded-xl border border-gray-200 px-4 py-4 text-sm font-medium text-gray-700 hover:bg-gray-50" %>
+  </div>
+</div>
