@@ -30,14 +30,28 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_guest_token
-    session[:guest_token] ||= SecureRandom.uuid
-  end
-
   # Override la fonction pour merge after_sign_in_path_for si on se connecte
   def after_sign_in_path_for(resource)
     merge_carts if session[:guest_token].present?
     super
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :first_name, :last_name ])
+  end
+
+  def require_admin!
+    unless user_signed_in? && current_user.admin?
+      redirect_to root_path, alert: "Tu cherches quelques chose ? 😁"
+    end
+  end
+
+  private
+
+  def set_guest_token
+    session[:guest_token] ||= SecureRandom.uuid
   end
 
   def merge_carts
@@ -60,11 +74,5 @@ class ApplicationController < ActionController::Base
     # Supprime le guest_cart et le guest_token une fois mergé
     guest_cart.destroy
     session[:guest_token] = nil
-  end
-
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [ :first_name, :last_name ])
   end
 end
