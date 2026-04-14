@@ -16,15 +16,22 @@ class CartItemsController < ApplicationController
 
   def update
     cart_item = ensure_cart.cart_items.find(params[:id])
-    cart_item.update!(quantity: params[:quantity])
 
-    redirect_to cart_path
+    quantity = params[:cart_item][:quantity].to_i
+
+    if quantity <= 0
+      cart_item.destroy
+    else
+      cart_item.update!(quantity: quantity)
+    end
+
+    redirect_to cart_path, notice: "Panier mis à jour."
   end
 
   def destroy
     cart_item = ensure_cart.cart_items.find(params[:id])
     cart_item.destroy
 
-    redirect_to cart_path
+    redirect_to cart_path, notice: "Produit supprimé du panier."
   end
 end
