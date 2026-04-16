@@ -1,0 +1,83 @@
+<div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+  <% if @product.errors.any? %>
+    <div class="mb-6 rounded-xl border border-red-200 bg-red-50 p-4">
+      <h2 class="text-sm font-semibold text-red-800">
+        Le formulaire contient <%= pluralize(@product.errors.count, "erreur") %>.
+      </h2>
+
+      <ul class="mt-2 list-disc pl-5 text-sm text-red-700">
+        <% @product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with model: [:admin, @product], local: true, class: "space-y-6" do |f| %>
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="md:col-span-2">
+        <%= f.label :name, "Nom du produit", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_field :name, class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+      </div>
+
+      <div class="md:col-span-2">
+        <%= f.label :description, "Description", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_area :description, rows: 6, class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+      </div>
+
+      <div>
+        <%= f.label :price_cents, "Prix (en centimes)", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.number_field :price_cents, min: 0, class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+      </div>
+
+      <div>
+        <%= f.label :category_id, "Catégorie", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.collection_select :category_id,
+          Category.order(:name),
+          :id,
+          :name,
+          { prompt: "Choisir une catégorie" },
+          class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+      </div>
+
+      <div class="md:col-span-2">
+        <%= f.label :images, "Images du produit", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.file_field :images, multiple: true, class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm file:mr-4 file:rounded-lg file:border-0 file:bg-gray-900 file:px-4 file:py-2 file:text-sm file:font-medium file:text-white hover:file:bg-gray-700" %>
+      </div>
+
+      <% if @product.images.attached? %>
+        <div class="md:col-span-2">
+          <p class="mb-3 text-sm font-medium text-gray-700">Images actuelles</p>
+
+          <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            <% @product.images.each do |image| %>
+              <div class="overflow-hidden rounded-xl border border-gray-200 bg-gray-50">
+                <%= image_tag image, class: "h-32 w-full object-cover" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="flex items-center gap-6">
+        <label class="flex items-center gap-2 text-sm text-gray-700">
+          <%= f.check_box :published, class: "rounded border-gray-300" %>
+          <span>Publié</span>
+        </label>
+
+        <label class="flex items-center gap-2 text-sm text-gray-700">
+          <%= f.check_box :available, class: "rounded border-gray-300" %>
+          <span>Disponible</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-3 pt-2">
+      <%= f.submit class: "rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
+
+      <%= link_to "Annuler",
+        admin_products_path,
+        class: "rounded-xl border border-gray-300 px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50" %>
+    </div>
+  <% end %>
+</div>
