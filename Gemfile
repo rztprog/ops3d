@@ -46,6 +46,7 @@ gem "tailwindcss-rails"
 gem "devise"
 gem "cloudinary"
 gem "activestorage-cloudinary-service"
+gem "font-awesome-rails"
 
 group :development, :test do
   gem "dotenv-rails"
