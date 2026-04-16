@@ -23,6 +23,7 @@
         <%= link_to cart_path,
           class: "relative text-sm font-medium hover:text-[color:var(--light)]" do %>
           Panier
+          <i class="fa fa-camera-retro"></i>
           <% if current_cart && current_cart.cart_items.any? %>
             <span class="absolute -top-2 -right-4 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
               <%= current_cart.cart_items.sum(:quantity) %>

@@ -10,3 +10,7 @@
 /* Partials */
 @import "components/index.css";
 @import "pages/index.css";
+
+/*
+ *= require font-awesome
+ */
