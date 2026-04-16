@@ -21,11 +21,10 @@
 
         <!-- PANIER -->
         <%= link_to cart_path,
-          class: "relative text-sm font-medium hover:text-[color:var(--light)]" do %>
-          Panier
-          <i class="fa fa-camera-retro"></i>
+          class: "relative font-medium hover:text-[color:var(--light)] cursor-pointer" do %>
+          <i class="fa-solid fa-cart-shopping fa-xl"></i>
           <% if current_cart && current_cart.cart_items.any? %>
-            <span class="absolute -top-2 -right-4 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
+            <span class="absolute -top-2 -right-3 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
               <%= current_cart.cart_items.sum(:quantity) %>
             </span>
           <% end %>
@@ -33,15 +32,15 @@
 
         <% if user_signed_in? %>
 
-          <span class="text-sm text-gray-500 hidden sm:block">
-            <%= current_user.email %>
+          <span class="hidden sm:block hover:text-[color:var(--light)] cursor-pointer">
+            <i class="fa-solid fa-user fa-xl"></i>
           </span>
 
           <!-- ADMIN BUTTON -->
           <% if current_user.admin? %>
             <%= link_to "Admin",
               admin_root_path,
-              class: "rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition" %>
+              class: "rounded-lg bg-[color:var(--dark)] px-4 py-2 text-sm font-medium text-white hover:bg-[color:var(--light)] transition" %>
           <% end %>
 
           <%= button_to "Déconnexion",
