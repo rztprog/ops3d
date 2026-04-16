@@ -1,0 +1,122 @@
+<div class="mb-8 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+  <div>
+    <h1 class="text-3xl font-bold text-gray-900">Commande #<%= @order.id %></h1>
+    <p class="mt-2 text-sm text-gray-500">
+      Passée le <%= l(@order.created_at, format: :long) %>
+    </p>
+  </div>
+
+  <div class="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+    <%= form_with model: [:admin, @order], local: true, class: "flex flex-col gap-3 sm:flex-row sm:items-end" do |f| %>
+      <div>
+        <%= f.label :status, "Statut", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.select :status,
+          Order::STATUSES.map { |status| [status, status] },
+          {},
+          class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+      </div>
+
+      <%= f.submit "Mettre à jour",
+        class: "rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="grid grid-cols-1 gap-8 xl:grid-cols-3">
+  <div class="xl:col-span-2 space-y-8">
+    <div class="rounded-2xl border border-gray-200 bg-white shadow-sm">
+      <div class="border-b border-gray-200 px-6 py-4">
+        <h2 class="text-lg font-semibold text-gray-900">Articles</h2>
+      </div>
+
+      <div class="divide-y divide-gray-200">
+        <% @order.order_items.each do |item| %>
+          <div class="flex items-center justify-between gap-4 px-6 py-4">
+            <div>
+              <p class="font-medium text-gray-900"><%= item.product_name %></p>
+              <p class="text-sm text-gray-500">Quantité : <%= item.quantity %></p>
+            </div>
+
+            <div class="text-right">
+              <p class="text-sm text-gray-500">
+                <%= number_to_currency(item.unit_price_cents / 100.0, unit: "€") %> / unité
+              </p>
+              <p class="font-medium text-gray-900">
+                <%= number_to_currency((item.unit_price_cents * item.quantity) / 100.0, unit: "€") %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      <h2 class="text-lg font-semibold text-gray-900">Adresse de livraison</h2>
+
+      <div class="mt-4 text-sm leading-6 text-gray-600">
+        <p><%= @order.first_name %> <%= @order.last_name %></p>
+        <p><%= @order.address_line %></p>
+        <p><%= @order.postal_code %> <%= @order.city %></p>
+        <p><%= @order.country %></p>
+        <p class="mt-2"><%= @order.email %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="space-y-8">
+    <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      <h2 class="text-lg font-semibold text-gray-900">Résumé</h2>
+
+      <dl class="mt-4 space-y-4 text-sm">
+        <div class="flex items-center justify-between gap-4">
+          <dt class="text-gray-500">Sous-total</dt>
+          <dd class="font-medium text-gray-900">
+            <%= number_to_currency(@order.subtotal_price_cents / 100.0, unit: "€") %>
+          </dd>
+        </div>
+
+        <div class="flex items-center justify-between gap-4">
+          <dt class="text-gray-500">Livraison</dt>
+          <dd class="font-medium text-gray-900">
+            <%= number_to_currency(@order.shipping_price_cents / 100.0, unit: "€") %>
+          </dd>
+        </div>
+
+        <div class="border-t border-gray-200 pt-4 flex items-center justify-between gap-4">
+          <dt class="text-gray-900 font-semibold">Total</dt>
+          <dd class="font-semibold text-gray-900">
+            <%= number_to_currency(@order.total_price_cents / 100.0, unit: "€") %>
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      <h2 class="text-lg font-semibold text-gray-900">Infos commande</h2>
+
+      <dl class="mt-4 space-y-4 text-sm">
+        <div class="flex items-center justify-between gap-4">
+          <dt class="text-gray-500">ID</dt>
+          <dd class="font-medium text-gray-900">#<%= @order.id %></dd>
+        </div>
+
+        <div class="flex items-center justify-between gap-4">
+          <dt class="text-gray-500">Utilisateur</dt>
+          <dd class="font-medium text-gray-900">
+            <%= @order.user&.email || "Compte supprimé" %>
+          </dd>
+        </div>
+
+        <div class="flex items-center justify-between gap-4">
+          <dt class="text-gray-500">Mode livraison</dt>
+          <dd class="font-medium text-gray-900"><%= @order.shipping_mode %></dd>
+        </div>
+
+        <div class="flex items-center justify-between gap-4">
+          <dt class="text-gray-500">Statut</dt>
+          <dd class="font-medium text-gray-900"><%= @order.status %></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>
