@@ -1,0 +1,105 @@
+<div class="mb-8 flex items-end justify-between gap-4">
+  <div>
+    <h1 class="text-3xl font-bold text-gray-900">Produits</h1>
+    <p class="mt-2 text-sm text-gray-500">
+      Gère le catalogue de tes pièces 3D.
+    </p>
+  </div>
+
+  <%= link_to "Nouveau produit",
+    new_admin_product_path,
+    class: "inline-flex items-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
+</div>
+
+<% if @products.empty? %>
+  <div class="rounded-2xl border border-gray-200 bg-white p-10 text-center shadow-sm">
+    <h2 class="text-xl font-semibold text-gray-900">Aucun produit</h2>
+    <p class="mt-2 text-gray-500">Commence par créer ton premier produit.</p>
+
+    <div class="mt-6">
+      <%= link_to "Créer un produit",
+        new_admin_product_path,
+        class: "inline-flex items-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
+    </div>
+  </div>
+<% else %>
+  <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Produit</th>
+          <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Catégorie</th>
+          <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Prix</th>
+          <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Publié</th>
+          <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Disponible</th>
+          <th class="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody class="divide-y divide-gray-200 bg-white">
+        <% @products.each do |product| %>
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-4">
+                <div class="h-14 w-14 overflow-hidden rounded-xl bg-gray-100">
+                  <% if product.images.attached? %>
+                    <%= image_tag product.images.first, class: "h-full w-full object-cover" %>
+                  <% end %>
+                </div>
+
+                <div>
+                  <p class="font-medium text-gray-900"><%= product.name %></p>
+                  <p class="text-sm text-gray-500">
+                    <%= truncate(product.description.to_s, length: 60) %>
+                  </p>
+                </div>
+              </div>
+            </td>
+
+            <td class="px-6 py-4 text-sm text-gray-700">
+              <%= product.category&.name %>
+            </td>
+
+            <td class="px-6 py-4 text-sm font-medium text-gray-900">
+              <%= number_to_currency(product.price_cents / 100.0, unit: "€") %>
+            </td>
+
+            <td class="px-6 py-4 text-sm">
+              <% if product.published? %>
+                <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">Oui</span>
+              <% else %>
+                <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">Non</span>
+              <% end %>
+            </td>
+
+            <td class="px-6 py-4 text-sm">
+              <% if product.available? %>
+                <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">Oui</span>
+              <% else %>
+                <span class="rounded-full bg-red-100 px-3 py-1 text-xs font-medium text-red-700">Non</span>
+              <% end %>
+            </td>
+
+            <td class="px-6 py-4">
+              <div class="flex items-center justify-end gap-3">
+                <%= link_to "Voir",
+                  admin_product_path(product),
+                  class: "text-sm font-medium text-gray-600 hover:text-gray-900" %>
+
+                <%= link_to "Modifier",
+                  edit_admin_product_path(product),
+                  class: "text-sm font-medium text-indigo-600 hover:text-indigo-800" %>
+
+                <%= button_to "Supprimer",
+                  admin_product_path(product),
+                  method: :delete,
+                  data: { turbo_confirm: "Supprimer ce produit ?" },
+                  class: "text-sm font-medium text-red-600 hover:text-red-800" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
