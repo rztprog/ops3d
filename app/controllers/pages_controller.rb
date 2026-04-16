@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
   def home
+    @featured_products = Product.visible
+                                .includes(:category, images_attachments: :blob)
+                                .limit(4)
   end
 
   def current_cart

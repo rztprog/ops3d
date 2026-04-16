@@ -1,3 +1,339 @@
-<div class="px-4 py-10">
-  <h1>Bienvenue sur OPS3D</h1>
+<div class="bg-gray-100">
+  <!-- HERO -->
+  <section class="mx-auto container px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.25em] text-[color:var(--light)]">
+          Précision • Robustesse • Expertise terrain
+        </p>
+
+        <h1 class="mt-4 text-4xl font-black uppercase leading-none tracking-tight text-[color:var(--dark)] sm:text-5xl lg:text-6xl">
+          OPS3D
+          <span class="block text-[color:var(--light)] text-2xl sm:text-2xl lg:text-3xl">Créer par un gendarme, pour les pros</span>
+        </h1>
+
+        <p class="mt-6 max-w-xl text-lg leading-8 text-gray-600">
+          Pièces imprimées en 3D conçues pour les pros, les passionnés exigeants et les usages où la fiabilité compte plus que le marketing.
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <%= link_to "Nos produits",
+            products_path,
+            class: "inline-flex font-semibold uppercase items-center rounded-xl bg-[color:var(--dark)] px-8 py-4 text-sm font-medium text-white hover:bg-[color:var(--light)] transition" %>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="overflow-hidden rounded-3xl border border-gray-200 bg-gray-100 shadow-sm">
+          <% if @featured_products.first&.images&.attached? %>
+            <%= image_tag @featured_products.first.images.first, class: "aspect-[4/3] w-full object-cover" %>
+          <% else %>
+            <div class="flex aspect-[4/3] items-center justify-center text-sm text-gray-400">
+              Visuel produit à venir
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY OPS3D -->
+  <section class="bg-gray-200">
+    <div class="mx-auto container px-4 py-16 sm:px-6 lg:px-8">
+      <div class="mb-10 flex items-center gap-4">
+        <div class="h-px flex-1 bg-gray-300 "></div>
+        <h2 class="text-center text-2xl font-black uppercase tracking-wide text-[color:var(--dark)] sm:text-3xl">
+          Pourquoi choisir OPS3D ?
+        </h2>
+        <div class="h-px flex-1 bg-gray-300"></div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div class="rounded-2xl bg-white p-8 text-center shadow-sm">
+          <div class="mb-4 flex justify-center">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+            width="64pt" height="64pt" viewBox="0 0 512.000000 512.000000"
+            preserveAspectRatio="xMidYMid meet">
+
+              <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+              fill="#1F3046" stroke="none">
+              <path d="M2511 5106 c-87 -48 -50 -186 49 -186 51 0 100 49 100 99 0 75 -83
+              124 -149 87z"/>
+              <path d="M2024 5044 c-418 -120 -776 -366 -1034 -709 -264 -351 -392 -737
+              -392 -1180 1 -519 181 -972 541 -1357 l72 -77 -265 -508 c-177 -338 -266 -518
+              -266 -538 0 -40 25 -74 65 -91 31 -13 55 -8 409 88 207 55 378 99 380 97 1 -2
+              49 -134 106 -294 155 -438 157 -443 190 -460 16 -8 38 -15 50 -15 60 0 64 7
+              375 604 165 316 302 575 305 575 3 0 140 -259 305 -575 311 -597 315 -604 375
+              -604 12 0 34 7 50 15 33 17 35 22 190 460 57 160 105 292 107 294 1 2 92 -20
+              200 -49 603 -162 552 -151 588 -136 40 17 65 51 65 91 0 20 -89 200 -266 538
+              l-265 508 77 82 c148 159 259 322 350 512 254 535 250 1184 -12 1707 -199 397
+              -507 702 -906 899 -129 63 -353 141 -406 141 -39 0 -79 -24 -94 -57 -13 -30
+              -3 -87 20 -108 9 -8 80 -36 157 -61 468 -154 826 -459 1042 -890 394 -785 148
+              -1743 -575 -2244 -211 -146 -458 -246 -732 -294 -100 -17 -441 -17 -540 0
+              -668 120 -1184 552 -1399 1174 -322 935 186 1947 1132 2252 80 26 153 56 162
+              66 9 10 19 36 22 57 4 32 1 45 -18 66 -38 43 -73 48 -165 21z m-320 -3658
+              c141 -69 324 -130 468 -157 62 -11 125 -24 140 -27 l28 -7 -218 -417 c-119
+              -230 -220 -418 -223 -418 -3 0 -53 132 -110 293 -65 184 -112 300 -126 315
+              -15 15 -34 22 -60 22 -21 0 -171 -36 -333 -80 -161 -43 -295 -78 -296 -77 -1
+              2 350 674 383 733 12 21 15 20 124 -52 62 -41 162 -99 223 -128z m2250 -182
+              c106 -203 193 -370 192 -371 -1 -1 -134 34 -296 77 -162 44 -311 80 -333 80
+              -26 0 -45 -7 -60 -22 -14 -15 -61 -131 -126 -315 -57 -161 -107 -293 -110
+              -293 -8 1 -441 833 -436 838 1 2 36 8 77 14 263 36 582 164 813 326 39 27 73
+              46 78 42 4 -3 95 -173 201 -376z"/>
+              <path d="M2380 4609 c-339 -43 -655 -206 -890 -456 -410 -438 -510 -1080 -254
+              -1623 198 -418 568 -709 1032 -812 131 -30 432 -32 565 -5 278 56 530 186 729
+              375 143 137 241 271 322 442 289 612 121 1340 -407 1766 -304 245 -715 362
+              -1097 313z m365 -204 c193 -29 352 -91 519 -202 349 -233 557 -621 558 -1043
+              1 -350 -124 -653 -372 -900 -178 -179 -389 -293 -640 -347 -130 -28 -403 -25
+              -525 5 -252 63 -441 168 -616 342 -246 245 -372 551 -371 900 2 769 688 1359
+              1447 1245z"/>
+              <path d="M2480 3857 c-41 -22 -51 -36 -126 -176 -45 -84 -91 -159 -101 -166
+              -11 -8 -89 -26 -174 -40 -170 -29 -209 -43 -241 -88 -30 -42 -36 -132 -13
+              -177 9 -18 68 -86 131 -151 93 -95 114 -123 114 -147 0 -16 -9 -89 -21 -163
+              -11 -74 -19 -153 -16 -176 5 -52 43 -104 90 -127 66 -30 104 -22 268 59 83 41
+              159 75 169 75 10 0 87 -34 171 -76 143 -70 158 -76 205 -72 62 5 107 35 134
+              88 25 49 25 73 0 234 -30 193 -37 170 94 305 63 65 122 133 131 151 24 47 17
+              135 -15 177 -34 46 -68 59 -238 88 -84 14 -162 31 -173 38 -11 7 -56 81 -101
+              164 -89 169 -112 193 -197 200 -35 4 -57 -1 -91 -20z m137 -321 c29 -57 66
+              -120 83 -140 49 -56 137 -92 267 -112 l113 -17 -89 -92 c-138 -145 -156 -202
+              -127 -398 9 -59 16 -111 16 -115 0 -4 -48 16 -106 45 -187 92 -238 91 -424 -2
+              -81 -41 -110 -51 -110 -40 0 8 7 59 16 113 31 189 10 253 -127 396 l-87 92
+              122 20 c200 34 246 67 333 239 32 63 60 115 63 115 3 0 29 -47 57 -104z"/>
+              </g>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-black uppercase text-[color:var(--dark)]">
+            Qualité premium
+          </h3>
+          <div class="mx-auto mt-4 h-px w-24 bg-gray-300"></div>
+          <p class="mt-4 text-sm font-medium italic text-gray-600">
+            Matériaux robustes & finition soignée
+          </p>
+        </div>
+
+        <div class="rounded-2xl bg-white p-8 text-center shadow-sm">
+          <div class="mb-4 flex justify-center">
+          <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+            width="64pt" height="64pt" viewBox="0 0 512.000000 512.000000"
+            preserveAspectRatio="xMidYMid meet">
+
+            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+            fill="#1F3046" stroke="none" class="">
+            <path d="M1962 5101 c-69 -24 -120 -65 -157 -129 l-30 -51 -770 -3 -770 -3
+            -49 -24 c-66 -33 -122 -91 -155 -160 -35 -74 -37 -192 -4 -262 41 -90 124
+            -162 213 -185 l45 -11 3 -1577 2 -1576 -105 0 c-119 0 -155 -12 -174 -58 -9
+            -20 -11 -104 -9 -286 l3 -258 28 -24 c21 -18 40 -24 77 -24 l49 0 3 -206 3
+            -206 33 -29 32 -29 490 0 490 0 32 29 33 29 3 206 3 206 436 0 435 0 29 29
+            c40 40 40 89 0 133 l-29 33 -976 3 -976 2 0 125 0 125 2360 0 2360 0 0 -125 0
+            -125 -976 -2 -976 -3 -29 -33 c-40 -44 -40 -93 0 -133 l29 -29 436 0 435 0 3
+            -206 3 -206 33 -29 32 -29 490 0 490 0 32 29 33 29 3 206 3 206 49 0 c37 0 56
+            6 77 24 l28 24 3 258 c2 182 0 266 -9 286 -19 46 -55 58 -174 58 l-105 0 2
+            1576 3 1577 45 11 c89 23 172 95 213 185 33 70 31 188 -4 262 -33 69 -89 127
+            -155 160 l-49 24 -770 3 -770 3 -30 52 c-16 28 -49 66 -73 84 -82 62 -88 63
+            -686 63 -498 -1 -545 -2 -594 -19z m1147 -196 c49 -25 52 -46 49 -350 l-3
+            -280 -597 -3 -598 -2 0 287 c1 308 3 322 51 349 37 21 1058 20 1098 -1z
+            m-1349 -310 l0 -125 -725 0 c-609 0 -731 2 -760 14 -82 35 -99 141 -31 203
+            l36 33 740 0 740 0 0 -125z m3116 92 c68 -62 51 -168 -31 -203 -29 -12 -151
+            -14 -760 -14 l-725 0 0 125 0 125 740 0 740 0 36 -33z m-4156 -1992 l0 -1575
+            -115 0 -115 0 0 1575 0 1575 115 0 115 0 0 -1575z m1040 1523 c0 -40 23 -123
+            96 -341 115 -345 101 -327 261 -327 l101 0 4 -132 c3 -110 7 -141 25 -180 29
+            -64 103 -140 162 -168 l48 -23 6 -151 c11 -278 61 -462 167 -617 l40 -58 -461
+            -3 -461 -3 -29 -33 -29 -32 0 -515 0 -515 -385 0 -385 0 0 1575 0 1575 420 0
+            420 0 0 -52z m2440 -1523 l0 -1575 -385 0 -385 0 0 515 0 515 -29 32 -29 33
+            -174 5 -174 5 -76 38 c-87 43 -144 99 -189 189 -62 123 -99 312 -99 506 l0 89
+            50 23 c61 29 133 103 163 168 18 39 22 70 25 180 l4 132 101 0 c160 0 146 -18
+            261 327 73 218 96 301 96 341 l0 52 420 0 420 0 0 -1575z m430 0 l0 -1575
+            -115 0 -115 0 0 1575 0 1575 115 0 115 0 0 -1575z m-1564 1218 l-53 -158 -453
+            0 -453 0 -53 158 -52 157 558 0 558 0 -52 -157z m-366 -470 c0 -118 -13 -155
+            -66 -189 -35 -23 -113 -23 -148 0 -53 34 -66 71 -66 189 l0 107 140 0 140 0 0
+            -107z m88 -1875 l2 -448 -450 0 -450 0 0 450 0 450 448 -2 447 -3 3 -447z
+            m442 2 l0 -450 -120 0 -120 0 0 450 0 450 120 0 120 0 0 -450z m-2152 -1237
+            l3 -133 -361 0 -360 0 0 135 0 135 358 -2 357 -3 3 -132z m3682 2 l0 -135
+            -360 0 -360 0 0 128 c0 71 3 132 7 135 3 4 165 7 360 7 l353 0 0 -135z"/>
+            <path d="M2524 661 c-12 -5 -31 -22 -44 -38 -17 -22 -21 -36 -17 -68 16 -115
+            178 -115 194 1 4 35 1 46 -23 73 -31 33 -76 46 -110 32z"/>
+            </g>
+          </svg>          
+          </div>
+          <h3 class="text-2xl font-black uppercase text-[color:var(--dark)]">
+            Impression 3D
+          </h3>
+          <div class="mx-auto mt-4 h-px w-24 bg-gray-300"></div>
+          <p class="mt-4 text-sm font-medium italic text-gray-600">
+            Fabrication sur mesure
+          </p>
+        </div>
+
+        <div class="rounded-2xl bg-white p-8 text-center shadow-sm">
+          <div class="mb-4 flex justify-center">
+          <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+          width="64pt" height="64pt" viewBox="0 0 512.000000 512.000000"
+          preserveAspectRatio="xMidYMid meet">
+
+            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+            fill="#1F3046" stroke="none">
+            <path d="M345 5106 c-125 -32 -246 -128 -297 -237 -47 -100 -49 -138 -46 -669
+            l3 -495 27 -50 c59 -112 155 -170 278 -169 61 0 85 5 127 27 63 33 115 84 145
+            146 23 45 23 53 26 448 l3 402 402 3 c395 3 403 3 448 26 61 30 113 81 146
+            145 23 44 27 65 27 132 0 98 -28 159 -102 227 -88 78 -85 78 -646 77 -357 0
+            -505 -4 -541 -13z m1062 -219 c22 -22 28 -37 28 -73 0 -39 -5 -50 -33 -75
+            l-32 -29 -446 0 -446 0 -34 -34 -34 -34 0 -446 0 -446 -29 -32 c-25 -28 -36
+            -33 -75 -33 -36 0 -51 6 -73 28 l-28 27 -3 482 c-3 548 -3 548 73 623 74 75
+            68 74 617 72 l488 -2 27 -28z"/>
+            <path d="M3687 5103 c-62 -21 -141 -91 -175 -157 -36 -70 -37 -187 -3 -258 29
+            -60 89 -120 149 -150 46 -23 52 -23 449 -26 l402 -3 3 -402 c3 -395 3 -403 26
+            -448 30 -62 82 -113 145 -146 42 -22 66 -27 127 -27 123 -1 219 57 278 169
+            l27 50 3 495 c2 343 0 513 -8 555 -34 174 -174 317 -348 354 -35 7 -218 11
+            -540 10 -420 0 -494 -2 -535 -16z m1068 -200 c64 -22 127 -85 149 -150 15 -44
+            16 -104 14 -531 l-3 -482 -28 -27 c-22 -22 -37 -28 -73 -28 -39 0 -50 5 -75
+            33 l-29 32 0 446 0 446 -34 34 -34 34 -446 0 -446 0 -32 29 c-28 25 -33 36
+            -33 74 0 47 21 82 60 98 11 4 232 8 491 8 413 1 476 -1 519 -16z"/>
+            <path d="M2415 3894 c-354 -26 -629 -88 -932 -209 -494 -199 -952 -539 -1329
+            -988 -76 -90 -91 -119 -80 -161 15 -62 352 -419 547 -581 620 -514 1369 -773
+            2099 -726 854 55 1637 469 2237 1184 85 101 100 129 89 172 -16 61 -356 423
+            -548 581 -479 396 -1023 639 -1585 708 -121 15 -409 27 -498 20z m485 -220
+            c123 -16 242 -40 372 -75 78 -21 83 -25 177 -114 260 -250 394 -564 394 -925
+            0 -361 -134 -675 -394 -925 -95 -90 -98 -93 -180 -115 -129 -35 -295 -67 -421
+            -81 -160 -18 -445 -16 -610 5 -128 16 -389 71 -450 95 -41 15 -192 164 -258
+            252 -71 95 -121 184 -161 285 -36 95 -73 134 -125 134 -48 0 -94 -45 -94 -93
+            0 -50 78 -231 146 -339 13 -21 24 -40 24 -43 0 -8 -96 42 -195 103 -180 111
+            -333 228 -514 394 -105 96 -306 311 -306 328 0 5 43 57 95 116 186 209 472
+            450 710 597 112 68 210 121 210 112 0 -3 -11 -22 -24 -43 -70 -111 -146 -288
+            -146 -339 0 -46 36 -83 86 -90 36 -4 45 -1 72 23 18 18 43 60 61 108 40 101
+            90 190 161 285 66 88 218 237 258 252 50 19 259 67 365 84 235 37 510 40 747
+            9z m1170 -439 c226 -149 461 -350 636 -545 60 -66 109 -125 109 -129 0 -5 -47
+            -61 -103 -124 -201 -223 -453 -435 -702 -589 -112 -69 -210 -122 -210 -113 0
+            3 11 22 24 43 87 138 172 366 201 537 11 62 17 155 17 245 0 90 -6 183 -17
+            245 -29 171 -114 399 -201 537 -13 21 -24 40 -24 44 0 10 169 -84 270 -151z"/>
+            <path d="M2200 3239 c-184 -111 -347 -213 -362 -227 l-28 -26 0 -426 0 -426
+            28 -26 c15 -14 178 -117 362 -227 293 -177 339 -202 367 -197 42 6 695 398
+            722 433 20 25 21 37 21 443 0 407 -1 418 -21 444 -28 36 -697 436 -729 436
+            -16 0 -161 -81 -360 -201z m590 -156 c193 -115 226 -139 212 -148 -9 -7 -113
+            -69 -229 -139 l-213 -127 -230 138 c-140 84 -225 140 -217 145 7 4 109 66 227
+            137 118 72 217 130 218 131 2 0 107 -62 232 -137z m-546 -458 l216 -130 0
+            -268 c0 -252 -1 -267 -17 -258 -10 5 -110 66 -223 134 l-205 124 -3 267 c-1
+            150 2 266 6 264 5 -1 107 -61 226 -133z m864 -132 l-3 -267 -205 -123 c-113
+            -68 -213 -128 -222 -134 -17 -9 -18 6 -18 258 l0 268 218 132 c119 72 220 132
+            225 132 4 1 6 -119 5 -266z"/>
+            <path d="M1110 2633 c-28 -25 -33 -36 -33 -73 0 -37 5 -48 33 -73 28 -25 38
+            -28 74 -24 116 16 116 178 0 194 -36 4 -46 1 -74 -24z"/>
+            <path d="M235 1631 c-95 -25 -189 -112 -218 -201 -15 -46 -17 -110 -17 -536 0
+            -315 4 -501 11 -536 27 -127 119 -247 236 -306 100 -51 134 -53 673 -50 l495
+            3 50 27 c112 59 170 155 169 278 0 61 -5 85 -27 127 -33 63 -84 115 -146 145
+            -45 23 -53 23 -448 26 l-402 3 -3 402 c-3 397 -3 403 -26 449 -30 60 -90 120
+            -148 147 -50 24 -151 35 -199 22z m148 -231 l27 -30 0 -446 0 -446 34 -34 34
+            -34 446 0 446 0 32 -29 c28 -25 33 -36 33 -75 0 -36 -6 -51 -28 -73 l-27 -28
+            -482 -3 c-548 -3 -548 -3 -623 73 -76 75 -76 75 -73 622 3 465 4 482 23 503
+            45 50 113 50 158 0z"/>
+            <path d="M4745 1631 c-88 -23 -166 -87 -207 -169 -23 -46 -23 -52 -26 -449
+            l-3 -402 -402 -3 c-397 -3 -403 -3 -449 -26 -60 -30 -120 -90 -149 -150 -18
+            -37 -23 -64 -23 -127 0 -98 27 -159 102 -227 88 -78 86 -78 638 -78 317 0 501
+            4 536 11 173 37 315 181 348 354 8 42 10 212 8 555 l-3 495 -27 50 c-32 60
+            -87 115 -146 144 -47 24 -148 35 -197 22z m144 -226 l26 -25 3 -482 c3 -548 3
+            -548 -73 -623 -75 -76 -75 -76 -623 -73 l-482 3 -27 28 c-22 22 -28 37 -28 73
+            0 39 5 50 33 75 l32 29 445 0 445 0 32 29 33 29 5 455 c5 437 6 456 25 477 11
+            12 29 26 40 31 32 14 87 2 114 -26z"/>
+            </g>
+          </svg>          
+          </div>
+          <h3 class="text-2xl font-black uppercase text-[color:var(--dark)]">
+            Expertise terrain
+          </h3>
+          <div class="mx-auto mt-4 h-px w-24 bg-gray-300"></div>
+          <p class="mt-4 text-sm font-medium italic text-gray-600">
+            Conçu avec une vraie culture de l'usage
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="mx-auto container px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mb-8 flex items-end justify-between gap-4">
+      <div>
+        <h2 class="text-2xl font-black uppercase tracking-wide text-[color:var(--dark)]">
+          Produits mis en avant
+        </h2>        
+        <p class="mt-2 text-gray-600">
+          Une sélection de pièces disponibles sur la boutique.
+        </p>
+      </div>
+
+      <%= link_to "Voir tout",
+        products_path,
+        class: "text-sm font-medium text-[color:var(--dark)] hover:text-[color:var(--light)]" %>
+    </div>
+
+    <% if @featured_products.any? %>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <% @featured_products.each do |product| %>
+          <div class="cursor-pointer group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+            <%= link_to product_path(product), class: "block" do %>
+              <div class="aspect-square overflow-hidden bg-gray-100">
+                <% if product.images.attached? %>
+                  <%= image_tag product.images.first, class: "h-full w-full object-cover transition duration-300 group-hover:scale-105" %>
+                <% else %>
+                  <div class="flex h-full w-full items-center justify-center text-sm text-gray-400">
+                    Pas d'image
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+
+            <div class="p-4">
+              <% if product.category.present? %>
+                <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+                  <%= product.category.name %>
+                </p>
+              <% end %>
+
+              <h3 class="mt-2 text-lg font-semibold text-gray-900">
+                <%= link_to product.name, product_path(product), class: "hover:underline" %>
+              </h3>
+
+              <p class="mt-2 text-sm text-gray-500">
+                <%= truncate(product.description.to_s, length: 80) %>
+              </p>
+
+              <div class="mt-4 flex items-center justify-between gap-4">
+                <p class="text-lg font-bold text-gray-900">
+                  <%= number_to_currency(product.price_cents / 100.0, unit: "€") %>
+                </p>
+
+                <%= button_to "Ajouter",
+                  cart_items_path(product_id: product.id),
+                  method: :post,
+                  class: "rounded-xl bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700 cursor-pointer" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="rounded-2xl border border-gray-200 bg-white p-10 text-center shadow-sm">
+        <h3 class="text-lg font-semibold text-gray-900">Les produits arrivent bientôt</h3>
+        <p class="mt-2 text-gray-500">Le catalogue sera bientôt disponible.</p>
+      </div>
+    <% end %>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="border-t border-gray-200 bg-gray-200">
+    <div class="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-black uppercase tracking-wide text-[color:var(--dark)]">
+        Des pièces conçues pour durer
+      </h2>
+
+      <p class="mx-auto mt-4 max-w-2xl text-gray-600">
+        Parcours le catalogue et ajoute directement les produits à ton panier.
+      </p>
+
+      <div class="mt-8">
+        <%= link_to "Accéder au catalogue",
+          products_path,
+          class: "inline-flex items-center rounded-lg bg-[color:var(--dark)] px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white hover:bg-[color:var(--light)]" %>
+      </div>
+    </div>
+  </section>
 </div>
