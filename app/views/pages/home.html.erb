@@ -107,7 +107,7 @@
           </h3>
           <div class="mx-auto mt-4 h-px w-24 bg-gray-300"></div>
           <p class="mt-4 text-sm font-medium italic text-gray-600">
-            Matériaux robustes & finition soignée
+            Matériaux robustes & finition soignée (PLA, PETG, ABS/ASA, TPU)
           </p>
         </div>
 
@@ -160,7 +160,7 @@
           </h3>
           <div class="mx-auto mt-4 h-px w-24 bg-gray-300"></div>
           <p class="mt-4 text-sm font-medium italic text-gray-600">
-            Fabrication sur mesure
+            Fabrication sur mesure (Conception, Impression, Expedition)
           </p>
         </div>
 
@@ -250,19 +250,22 @@
 
   <!-- FEATURED PRODUCTS -->
   <section class="mx-auto container px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mb-8 flex items-end justify-between gap-4">
-      <div>
-        <h2 class="text-2xl font-black uppercase tracking-wide text-[color:var(--dark)]">
+    <div class="mb-10">
+      <div class="flex items-center gap-4">
+        <div class="h-px flex-1 bg-gray-300"></div>
+
+        <h2 class="text-center text-2xl font-black uppercase tracking-wide text-[color:var(--dark)] sm:text-3xl">
           Produits mis en avant
-        </h2>        
-        <p class="mt-2 text-gray-600">
-          Une sélection de pièces disponibles sur la boutique.
-        </p>
+        </h2>
+
+        <div class="h-px flex-1 bg-gray-300"></div>
       </div>
 
-      <%= link_to "Voir tout",
-        products_path,
-        class: "text-sm font-medium text-[color:var(--dark)] hover:text-[color:var(--light)]" %>
+      <div class="mt-4 flex justify-center">
+        <%= link_to "Voir tout",
+          products_path,
+          class: "inline-flex font-semibold uppercase items-center rounded-xl bg-[color:var(--dark)] px-8 py-4 text-sm font-medium text-white hover:bg-[color:var(--light)] transition" %>
+      </div>
     </div>
 
     <% if @featured_products.any? %>
