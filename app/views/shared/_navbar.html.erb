@@ -90,36 +90,36 @@
     <div data-navbar-target="menu" class="hidden border-t border-gray-200 py-4 md:hidden">
       <div class="flex flex-col gap-3">
         <%= link_to "Accueil", root_path,
-          class: "rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
+          class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
 
         <%= link_to "Produits", products_path,
-          class: "rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
+          class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
 
         <%= link_to "Mon panier", cart_path,
-          class: "rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
+          class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
 
         <% if user_signed_in? %>
           <%= link_to "Mon compte", root_path,
-          class: "rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
+          class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
 
           <% if current_user.admin? %>
             <%= link_to "Administration",
               admin_root_path,
-              class: "rounded-lg bg-[color:var(--dark)] px-3 py-2 text-sm font-medium text-white hover:bg-[color:var(--light)]" %>
+              class: "rounded-lg bg-[color:var(--dark)] px-3 py-2 text-xl font-medium text-white hover:bg-[color:var(--light)]" %>
           <% end %>
 
           <%= button_to "Déconnexion",
             destroy_user_session_path,
             method: :delete,
-            class: "w-full rounded-lg px-3 py-2 text-left text-sm font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
+            class: "w-full rounded-lg px-3 py-2 text-left text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
         <% else %>
           <%= link_to "Connexion",
             new_user_session_path,
-            class: "rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
+            class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
 
           <%= link_to "S'inscrire",
             new_user_registration_path,
-            class: "rounded-lg bg-[color:var(--dark)] px-3 py-2 text-sm font-medium text-white hover:bg-[color:var(--light)]" %>
+            class: "rounded-lg bg-[color:var(--dark)] px-3 py-2 text-xl font-medium text-white hover:bg-[color:var(--light)]" %>
         <% end %>
       </div>
     </div>
