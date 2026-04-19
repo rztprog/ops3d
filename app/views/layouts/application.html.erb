@@ -59,7 +59,7 @@
       </div>
     </div>
     <!-- Layout -->
-    <main class="flex-1 pb-10 md:pb-0 <%= 'container mx-auto mt-28 px-5' unless current_page?(root_path) %>">
+    <main class="flex-1 pb-10 md:pb-0 <%= 'container mx-auto md:mt-28 mt-16 px-5' unless current_page?(root_path) %>">
       <%= yield %>
     </main>
     <%= render "shared/footer" %>
