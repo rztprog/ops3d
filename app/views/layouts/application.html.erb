@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
 
-  <body class="bg-gray-100">
+  <body class="min-h-screen flex flex-col bg-gray-100">
     <!-- Navbar -->
     <%= render 'shared/navbar' %>
     <!-- Notice -->
@@ -59,7 +59,7 @@
       </div>
     </div>
     <!-- Layout -->
-    <main class="<%= 'container mx-auto mt-28 px-5' unless current_page?(root_path) %>">
+    <main class="flex-1 pb-10 md:pb-0 <%= 'container mx-auto mt-28 px-5' unless current_page?(root_path) %>">
       <%= yield %>
     </main>
     <%= render "shared/footer" %>
