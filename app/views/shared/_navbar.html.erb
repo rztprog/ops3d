@@ -1,67 +1,127 @@
-<nav class="text-[color:var(--dark)] bg-white border-b border-gray-200">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<nav class="border-b border-gray-200 bg-white text-[color:var(--dark)]" data-controller="navbar">
+  <div class="mx-auto container px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
 
-      <!-- Navigation -->
-      <div class="flex">
-         <%= link_to "Accueil", root_path,
-            class: "hover:text-[color:var(--light)] pr-3 py-2 rounded-md text-sm font-medium" %>
+      <!-- LEFT DESKTOP -->
+      <div class="hidden md:flex items-center gap-6">
+        <%= link_to "Accueil", root_path,
+          class: "text-sm font-medium hover:text-[color:var(--light)]" %>
 
         <%= link_to "Produits", products_path,
-            class: "hover:text-[color:var(--light)] px-3 py-2 rounded-md text-sm font-medium" %>
+          class: "text-sm font-medium hover:text-[color:var(--light)]" %>
       </div>
 
-      <!-- Logo -->
-      <div class="flex items-center">
-        <%= link_to "OPS3D", root_path, class: "text-5xl black-ops-one" %>
-      </div>
-
-      <!-- Auth -->
-      <div class="flex items-center gap-4">
-
-        <!-- PANIER -->
+      <!-- MOBILE LEFT -->
+      <div class="flex md:hidden items-center gap-3">
         <%= link_to cart_path,
-          class: "relative font-medium hover:text-[color:var(--light)] cursor-pointer" do %>
-          <i class="fa-solid fa-cart-shopping fa-xl"></i>
+          class: "relative font-medium hover:text-[color:var(--light)]" do %>
+          <i class="fa-solid fa-cart-shopping text-xl"></i>
           <% if current_cart && current_cart.cart_items.any? %>
-            <span class="absolute -top-2 -right-3 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
+            <span class="absolute -top-2 -right-3 rounded-full bg-red-500 px-2 py-0.5 text-xs text-white">
+              <%= current_cart.cart_items.sum(:quantity) %>
+            </span>
+          <% end %>
+        <% end %>
+      </div>
+
+      <!-- LOGO -->
+      <div class="flex items-center">
+        <%= link_to "OPS3D", root_path, class: "black-ops-one text-4xl sm:text-4xl tracking-wide" %>
+      </div>
+
+      <!-- RIGHT DESKTOP -->
+      <div class="hidden md:flex items-center gap-4">
+        <%= link_to cart_path,
+          class: "relative font-medium hover:text-[color:var(--light)]" do %>
+          <i class="fa-solid fa-cart-shopping text-xl"></i>
+          <% if current_cart && current_cart.cart_items.any? %>
+            <span class="absolute -top-2 -right-3 rounded-full bg-red-500 px-2 py-0.5 text-xs text-white">
               <%= current_cart.cart_items.sum(:quantity) %>
             </span>
           <% end %>
         <% end %>
 
         <% if user_signed_in? %>
-
           <span class="hidden sm:block hover:text-[color:var(--light)] cursor-pointer">
             <i class="fa-solid fa-user fa-xl"></i>
           </span>
 
-          <!-- ADMIN BUTTON -->
           <% if current_user.admin? %>
             <%= link_to "Admin",
               admin_root_path,
-              class: "rounded-lg bg-[color:var(--dark)] px-4 py-2 text-sm font-medium text-white hover:bg-[color:var(--light)] transition cursor-pointer" %>
+              class: "rounded-lg bg-[color:var(--dark)] px-4 py-2 text-sm font-medium text-white transition hover:bg-[color:var(--light)]" %>
           <% end %>
 
           <%= button_to "Déconnexion",
-              destroy_user_session_path,
-              method: :delete,
-              class: "text-sm hover:text-[color:var(--light)] cursor-pointer" %>
-
+            destroy_user_session_path,
+            method: :delete,
+            class: "cursor-pointer text-sm hover:text-[color:var(--light)]" %>
         <% else %>
-
           <%= link_to "Connexion",
-              new_user_session_path,
-              class: "text-sm hover:text-[color:var(--light)] cursor-pointer" %>
+            new_user_session_path,
+            class: "text-sm hover:text-[color:var(--light)]" %>
 
-          <!-- CTA -->
           <%= link_to "S'inscrire",
-              new_user_registration_path,
-              class: "rounded-lg bg-[color:var(--dark)] px-4 py-2 text-sm font-medium text-white hover:[color:var(--light)] transition cursor-pointer" %>
-
+            new_user_registration_path,
+            class: "rounded-lg bg-[color:var(--dark)] px-4 py-2 text-sm font-medium text-white transition hover:bg-[color:var(--light)]" %>
         <% end %>
       </div>
 
+      <!-- MOBILE BURGER -->
+      <div class="flex md:hidden items-center">
+        <button
+          type="button"
+          data-action="click->navbar#toggle"
+          class="inline-flex items-center justify-center rounded-md p-2 hover:bg-gray-100 hover:text-[color:var(--light)]">
+          <span class="sr-only">Ouvrir le menu</span>
+
+          <svg data-navbar-target="openIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+
+          <svg data-navbar-target="closeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden h-6 w-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div data-navbar-target="menu" class="hidden border-t border-gray-200 py-4 md:hidden">
+      <div class="flex flex-col gap-3">
+        <%= link_to "Accueil", root_path,
+          class: "rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
+
+        <%= link_to "Produits", products_path,
+          class: "rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
+
+        <%= link_to "Mon panier", cart_path,
+          class: "rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
+
+        <% if user_signed_in? %>
+          <%= link_to "Mon compte", root_path,
+          class: "rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
+
+          <% if current_user.admin? %>
+            <%= link_to "Administration",
+              admin_root_path,
+              class: "rounded-lg bg-[color:var(--dark)] px-3 py-2 text-sm font-medium text-white hover:bg-[color:var(--light)]" %>
+          <% end %>
+
+          <%= button_to "Déconnexion",
+            destroy_user_session_path,
+            method: :delete,
+            class: "w-full rounded-lg px-3 py-2 text-left text-sm font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
+        <% else %>
+          <%= link_to "Connexion",
+            new_user_session_path,
+            class: "rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
+
+          <%= link_to "S'inscrire",
+            new_user_registration_path,
+            class: "rounded-lg bg-[color:var(--dark)] px-3 py-2 text-sm font-medium text-white hover:bg-[color:var(--light)]" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </nav>
