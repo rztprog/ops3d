@@ -15,7 +15,7 @@
       <div class="flex md:hidden items-center gap-3">
         <%= link_to cart_path,
           class: "relative font-medium hover:text-[color:var(--light)]" do %>
-          <i class="fa-solid fa-cart-shopping text-xl"></i>
+          <i class="fa-solid fa-cart-shopping text-2xl"></i>
           <% if current_cart && current_cart.cart_items.any? %>
             <span class="absolute -top-2 -right-3 rounded-full bg-red-500 px-2 py-0.5 text-xs text-white">
               <%= current_cart.cart_items.sum(:quantity) %>
@@ -75,11 +75,11 @@
           class="inline-flex items-center justify-center rounded-md p-2 hover:bg-gray-100 hover:text-[color:var(--light)]">
           <span class="sr-only">Ouvrir le menu</span>
 
-          <svg data-navbar-target="openIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+          <svg data-navbar-target="openIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-8 w-8">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
 
-          <svg data-navbar-target="closeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden h-6 w-6">
+          <svg data-navbar-target="closeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden h-8 w-8">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18 18 6M6 6l12 12" />
           </svg>
         </button>
