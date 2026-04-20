@@ -35,4 +35,10 @@ Rails.application.routes.draw do
     resources :categories
     resources :orders, only: [ :index, :show, :update ]
   end
+
+  resource :account, only: [ :show ], controller: "accounts"
+
+  namespace :account do
+    resources :orders, only: [ :index, :show ]
+  end
 end

@@ -1,0 +1,19 @@
+module Account
+  class OrdersController < ApplicationController
+    before_action :authenticate_user!
+    before_action :set_order, only: [ :show ]
+
+    def index
+      @orders = current_user.orders.includes(:order_items).order(created_at: :desc)
+    end
+
+    def show
+    end
+
+    private
+
+    def set_order
+      @order = current_user.orders.includes(:order_items).find(params[:id])
+    end
+  end
+end
