@@ -33,7 +33,7 @@
       <div class="hidden md:flex items-center gap-4">
         <%= link_to cart_path,
           class: "relative font-medium hover:text-[color:var(--light)]" do %>
-          <i class="fa-solid fa-cart-shopping text-xl"></i>
+          <i class="fa-solid fa-cart-shopping fa-xl text-xl"></i>
           <% if current_cart && current_cart.cart_items.any? %>
             <span class="absolute -top-2 -right-3 rounded-full bg-red-500 px-2 py-0.5 text-xs text-white">
               <%= current_cart.cart_items.sum(:quantity) %>
