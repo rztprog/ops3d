@@ -42,9 +42,10 @@
         <% end %>
 
         <% if user_signed_in? %>
-          <span class="hidden sm:block hover:text-[color:var(--light)] cursor-pointer">
+          <%= link_to account_path,
+            class: "hidden sm:block hover:text-[color:var(--light)] cursor-pointer" do %>
             <i class="fa-solid fa-user fa-xl"></i>
-          </span>
+          <% end %>
 
           <% if current_user.admin? %>
             <%= link_to "Admin",
@@ -99,7 +100,7 @@
           class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
 
         <% if user_signed_in? %>
-          <%= link_to "Mon compte", root_path,
+          <%= link_to "Mon compte", account_path,
           class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
 
           <% if current_user.admin? %>
