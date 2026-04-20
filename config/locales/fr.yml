@@ -1,0 +1,9 @@
+fr:
+  time:
+    formats:
+      short: '%d/%m/%Y à %H:%M'
+      long: '%d %B %Y à %H:%M'
+  date:
+    formats:
+      short: '%d/%m/%Y'
+      long: '%d %B %Y'
