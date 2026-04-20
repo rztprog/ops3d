@@ -1,12 +1,65 @@
 module Admin
   class OrdersController < BaseController
+    before_action :authenticate_user!
+    before_action :ensure_cart_present, only: [ :new, :create ]
     before_action :set_order, only: [ :show, :update ]
 
     def index
-      @orders = Order.includes(:user, :order_items).order(created_at: :desc)
+      @orders = current_user.orders.order(created_at: :desc)
+    end
+
+    def new
+      @cart = ensure_cart
+      @cart_items = @cart.cart_items.includes(:product)
+
+      @subtotal_cents = cart_subtotal_cents(@cart_items)
+      @shipping_cents = current_shipping_cents
+      @total_cents = @subtotal_cents + @shipping_cents
+
+      @order = current_user.orders.new(
+        email: current_user.email,
+        first_name: current_user.first_name,
+        last_name: current_user.last_name
+      )
+    end
+
+    def create
+      @cart = ensure_cart
+      @cart_items = @cart.cart_items.includes(:product)
+
+      @subtotal_cents = cart_subtotal_cents(@cart_items)
+      @shipping_cents = current_shipping_cents
+      @total_cents = @subtotal_cents + @shipping_cents
+
+      @order = current_user.orders.new(order_params)
+      @order.status = "pending"
+      @order.subtotal_price_cents = @subtotal_cents
+      @order.shipping_price_cents = @shipping_cents
+      @order.shipping_mode = current_shipping_mode
+      @order.total_price_cents = @total_cents
+
+      ActiveRecord::Base.transaction do
+        @order.save!
+
+        @cart_items.each do |item|
+          @order.order_items.create!(
+            product: item.product,
+            product_name: item.product.name,
+            quantity: item.quantity,
+            unit_price_cents: item.product.price_cents
+          )
+        end
+
+        @cart.cart_items.destroy_all
+      end
+
+      redirect_to order_path(@order), notice: "Commande créée avec succès."
+    rescue ActiveRecord::RecordInvalid
+      render :new, status: :unprocessable_entity
     end
 
     def show
+      redirect_to root_path, alert: "Accès non autorisé." unless @order.user == current_user
     end
 
     def update
@@ -20,11 +73,41 @@ module Admin
     private
 
     def set_order
-      @order = Order.includes(order_items: :product).find(params[:id])
+      @order = Order.includes(:order_items).find(params[:id])
     end
 
     def order_params
-      params.require(:order).permit(:status)
+      params.require(:order).permit(
+        :email,
+        :first_name,
+        :last_name,
+        :address_line,
+        :city,
+        :postal_code,
+        :country
+      )
+    end
+
+    def ensure_cart_present
+      cart = current_cart
+      return if cart.present? && cart.cart_items.any?
+
+      redirect_to cart_path, alert: "Ton panier est vide."
+    end
+
+    def cart_subtotal_cents(cart_items)
+      cart_items.sum { |item| item.quantity * item.product.price_cents }
+    end
+
+    def current_shipping_mode
+      Ops3dSetting.first&.shipping_mode || "free"
+    end
+
+    def current_shipping_cents
+      settings = Ops3dSetting.first
+      return 0 unless settings
+
+      settings.shipping_mode == "flat_rate" ? settings.shipping_price_cents : 0
     end
   end
 end
