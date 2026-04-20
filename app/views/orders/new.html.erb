@@ -1,4 +1,112 @@
-<div>
-  <h1 class="font-bold text-4xl">Orders#new</h1>
-  <p>Find me in app/views/orders/new.html.erb</p>
+<div class="mx-auto container px-4 py-10">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900">Finaliser ma commande</h1>
+    <p class="mt-2 text-sm text-gray-500">
+      Renseigne tes informations de livraison avant le paiement.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+    <!-- FORM -->
+    <div class="lg:col-span-2">
+      <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+        <% if @order.errors.any? %>
+          <div class="mb-6 rounded-xl border border-red-200 bg-red-50 p-4">
+            <h2 class="text-sm font-semibold text-red-800">
+              Le formulaire contient <%= pluralize(@order.errors.count, "erreur") %>.
+            </h2>
+
+            <ul class="mt-2 list-disc pl-5 text-sm text-red-700">
+              <% @order.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= form_with model: @order, local: true, class: "space-y-6" do |f| %>
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div>
+              <%= f.label :first_name, "Prénom", class: "block text-sm font-medium text-gray-700" %>
+              <%= f.text_field :first_name, class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+            </div>
+
+            <div>
+              <%= f.label :last_name, "Nom", class: "block text-sm font-medium text-gray-700" %>
+              <%= f.text_field :last_name, class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+            </div>
+
+            <div class="md:col-span-2">
+              <%= f.label :email, "Email", class: "block text-sm font-medium text-gray-700" %>
+              <%= f.email_field :email, class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+            </div>
+
+            <div class="md:col-span-2">
+              <%= f.label :address_line, "Adresse", class: "block text-sm font-medium text-gray-700" %>
+              <%= f.text_field :address_line, class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+            </div>
+
+            <div>
+              <%= f.label :postal_code, "Code postal", class: "block text-sm font-medium text-gray-700" %>
+              <%= f.text_field :postal_code, class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+            </div>
+
+            <div>
+              <%= f.label :city, "Ville", class: "block text-sm font-medium text-gray-700" %>
+              <%= f.text_field :city, class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+            </div>
+
+            <div class="md:col-span-2">
+              <%= f.label :country, "Pays", class: "block text-sm font-medium text-gray-700" %>
+              <%= f.text_field :country, class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <%= f.submit "Créer ma commande",
+              class: "inline-flex items-center justify-center rounded-xl bg-gray-900 px-6 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="lg:col-span-1">
+      <div class="sticky top-6 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+        <h2 class="text-xl font-semibold text-gray-900">Résumé</h2>
+
+        <div class="mt-6 space-y-4">
+          <% @cart_items.each do |item| %>
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-sm font-medium text-gray-900"><%= item.product.name %></p>
+                <p class="text-sm text-gray-500">Quantité : <%= item.quantity %></p>
+              </div>
+
+              <p class="text-sm font-medium text-gray-900">
+                <%= number_to_currency((item.quantity * item.product.price_cents) / 100.0, unit: "€") %>
+              </p>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="mt-6 space-y-4 border-t border-gray-200 pt-6 text-sm">
+          <div class="flex items-center justify-between text-gray-600">
+            <span>Sous-total</span>
+            <span><%= number_to_currency(@subtotal_cents / 100.0, unit: "€") %></span>
+          </div>
+
+          <div class="flex items-center justify-between text-gray-600">
+            <span>Livraison</span>
+            <span><%= number_to_currency(@shipping_cents / 100.0, unit: "€") %></span>
+          </div>
+
+          <div class="flex items-center justify-between border-t border-gray-200 pt-4 text-base font-semibold text-gray-900">
+            <span>Total</span>
+            <span><%= number_to_currency(@total_cents / 100.0, unit: "€") %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
