@@ -56,6 +56,7 @@ fr:
     formats:
       short: '%d/%m/%Y à %H:%M'
       long: '%d %B %Y à %H:%M'
+
   pages:
     home:
       hero:
@@ -78,34 +79,50 @@ fr:
             subtitle: "Des pièces conçues avec une logique d'usage, de robustesse et de fiabilité, pas juste pour être jolies à l'écran."
         featured:
           title: 'Produits mis en avant'
-          add: "Ajouter"
-          comming: "Les produits arrivent bientôt"
-          subcomming: "Le catalogue sera bientôt disponible."
+          add: 'Ajouter'
+          comming: 'Les produits arrivent bientôt'
+          subcomming: 'Le catalogue sera bientôt disponible.'
           cta: 'Voir tout'
         finalcta:
-          title: "Des pièces conçues pour durer"
-          subtitle: "Découvrez le catalogue et ajoutez directement les produits à votre panier."
-          cta: "Accéder au catalogue"
+          title: 'Des pièces conçues pour durer'
+          subtitle: 'Découvrez le catalogue et ajoutez directement les produits à votre panier.'
+          cta: 'Accéder au catalogue'
 
   products:
     index:
       title: 'Nos produits'
-      subtitle: "Découvre nos pièces imprimées en 3D prêtes à être commandées."
+      subtitle: 'Découvre nos pièces imprimées en 3D prêtes à être commandées.'
       add: 'Ajouter'
       product: 'produits'
     show:
       image: "Pas d'image disponible"
       add: 'Ajouter au panier'
-      back: "← Retour aux produits"
-      description: "Description"
-      available: "Disponibilité"
-      stock: "En stock sur commande"
-      subtitle: "Fabrication à la demande. Les délais exacts seront confirmés avant expédition."
+      back: '← Retour aux produits'
+      description: 'Description'
+      available: 'Disponibilité'
+      stock: 'En stock sur commande'
+      subtitle: 'Fabrication à la demande. Les délais exacts seront confirmés avant expédition.'
 
   carts:
     show:
       title: 'Mon panier'
+      inCart: 'dans votre panier'
       empty: 'Ton panier est vide'
+      addSomething: 'Ajoute quelques produits pour commencer.'
+      all: 'Voir les produits'
+      image: "Pas d'image"
+      unit: 'Prix unitaire'
+      total: 'Total'
+      quantity: 'Quantité'
+      update: 'Mettre à jour'
+      delete: 'Supprimer'
+      continue: '← Continuer mes achats'
+      sum: 'Résumé'
+      ship: 'Sous-total'
+      fee: 'Livraison'
+      order: 'Passer la commande'
+      connect: 'Se connecter pour commander'
+      lastp: 'Les frais de livraison et le total final seront confirmés avant paiement.'
 
   accounts:
     show:
