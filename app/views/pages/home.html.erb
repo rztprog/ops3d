@@ -4,20 +4,20 @@
     <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
       <div>
         <p class="text-sm font-semibold uppercase tracking-[0.25em] text-[color:var(--light)]">
-          Précision • Robustesse • Expertise terrain
+          <%= t("pages.home.hero.first") %>
         </p>
 
         <h1 class="mt-4 text-5xl font-black uppercase leading-none tracking-tight text-[color:var(--dark)] sm:text-5xl lg:text-6xl">
           OPS3D
-          <span class="block text-[color:var(--light)] text-xl sm:text-xl lg:text-2xl">L'exigence terrain appliquée à l'impression 3D</span>
+          <span class="block text-[color:var(--light)] text-xl sm:text-xl lg:text-2xl"><%= t("pages.home.hero.title") %></span>
         </h1>
 
         <p class="mt-6 max-w-xl text-lg leading-8 text-gray-600">
-          Pièces techniques imprimées en 3D, supports, fixations et fabrications sur mesure pensées pour les professionnels, les passionnés exigeants et les usages où la fiabilité compte vraiment.
+          <%= t("pages.home.hero.subtitle") %>
         </p>
 
         <div class="mt-8 flex flex-wrap items-center gap-4">
-          <%= link_to "Découvrir le catalogue",
+          <%= link_to t("pages.home.hero.cta"),
             products_path,
             class: "inline-flex font-semibold uppercase items-center rounded-xl bg-[color:var(--dark)] px-8 py-4 text-sm font-medium text-white hover:bg-[color:var(--light)] transition" %>
         </div>
@@ -29,7 +29,7 @@
             <%= image_tag @featured_products.first.images.first, class: "aspect-[4/3] w-full object-cover" %>
           <% else %>
             <div class="flex aspect-[4/3] items-center justify-center text-sm text-gray-400">
-              Visuel produit à venir
+              <%= link_to t("pages.home.hero.image") %>
             </div>
           <% end %>
         </div>
@@ -43,7 +43,7 @@
       <div class="mb-10 flex items-center gap-4">
         <div class="h-px flex-1 bg-gray-300 "></div>
         <h2 class="text-center text-2xl font-black uppercase tracking-wide text-[color:var(--dark)] sm:text-3xl">
-          Pourquoi choisir OPS3D ?
+          <%= t("pages.home.section.why.title") %>
         </h2>
         <div class="h-px flex-1 bg-gray-300"></div>
       </div>
@@ -103,11 +103,11 @@
             </svg>
           </div>
           <h3 class="text-2xl font-black uppercase text-[color:var(--dark)]">
-            Matériaux adaptés à l'usage réel
+            <%= t("pages.home.section.why.card1.title") %>
           </h3>
           <div class="mx-auto mt-4 h-px w-24 bg-gray-300"></div>
           <p class="mt-4 text-sm font-medium italic text-gray-600">
-            PLA, PETG, ABS/ASA, TPU : chaque pièce est pensée selon sa contrainte réelle, sa résistance et son environnement.
+            <%= t("pages.home.section.why.card1.subtitle") %>
           </p>
         </div>
 
@@ -156,11 +156,11 @@
           </svg>          
           </div>
           <h3 class="text-2xl font-black uppercase text-[color:var(--dark)]">
-            Pièces standard et sur mesure
+            <%= t("pages.home.section.why.card2.title") %>
           </h3>
           <div class="mx-auto mt-4 h-px w-24 bg-gray-300"></div>
           <p class="mt-4 text-sm font-medium italic text-gray-600">
-            Catalogue prêt à commander ou fabrication selon votre besoin, avec une approche simple et efficace.
+            <%= t("pages.home.section.why.card2.subtitle") %>
           </p>
         </div>
 
@@ -237,11 +237,11 @@
           </svg>          
           </div>
           <h3 class="text-2xl font-black uppercase text-[color:var(--dark)]">
-            Conçues pour durer sur le terrain
+            <%= t("pages.home.section.why.card3.title") %>
           </h3>
           <div class="mx-auto mt-4 h-px w-24 bg-gray-300"></div>
           <p class="mt-4 text-sm font-medium italic text-gray-600">
-            Des pièces conçues avec une logique d'usage, de robustesse et de fiabilité, pas juste pour être jolies à l'écran.
+            <%= t("pages.home.section.why.card3.subtitle") %>
           </p>
         </div>
       </div>
@@ -255,14 +255,14 @@
         <div class="h-px flex-1 bg-gray-300"></div>
 
         <h2 class="text-center text-2xl font-black uppercase tracking-wide text-[color:var(--dark)] sm:text-3xl">
-          Produits mis en avant
+            <%= t("pages.home.section.featured.title") %>
         </h2>
 
         <div class="h-px flex-1 bg-gray-300"></div>
       </div>
 
       <div class="mt-4 flex justify-center">
-        <%= link_to "Voir tout",
+        <%= link_to t(".section.featured.cta"),
           products_path,
           class: "inline-flex font-semibold uppercase items-center rounded-xl bg-[color:var(--dark)] px-8 py-4 text-sm font-medium text-white hover:bg-[color:var(--light)] transition" %>
       </div>
@@ -304,7 +304,7 @@
                   <%= number_to_currency(product.price_cents / 100.0, unit: "€") %>
                 </p>
 
-                <%= button_to "Ajouter",
+                <%= button_to t("pages.home.section.featured.add"),
                   cart_items_path(product_id: product.id),
                   method: :post,
                   class: "rounded-xl bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700 cursor-pointer" %>
@@ -315,8 +315,8 @@
       </div>
     <% else %>
       <div class="rounded-2xl border border-gray-200 bg-white p-10 text-center shadow-sm">
-        <h3 class="text-lg font-semibold text-gray-900">Les produits arrivent bientôt</h3>
-        <p class="mt-2 text-gray-500">Le catalogue sera bientôt disponible.</p>
+        <h3 class="text-lg font-semibold text-gray-900"><%= t(pages.home.featured.comming) %></h3>
+        <p class="mt-2 text-gray-500"><%= t(pages.home.featured.subcomming) %></p>
       </div>
     <% end %>
   </section>
@@ -325,15 +325,15 @@
   <section class="border-t border-gray-200 bg-gray-200">
     <div class="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
       <h2 class="text-3xl font-black uppercase tracking-wide text-[color:var(--dark)]">
-        Des pièces conçues pour durer
+        <%= t("pages.home.section.finalcta.title") %>
       </h2>
 
       <p class="mx-auto mt-4 max-w-2xl text-gray-600">
-        Découvrez le catalogue et ajoutez directement les produits à votre panier.
+        <%= t("pages.home.section.finalcta.subtitle") %>
       </p>
 
       <div class="mt-8">
-        <%= link_to "Accéder au catalogue",
+        <%= link_to t('pages.home.section.finalcta.cta'),
           products_path,
           class: "inline-flex items-center rounded-lg bg-[color:var(--dark)] px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white hover:bg-[color:var(--light)]" %>
       </div>

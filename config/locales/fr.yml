@@ -56,3 +56,56 @@ fr:
     formats:
       short: '%d/%m/%Y à %H:%M'
       long: '%d %B %Y à %H:%M'
+  pages:
+    home:
+      hero:
+        first: 'Précision • Robustesse • Expertise terrain'
+        title: "L'exigence terrain appliquée à l'impression 3D"
+        subtitle: 'Pièces techniques imprimées en 3D, supports, fixations et fabrications sur mesure pensées pour les professionnels, les passionnés exigeants et les usages où la fiabilité compte vraiment.'
+        cta: 'Découvrir le catalogue'
+        image: 'Visuel produit à venir'
+      section:
+        why:
+          title: 'Pourquoi choisir OPS3D ?'
+          card1:
+            title: 'Pourquoi choisir OPS3D ?'
+            subtitle: 'PLA, PETG, ABS/ASA, TPU : chaque pièce est pensée selon sa contrainte réelle, sa résistance et son environnement.'
+          card2:
+            title: 'Pièces standard et sur mesure'
+            subtitle: 'Catalogue prêt à commander ou fabrication selon votre besoin, avec une approche simple et efficace.'
+          card3:
+            title: 'Conçues pour durer sur le terrain'
+            subtitle: "Des pièces conçues avec une logique d'usage, de robustesse et de fiabilité, pas juste pour être jolies à l'écran."
+        featured:
+          title: 'Produits mis en avant'
+          add: "Ajouter"
+          comming: "Les produits arrivent bientôt"
+          subcomming: "Le catalogue sera bientôt disponible."
+          cta: 'Voir tout'
+        finalcta:
+          title: "Des pièces conçues pour durer"
+          subtitle: "Découvrez le catalogue et ajoutez directement les produits à votre panier."
+          cta: "Accéder au catalogue"
+
+  products:
+    index:
+      title: 'Nos produits'
+    show:
+      add_to_cart: 'Ajouter au panier'
+
+  carts:
+    show:
+      title: 'Mon panier'
+      empty: 'Ton panier est vide'
+
+  accounts:
+    show:
+      title: 'Mon compte'
+      subtitle: 'Retrouve ici tes informations et tes dernières commandes.'
+
+  account:
+    orders:
+      index:
+        title: 'Mes commandes'
+      show:
+        title: 'Commande #%{id}'
