@@ -144,5 +144,17 @@ fr:
     orders:
       index:
         title: 'Mes commandes'
+        subtitle: 'Historique de toutes tes commandes.'
+        back: '← Retour au compte'
+        see: 'Voir'
+        empty: 'Aucune commande'
+        noOrder: "Tu n'as encore rien commandé."
+        all: 'Voir les produits'
+        order: 'Commande'
+        date: 'Date'
+        status: 'Statut'
+        amount: 'Montant'
+        action: 'Action'
+
       show:
         title: 'Commande #%{id}'
