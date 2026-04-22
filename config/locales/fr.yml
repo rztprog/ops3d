@@ -90,8 +90,17 @@ fr:
   products:
     index:
       title: 'Nos produits'
+      subtitle: "Découvre nos pièces imprimées en 3D prêtes à être commandées."
+      add: 'Ajouter'
+      product: 'produits'
     show:
-      add_to_cart: 'Ajouter au panier'
+      image: "Pas d'image disponible"
+      add: 'Ajouter au panier'
+      back: "← Retour aux produits"
+      description: "Description"
+      available: "Disponibilité"
+      stock: "En stock sur commande"
+      subtitle: "Fabrication à la demande. Les délais exacts seront confirmés avant expédition."
 
   carts:
     show:
