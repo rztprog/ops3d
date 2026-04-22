@@ -4,20 +4,20 @@
     <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
       <div>
         <p class="text-sm font-semibold uppercase tracking-[0.25em] text-[color:var(--light)]">
-          <%= t("pages.home.hero.first") %>
+          <%= t(".hero.first") %>
         </p>
 
         <h1 class="mt-4 text-5xl font-black uppercase leading-none tracking-tight text-[color:var(--dark)] sm:text-5xl lg:text-6xl">
           OPS3D
-          <span class="block text-[color:var(--light)] text-xl sm:text-xl lg:text-2xl"><%= t("pages.home.hero.title") %></span>
+          <span class="block text-[color:var(--light)] text-xl sm:text-xl lg:text-2xl"><%= t(".hero.title") %></span>
         </h1>
 
         <p class="mt-6 max-w-xl text-lg leading-8 text-gray-600">
-          <%= t("pages.home.hero.subtitle") %>
+          <%= t(".hero.subtitle") %>
         </p>
 
         <div class="mt-8 flex flex-wrap items-center gap-4">
-          <%= link_to t("pages.home.hero.cta"),
+          <%= link_to t(".hero.cta"),
             products_path,
             class: "inline-flex font-semibold uppercase items-center rounded-xl bg-[color:var(--dark)] px-8 py-4 text-sm font-medium text-white hover:bg-[color:var(--light)] transition" %>
         </div>
@@ -29,7 +29,7 @@
             <%= image_tag @featured_products.first.images.first, class: "aspect-[4/3] w-full object-cover" %>
           <% else %>
             <div class="flex aspect-[4/3] items-center justify-center text-sm text-gray-400">
-              <%= link_to t("pages.home.hero.image") %>
+              <%= link_to t(".hero.image") %>
             </div>
           <% end %>
         </div>
@@ -43,7 +43,7 @@
       <div class="mb-10 flex items-center gap-4">
         <div class="h-px flex-1 bg-gray-300 "></div>
         <h2 class="text-center text-2xl font-black uppercase tracking-wide text-[color:var(--dark)] sm:text-3xl">
-          <%= t("pages.home.section.why.title") %>
+          <%= t(".section.why.title") %>
         </h2>
         <div class="h-px flex-1 bg-gray-300"></div>
       </div>
@@ -103,11 +103,11 @@
             </svg>
           </div>
           <h3 class="text-2xl font-black uppercase text-[color:var(--dark)]">
-            <%= t("pages.home.section.why.card1.title") %>
+            <%= t(".section.why.card1.title") %>
           </h3>
           <div class="mx-auto mt-4 h-px w-24 bg-gray-300"></div>
           <p class="mt-4 text-sm font-medium italic text-gray-600">
-            <%= t("pages.home.section.why.card1.subtitle") %>
+            <%= t(".section.why.card1.subtitle") %>
           </p>
         </div>
 
@@ -156,11 +156,11 @@
           </svg>          
           </div>
           <h3 class="text-2xl font-black uppercase text-[color:var(--dark)]">
-            <%= t("pages.home.section.why.card2.title") %>
+            <%= t(".section.why.card2.title") %>
           </h3>
           <div class="mx-auto mt-4 h-px w-24 bg-gray-300"></div>
           <p class="mt-4 text-sm font-medium italic text-gray-600">
-            <%= t("pages.home.section.why.card2.subtitle") %>
+            <%= t(".section.why.card2.subtitle") %>
           </p>
         </div>
 
@@ -237,11 +237,11 @@
           </svg>          
           </div>
           <h3 class="text-2xl font-black uppercase text-[color:var(--dark)]">
-            <%= t("pages.home.section.why.card3.title") %>
+            <%= t(".section.why.card3.title") %>
           </h3>
           <div class="mx-auto mt-4 h-px w-24 bg-gray-300"></div>
           <p class="mt-4 text-sm font-medium italic text-gray-600">
-            <%= t("pages.home.section.why.card3.subtitle") %>
+            <%= t(".section.why.card3.subtitle") %>
           </p>
         </div>
       </div>
@@ -255,7 +255,7 @@
         <div class="h-px flex-1 bg-gray-300"></div>
 
         <h2 class="text-center text-2xl font-black uppercase tracking-wide text-[color:var(--dark)] sm:text-3xl">
-            <%= t("pages.home.section.featured.title") %>
+            <%= t(".section.featured.title") %>
         </h2>
 
         <div class="h-px flex-1 bg-gray-300"></div>
@@ -304,7 +304,7 @@
                   <%= number_to_currency(product.price_cents / 100.0, unit: "€") %>
                 </p>
 
-                <%= button_to t("pages.home.section.featured.add"),
+                <%= button_to t(".section.featured.add"),
                   cart_items_path(product_id: product.id),
                   method: :post,
                   class: "rounded-xl bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700 cursor-pointer" %>
@@ -315,8 +315,8 @@
       </div>
     <% else %>
       <div class="rounded-2xl border border-gray-200 bg-white p-10 text-center shadow-sm">
-        <h3 class="text-lg font-semibold text-gray-900"><%= t(pages.home.featured.comming) %></h3>
-        <p class="mt-2 text-gray-500"><%= t(pages.home.featured.subcomming) %></p>
+        <h3 class="text-lg font-semibold text-gray-900"><%= t(".section.featured.comming") %></h3>
+        <p class="mt-2 text-gray-500"><%= t(".section.featured.subcomming") %></p>
       </div>
     <% end %>
   </section>
@@ -325,15 +325,15 @@
   <section class="border-t border-gray-200 bg-gray-200">
     <div class="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
       <h2 class="text-3xl font-black uppercase tracking-wide text-[color:var(--dark)]">
-        <%= t("pages.home.section.finalcta.title") %>
+        <%= t(".section.finalcta.title") %>
       </h2>
 
       <p class="mx-auto mt-4 max-w-2xl text-gray-600">
-        <%= t("pages.home.section.finalcta.subtitle") %>
+        <%= t(".section.finalcta.subtitle") %>
       </p>
 
       <div class="mt-8">
-        <%= link_to t('pages.home.section.finalcta.cta'),
+        <%= link_to t('.section.finalcta.cta'),
           products_path,
           class: "inline-flex items-center rounded-lg bg-[color:var(--dark)] px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white hover:bg-[color:var(--light)]" %>
       </div>
