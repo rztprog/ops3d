@@ -128,6 +128,17 @@ fr:
     show:
       title: 'Mon compte'
       subtitle: 'Retrouve ici tes informations et tes dernières commandes.'
+      profil: 'Profil'
+      name: 'Nom'
+      email: 'Email'
+      modify: 'Modifier mes informations'
+      orders: 'Voir toutes mes commandes'
+      last: 'Dernières commandes'
+      order: 'Commande'
+      time: 'Passée le'
+      see: 'Voir'
+      empty: "Tu n'as encore passé aucune commande."
+      all: 'Découvrir les produits'
 
   account:
     orders:
