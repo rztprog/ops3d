@@ -31,6 +31,18 @@
 
       <!-- RIGHT DESKTOP -->
       <div class="hidden md:flex items-center gap-4">
+        <div class="flex items-center gap-2 text-sm">
+          <%= link_to "FR",
+            url_for(locale: :fr),
+            class: "#{I18n.locale == :fr ? 'font-bold text-[color:var(--light)]' : 'text-gray-500 hover:text-[color:var(--light)]'}" %>
+
+          <span class="text-gray-300">|</span>
+
+          <%= link_to "EN",
+            url_for(locale: :en),
+            class: "#{I18n.locale == :en ? 'font-bold text-[color:var(--light)]' : 'text-gray-500 hover:text-[color:var(--light)]'}" %>
+        </div>
+
         <%= link_to cart_path,
           class: "relative font-medium hover:text-[color:var(--light)]" do %>
           <i class="fa-solid fa-cart-shopping fa-xl text-xl"></i>
