@@ -91,6 +91,9 @@ en:
     lost: 'Forgot your password?'
     create: 'Create an account'
     me: 'Remember me'
+    register: 'Registration'
+    signup: 'Sign-up'
+    already: 'Already have an account?'
 
   navbar:
     home: 'Home'

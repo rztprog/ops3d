@@ -62,6 +62,9 @@ fr:
     lost: 'Mot de passe oublié ?'
     create: 'Créer un compte'
     me: 'Se souvenir de moi'
+    register: 'Inscription'
+    signup: "S'inscrire"
+    already: 'Déjà un compte ?'
 
   navbar:
     home: 'Accueil'
