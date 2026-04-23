@@ -96,6 +96,13 @@ en:
     account: 'My account'
     menu: 'Open menu'
 
+  footer:
+    account: 'Account'
+    text: '3D-printed parts designed for real-world use, with a focus on robustness, precision, and reliability.'
+    right: 'All rights reserved'
+    notice: 'Legal notice'
+    tc: 'Terms and Conditions'
+
   pages:
     home:
       hero:

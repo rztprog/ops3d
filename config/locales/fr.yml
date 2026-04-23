@@ -67,6 +67,13 @@ fr:
     account: 'Mon compte'
     menu: 'Ouvrir le menu'
 
+  footer:
+    account: 'Compte'
+    text: 'Pièces imprimées en 3D conçues pour des usages concrets, avec une exigence de robustesse, de précision et de fiabilité.'
+    right: 'Tous droits réservés'
+    notice: 'Mentions légales'
+    tc: 'CGV'
+
   pages:
     home:
       hero:

@@ -6,8 +6,7 @@
         <%= link_to "OPS3D", root_path, class: "text-3xl black-ops-one tracking-wide" %>
 
         <p class="mt-4 max-w-sm text-sm leading-6 text-gray-600">
-          Pièces imprimées en 3D conçues pour des usages concrets, avec une exigence
-          de robustesse, de précision et de fiabilité.
+          <%= t('footer.text')%>
         </p>
       </div>
 
@@ -19,13 +18,13 @@
 
         <ul class="mt-4 space-y-3 text-sm text-gray-600">
           <li>
-            <%= link_to "Accueil", root_path, class: "hover:text-[color:var(--light)]" %>
+            <%= link_to t('navbar.home'), root_path, class: "hover:text-[color:var(--light)]" %>
           </li>
           <li>
-            <%= link_to "Produits", products_path, class: "hover:text-[color:var(--light)]" %>
+            <%= link_to t('navbar.products'), products_path, class: "hover:text-[color:var(--light)]" %>
           </li>
           <li>
-            <%= link_to "Mon panier", cart_path, class: "hover:text-[color:var(--light)]" %>
+            <%= link_to t('navbar.cart'), cart_path, class: "hover:text-[color:var(--light)]" %>
           </li>
         </ul>
       </div>
@@ -33,13 +32,13 @@
       <!-- Account / Contact -->
       <div>
         <h3 class="text-sm font-bold uppercase tracking-wide text-[color:var(--dark)]">
-          Compte
+          <%= t('footer.account') %>
         </h3>
 
         <ul class="mt-4 space-y-3 text-sm text-gray-600">
           <% if user_signed_in? %>
             <li>
-              <%= link_to "Mon compte", edit_user_registration_path, class: "hover:text-[color:var(--light)]" %>
+              <%= link_to t('navbar.account'), edit_user_registration_path, class: "hover:text-[color:var(--light)]" %>
             </li>
             <% if current_user.admin? %>
               <li>
@@ -48,10 +47,10 @@
             <% end %>
           <% else %>
             <li>
-              <%= link_to "Connexion", new_user_session_path, class: "hover:text-[color:var(--light)]" %>
+              <%= link_to t('navbar.connection'), new_user_session_path, class: "hover:text-[color:var(--light)]" %>
             </li>
             <li>
-              <%= link_to "Inscription", new_user_registration_path, class: "hover:text-[color:var(--light)]" %>
+              <%= link_to t('navbar.signon'), new_user_registration_path, class: "hover:text-[color:var(--light)]" %>
             </li>
           <% end %>
         </ul>
@@ -59,11 +58,11 @@
     </div>
 
     <div class="mt-10 flex flex-col gap-3 border-t border-gray-200 pt-6 text-sm text-gray-500 md:flex-row md:items-center md:justify-between">
-      <p>© <%= Time.current.year %> OPS3D. Tous droits réservés.</p>
+      <p>© <%= Time.current.year %> OPS3D. <%= t('footer.right') %>.</p>
 
       <div class="flex flex-wrap items-center gap-4">
-        <a href="#" class="hover:text-[color:var(--light)]">Mentions légales</a>
-        <a href="#" class="hover:text-[color:var(--light)]">CGV</a>
+        <a href="#" class="hover:text-[color:var(--light)]"><%= t('footer.notice') %></a>
+        <a href="#" class="hover:text-[color:var(--light)]"><%= t('footer.tc') %></a>
         <a href="#" class="hover:text-[color:var(--light)]">Contact</a>
       </div>
     </div>
