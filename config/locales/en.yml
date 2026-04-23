@@ -94,6 +94,12 @@ en:
     register: 'Registration'
     signup: 'Sign-up'
     already: 'Already have an account?'
+    passwords:
+      new:
+        title: 'Forgot your password?'
+        subtitle: "Enter your email and we'll send you reset instructions."
+        submit: 'Send reset instructions'
+        back: 'Back to sign in'
 
   navbar:
     home: 'Home'

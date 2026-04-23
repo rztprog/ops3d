@@ -1,16 +1,37 @@
-<h2>Forgot your password?</h2>
+<div class="mx-auto max-w-md px-4 py-12">
+  <div class="mb-8 text-center">
+    <h1 class="text-3xl font-bold text-gray-900">
+      <%= t("devise.passwords.new.title", default: "Mot de passe oublié ?") %>
+    </h1>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <p><%= f.label :email %></p>
-    <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
+    <p class="mt-2 text-sm text-gray-500">
+      <%= t("devise.passwords.new.subtitle", default: "Entre ton email et nous t’enverrons les instructions pour réinitialiser ton mot de passe.") %>
+    </p>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Send me password reset instructions" %>
-  </div>
-<% end %>
+  <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, class: "space-y-6") do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= render "devise/shared/links" %>
+      <div>
+        <%= f.label :email, t("activerecord.attributes.user.email", default: "Email"), class: "block text-sm font-medium text-gray-700" %>
+
+        <%= f.email_field :email,
+          autofocus: true,
+          autocomplete: "email",
+          class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+      </div>
+
+      <div class="mt-6">
+        <%= f.submit t("devise.passwords.new.submit", default: "Envoyer les instructions"),
+          class: "w-full cursor-pointer rounded-xl bg-gray-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-gray-700" %>
+      </div>
+    <% end %>
+
+    <div class="mt-6 border-t border-gray-200 pt-6 text-center text-sm">
+      <%= link_to t("devise.shared.links.sign_in", default: t('.back')),
+        new_session_path(resource_name),
+        class: "font-medium text-[color:var(--light)] hover:underline" %>
+    </div>
+  </div>
+</div>

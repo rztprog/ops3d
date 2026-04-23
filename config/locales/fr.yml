@@ -65,6 +65,12 @@ fr:
     register: 'Inscription'
     signup: "S'inscrire"
     already: 'Déjà un compte ?'
+    passwords:
+      new:
+        title: 'Mot de passe oublié ?'
+        subtitle: "Entre ton email et nous t'enverrons les instructions pour réinitialiser ton mot de passe."
+        submit: 'Envoyer les instructions'
+        back: 'Retour à la connexion'
 
   navbar:
     home: 'Accueil'
