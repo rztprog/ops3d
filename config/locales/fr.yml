@@ -191,3 +191,23 @@ fr:
         fee: 'Livraison'
         total: 'Total'
         unit: 'unité'
+
+  orders:
+    new:
+      title: 'Finaliser ma commande'
+      subtitle: 'Renseigne tes informations de livraison avant le paiement.'
+      contain: 'Le formulaire contient'
+      error: 'erreur'
+      fname: 'Prénom'
+      sname: 'Nom'
+      email: 'Email'
+      address: 'Adresse'
+      postal: 'Code postal'
+      city: 'Ville'
+      country: 'Pays'
+      create: 'Créer ma commande'
+      sum: 'Résumé'
+      fee: 'Livraison'
+      subtotal: 'Sous-total'
+      total: 'Total'
+      quantity: 'Quantité'

@@ -220,3 +220,23 @@ en:
         fee: 'Shipping'
         total: 'Total'
         unit: 'unit'
+
+  orders:
+    new:
+      title: 'Complete my order'
+      subtitle: 'Enter your shipping information before payment.'
+      contain: 'The form contains'
+      error: 'error'
+      fname: 'First name'
+      sname: 'Last name'
+      email: 'Email'
+      address: 'Address'
+      postal: 'Postal code'
+      city: 'City'
+      country: 'Country'
+      create: 'Create my order'
+      sum: 'Summary'
+      fee: 'Shipping'
+      subtotal: 'Subtotal'
+      total: 'Total'
+      quantity: 'Quantity'
