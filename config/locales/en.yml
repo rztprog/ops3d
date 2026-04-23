@@ -86,6 +86,16 @@ en:
       short: '%m/%d/%Y %H:%M'
       long: '%B %d, %Y at %H:%M'
 
+  navbar:
+    home: 'Home'
+    products: 'Products'
+    signon: 'Sign up'
+    connection: 'Sign in'
+    logout: 'Log out'
+    cart: 'My cart'
+    account: 'My account'
+    menu: 'Open menu'
+
   pages:
     home:
       hero:

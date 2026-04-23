@@ -57,6 +57,16 @@ fr:
       short: '%d/%m/%Y à %H:%M'
       long: '%d %B %Y à %H:%M'
 
+  navbar:
+    home: 'Accueil'
+    products: 'Produits'
+    signon: "S'inscrire"
+    connection: 'Connexion'
+    logout: 'Déconnexion'
+    cart: 'Mon panier'
+    account: 'Mon compte'
+    menu: 'Ouvrir le menu'
+
   pages:
     home:
       hero:

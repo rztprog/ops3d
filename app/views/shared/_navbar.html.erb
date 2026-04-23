@@ -4,10 +4,10 @@
 
       <!-- LEFT DESKTOP -->
       <div class="hidden md:flex items-center gap-6">
-        <%= link_to "Accueil", root_path,
+        <%= link_to t('navbar.home'), root_path,
           class: "text-sm font-medium hover:text-[color:var(--light)]" %>
 
-        <%= link_to "Produits", products_path,
+        <%= link_to t('navbar.products'), products_path,
           class: "text-sm font-medium hover:text-[color:var(--light)]" %>
       </div>
 
@@ -65,16 +65,16 @@
               class: "rounded-lg bg-[color:var(--dark)] px-4 py-2 text-sm font-medium text-white transition hover:bg-[color:var(--light)]" %>
           <% end %>
 
-          <%= button_to "Déconnexion",
+          <%= button_to t('navbar.logout'),
             destroy_user_session_path,
             method: :delete,
             class: "cursor-pointer text-sm hover:text-[color:var(--light)]" %>
         <% else %>
-          <%= link_to "Connexion",
+          <%= link_to t('navbar.connection'),
             new_user_session_path,
             class: "text-sm hover:text-[color:var(--light)]" %>
 
-          <%= link_to "S'inscrire",
+          <%= link_to t('navbar.login'),
             new_user_registration_path,
             class: "rounded-lg bg-[color:var(--dark)] px-4 py-2 text-sm font-medium text-white transition hover:bg-[color:var(--light)]" %>
         <% end %>
@@ -86,7 +86,7 @@
           type="button"
           data-action="click->navbar#toggle"
           class="inline-flex items-center justify-center rounded-md p-2 hover:bg-gray-100 hover:text-[color:var(--light)]">
-          <span class="sr-only">Ouvrir le menu</span>
+          <span class="sr-only"><%= t('navbar.menu') %></span>
 
           <svg data-navbar-target="openIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-8 w-8">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -102,17 +102,17 @@
     <!-- MOBILE MENU -->
     <div data-navbar-target="menu" class="hidden border-t border-gray-200 py-4 md:hidden">
       <div class="flex flex-col gap-3">
-        <%= link_to "Accueil", root_path,
+        <%= link_to t('navbar.home'), root_path,
           class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
 
-        <%= link_to "Produits", products_path,
+        <%= link_to t('navbar.products'), products_path,
           class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
 
-        <%= link_to "Mon panier", cart_path,
+        <%= link_to t('navbar.cart'), cart_path,
           class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
 
         <% if user_signed_in? %>
-          <%= link_to "Mon compte", account_path,
+          <%= link_to t('navbar.account'), account_path,
           class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
 
           <% if current_user.admin? %>
@@ -121,16 +121,16 @@
               class: "rounded-lg bg-[color:var(--dark)] px-3 py-2 text-xl font-medium text-white hover:bg-[color:var(--light)]" %>
           <% end %>
 
-          <%= button_to "Déconnexion",
+          <%= button_to t('navbar.logout'),
             destroy_user_session_path,
             method: :delete,
             class: "w-full rounded-lg px-3 py-2 text-left text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
         <% else %>
-          <%= link_to "Connexion",
+          <%= link_to t('navbar.connection'),
             new_user_session_path,
             class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
 
-          <%= link_to "S'inscrire",
+          <%= link_to t('navbar.signon'),
             new_user_registration_path,
             class: "rounded-lg bg-[color:var(--dark)] px-3 py-2 text-xl font-medium text-white hover:bg-[color:var(--light)]" %>
         <% end %>
