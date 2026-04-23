@@ -34,7 +34,7 @@
         <% @orders.each do |order| %>
           <tr class="hover:bg-gray-50">
             <td class="px-6 py-4">
-              <p class="font-medium text-gray-900">#<%= order.id %></p>
+              <p class="font-medium text-gray-900">Commande #<%= order.id %></p>
               <p class="text-sm text-gray-500">
                 <%= pluralize(order.order_items.sum(&:quantity), "article") %>
               </p>
