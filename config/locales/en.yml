@@ -86,6 +86,12 @@ en:
       short: '%m/%d/%Y %H:%M'
       long: '%B %d, %Y at %H:%M'
 
+  devise:
+    connect: 'Sign in'
+    lost: 'Forgot your password?'
+    create: 'Create an account'
+    me: 'Remember me'
+
   navbar:
     home: 'Home'
     products: 'Products'

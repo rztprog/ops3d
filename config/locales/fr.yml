@@ -57,6 +57,12 @@ fr:
       short: '%d/%m/%Y à %H:%M'
       long: '%d %B %Y à %H:%M'
 
+  devise:
+    connect: 'Se connecter'
+    lost: 'Mot de passe oublié ?'
+    create: 'Créer un compte'
+    me: 'Se souvenir de moi'
+
   navbar:
     home: 'Accueil'
     products: 'Produits'
