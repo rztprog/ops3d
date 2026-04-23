@@ -240,3 +240,9 @@ en:
       subtotal: 'Subtotal'
       total: 'Total'
       quantity: 'Quantity'
+    show:
+      confirm: 'Order confirmed'
+      command: 'Your order '
+      created: 'has been successfully created.'
+      delivery: 'Shipping'
+      commands: 'View my orders'

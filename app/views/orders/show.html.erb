@@ -1,9 +1,9 @@
 <div class="mx-auto container px-4 py-10">
   <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900">Commande confirmée</h1>
+      <h1 class="text-3xl font-bold text-gray-900"><%= t('.confirm') %></h1>
       <p class="mt-2 text-sm text-gray-500">
-        Ta commande #<%= @order.id %> a bien été créée.
+        <%= t('.command') %> #<%= @order.id %> <%= t('.created') %>
       </p>
     </div>
 
@@ -16,7 +16,7 @@
             <div class="flex items-center justify-between gap-4 rounded-xl border border-gray-200 p-4">
               <div>
                 <p class="font-medium text-gray-900"><%= item.product_name %></p>
-                <p class="text-sm text-gray-500">Quantité : <%= item.quantity %></p>
+                <p class="text-sm text-gray-500"><%= t('orders.new.quantity') %> : <%= item.quantity %></p>
               </div>
 
               <p class="font-medium text-gray-900">
@@ -29,28 +29,28 @@
 
       <div class="space-y-6">
         <div class="rounded-2xl border border-gray-200 bg-gray-50 p-6">
-          <h2 class="text-lg font-semibold text-gray-900">Résumé</h2>
+          <h2 class="text-lg font-semibold text-gray-900"><%= t('orders.new.sum') %></h2>
 
           <div class="mt-4 space-y-3 text-sm">
             <div class="flex items-center justify-between">
-              <span class="text-gray-600">Sous-total</span>
+              <span class="text-gray-600"><%= t('orders.new.subtotal') %></span>
               <span><%= number_to_currency(@order.subtotal_price_cents / 100.0, unit: "€") %></span>
             </div>
 
             <div class="flex items-center justify-between">
-              <span class="text-gray-600">Livraison</span>
+              <span class="text-gray-600"><%= t('new.fee') %></span>
               <span><%= number_to_currency(@order.shipping_price_cents / 100.0, unit: "€") %></span>
             </div>
 
             <div class="flex items-center justify-between border-t border-gray-200 pt-3 font-semibold text-gray-900">
-              <span>Total</span>
+              <span><%= t('orders.new.total') %></span>
               <span><%= number_to_currency(@order.total_price_cents / 100.0, unit: "€") %></span>
             </div>
           </div>
         </div>
 
         <div class="rounded-2xl border border-gray-200 bg-gray-50 p-6">
-          <h2 class="text-lg font-semibold text-gray-900">Livraison</h2>
+          <h2 class="text-lg font-semibold text-gray-900"><%= t('.delivery') %></h2>
 
           <div class="mt-4 text-sm leading-6 text-gray-600">
             <p><%= @order.first_name %> <%= @order.last_name %></p>
@@ -62,11 +62,11 @@
         </div>
 
         <div class="flex flex-wrap gap-3">
-          <%= link_to "Voir mes commandes",
+          <%= link_to t('.commands'),
             account_orders_path,
             class: "inline-flex items-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
 
-          <%= link_to "Retour aux produits",
+          <%= link_to t('products.show.back'),
             products_path,
             class: "inline-flex items-center rounded-xl border border-gray-300 px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50" %>
         </div>

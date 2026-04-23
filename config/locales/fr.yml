@@ -211,3 +211,9 @@ fr:
       subtotal: 'Sous-total'
       total: 'Total'
       quantity: 'Quantité'
+    show:
+      confirm: 'Commande confirmée'
+      command: 'Ta commande'
+      created: 'a bien été créée'
+      delivery: 'Livraison'
+      commands: 'Voir mes commandes'
