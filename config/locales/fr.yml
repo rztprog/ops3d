@@ -56,3 +56,121 @@ fr:
     formats:
       short: '%d/%m/%Y à %H:%M'
       long: '%d %B %Y à %H:%M'
+
+  pages:
+    home:
+      hero:
+        first: 'Précision • Robustesse • Expertise terrain'
+        title: "L'exigence terrain appliquée à l'impression 3D"
+        subtitle: 'Pièces techniques imprimées en 3D, supports, fixations et fabrications sur mesure pensées pour les professionnels, les passionnés exigeants et les usages où la fiabilité compte vraiment.'
+        cta: 'Découvrir le catalogue'
+        image: 'Visuel produit à venir'
+      section:
+        why:
+          title: 'Pourquoi choisir OPS3D ?'
+          card1:
+            title: "Matériaux adaptés à l'usage réel"
+            subtitle: 'PLA, PETG, ABS/ASA, TPU : chaque pièce est pensée selon sa contrainte réelle, sa résistance et son environnement.'
+          card2:
+            title: 'Pièces standard et sur mesure'
+            subtitle: 'Catalogue prêt à commander ou fabrication selon votre besoin, avec une approche simple et efficace.'
+          card3:
+            title: 'Conçues pour durer sur le terrain'
+            subtitle: "Des pièces conçues avec une logique d'usage, de robustesse et de fiabilité, pas juste pour être jolies à l'écran."
+        featured:
+          title: 'Produits mis en avant'
+          add: 'Ajouter'
+          comming: 'Les produits arrivent bientôt'
+          subcomming: 'Le catalogue sera bientôt disponible.'
+          cta: 'Voir tout'
+        finalcta:
+          title: 'Des pièces conçues pour durer'
+          subtitle: 'Découvrez le catalogue et ajoutez directement les produits à votre panier.'
+          cta: 'Accéder au catalogue'
+
+  products:
+    index:
+      title: 'Nos produits'
+      subtitle: 'Découvre nos pièces imprimées en 3D prêtes à être commandées.'
+      add: 'Ajouter'
+      product: 'produits'
+    show:
+      image: "Pas d'image disponible"
+      add: 'Ajouter au panier'
+      back: '← Retour aux produits'
+      description: 'Description'
+      available: 'Disponibilité'
+      stock: 'En stock sur commande'
+      subtitle: 'Fabrication à la demande. Les délais exacts seront confirmés avant expédition.'
+
+  carts:
+    show:
+      title: 'Mon panier'
+      inCart: 'dans votre panier'
+      empty: 'Ton panier est vide'
+      addSomething: 'Ajoute quelques produits pour commencer.'
+      all: 'Voir les produits'
+      image: "Pas d'image"
+      unit: 'Prix unitaire'
+      total: 'Total'
+      quantity: 'Quantité'
+      update: 'Mettre à jour'
+      delete: 'Supprimer'
+      continue: '← Continuer mes achats'
+      sum: 'Résumé'
+      ship: 'Sous-total'
+      fee: 'Livraison'
+      order: 'Passer la commande'
+      connect: 'Se connecter pour commander'
+      lastp: 'Les frais de livraison et le total final seront confirmés avant paiement.'
+
+  accounts:
+    show:
+      title: 'Mon compte'
+      subtitle: 'Retrouve ici tes informations et tes dernières commandes.'
+      profil: 'Profil'
+      name: 'Nom'
+      email: 'Email'
+      modify: 'Modifier mes informations'
+      orders: 'Voir toutes mes commandes'
+      last: 'Dernières commandes'
+      order: 'Commande'
+      time: 'Passée le'
+      see: 'Voir'
+      empty: "Tu n'as encore passé aucune commande."
+      all: 'Découvrir les produits'
+
+  account:
+    orders:
+      index:
+        title: 'Mes commandes'
+        subtitle: 'Historique de toutes tes commandes.'
+        back: '← Retour au compte'
+        see: 'Voir'
+        empty: 'Aucune commande'
+        noOrder: "Tu n'as encore rien commandé."
+        all: 'Voir les produits'
+        order: 'Commande'
+        date: 'Date'
+        status: 'Statut'
+        amount: 'Montant'
+        action: 'Action'
+      show:
+        title: 'Commande'
+        placed: 'Passée le'
+        back: '← Retour aux commandes'
+        ordered: 'Articles commandés'
+        quantity: 'Quantité'
+        address: 'Adresse de livraison'
+        name: 'Nom'
+        line: 'Adresse'
+        postal: 'Code postal'
+        city: 'Ville'
+        country: 'Pays'
+        email: 'Email'
+        summary: 'Résumé'
+        status: 'Statut'
+        subtotal: 'Sous-total'
+        fee: 'Livraison'
+        total: 'Total'
+        unit: 'unité'

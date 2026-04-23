@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
 
+  # Localizations
+  before_action :set_locale
+
   # Guest_token pour le panier
   before_action :set_guest_token
 
@@ -49,6 +52,18 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_locale
+    locale = params[:locale] || session[:locale] || I18n.default_locale
+    locale = locale.to_sym
+
+    I18n.locale = I18n.available_locales.include?(locale) ? locale : I18n.default_locale
+    session[:locale] = I18n.locale
+  end
+
+  def default_url_options
+    { locale: I18n.locale }
+  end
 
   def set_guest_token
     session[:guest_token] ||= SecureRandom.uuid

@@ -1,6 +1,6 @@
 <div class="px-4 py-10">
   <div class="mb-6">
-    <%= link_to "← Retour aux produits", products_path, class: "text-sm font-medium text-gray-600 hover:text-gray-900 hover:underline" %>
+    <%= link_to t(".back"), products_path, class: "text-sm font-medium text-gray-600 hover:text-gray-900 hover:underline" %>
   </div>
 
   <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
@@ -11,7 +11,7 @@
           <%= image_tag @product.images.first, class: "h-full w-full object-cover" %>
         <% else %>
           <div class="flex aspect-square items-center justify-center bg-gray-100 text-sm text-gray-400">
-            Pas d’image disponible
+            <%= t(".image") %>
           </div>
         <% end %>
       </div>
@@ -45,7 +45,7 @@
 
       <div class="mt-6 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
         <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500">
-          Description
+          <%= t(".description")%>
         </h2>
 
         <div class="mt-3 prose prose-sm max-w-none text-gray-600">
@@ -55,21 +55,21 @@
 
       <div class="mt-6 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
         <div class="flex items-center justify-between">
-          <span class="text-sm text-gray-500">Disponibilité</span>
+          <span class="text-sm text-gray-500"><%= t(".available") %></span>
           <span class="rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700">
-            En stock sur commande
+            <%= t(".stock")%>
           </span>
         </div>
 
         <div class="mt-6">
-          <%= button_to "Ajouter au panier",
+          <%= button_to t('.add'),
             cart_items_path(product_id: @product.id),
             method: :post,
             class: "cursor-pointer inline-flex w-full items-center justify-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
         </div>
 
         <p class="mt-4 text-xs leading-5 text-gray-500">
-          Fabrication à la demande. Les délais exacts seront confirmés avant expédition.
+          <%= t(".subtitle")%>
         </p>
       </div>
     </div>
