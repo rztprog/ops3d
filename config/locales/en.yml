@@ -69,13 +69,13 @@ en:
       - Saturday
 
     abbr_day_names:
-      - Sun
-      - Mon
-      - Tue
-      - Wed
-      - Thu
-      - Fri
-      - Sat
+      - Sun.
+      - Mon.
+      - Tue.
+      - Wed.
+      - Thu.
+      - Fri.
+      - Sat.
 
     formats:
       short: '%m/%d/%Y'
@@ -85,3 +85,121 @@ en:
     formats:
       short: '%m/%d/%Y %H:%M'
       long: '%B %d, %Y at %H:%M'
+
+  pages:
+    home:
+      hero:
+        first: 'Precision • Robustness • Field expertise'
+        title: 'Field-driven standards applied to 3D printing'
+        subtitle: 'Technical 3D printed parts, supports, mounts, and custom manufacturing designed for professionals, demanding enthusiasts, and use cases where reliability truly matters.'
+        cta: 'Browse the catalog'
+        image: 'Product visual coming soon'
+      section:
+        why:
+          title: 'Why choose OPS3D?'
+          card1:
+            title: 'Materials suited for real-world use'
+            subtitle: 'PLA, PETG, ABS/ASA, TPU: each part is designed according to real constraints, strength, and environment.'
+          card2:
+            title: 'Standard and custom parts'
+            subtitle: 'Ready-to-order catalog or manufacturing tailored to your needs, with a simple and efficient approach.'
+          card3:
+            title: 'Built to last in the field'
+            subtitle: 'Parts designed with real usage, durability, and reliability in mind, not just to look good on screen.'
+        featured:
+          title: 'Featured products'
+          add: 'Add'
+          comming: 'Products coming soon'
+          subcomming: 'The catalog will be available soon.'
+          cta: 'View all'
+        finalcta:
+          title: 'Parts built to last'
+          subtitle: 'Browse the catalog and add products directly to your cart.'
+          cta: 'Access the catalog'
+
+  products:
+    index:
+      title: 'Our products'
+      subtitle: 'Discover our ready-to-order 3D printed parts.'
+      add: 'Add'
+      product: 'products'
+    show:
+      image: 'No image available'
+      add: 'Add to cart'
+      back: '← Back to products'
+      description: 'Description'
+      available: 'Availability'
+      stock: 'Available on order'
+      subtitle: 'Made to order. Exact lead times will be confirmed before shipping.'
+
+  carts:
+    show:
+      title: 'My cart'
+      inCart: 'in your cart'
+      empty: 'Your cart is empty'
+      addSomething: 'Add some products to get started.'
+      all: 'View products'
+      image: 'No image'
+      unit: 'Unit price'
+      total: 'Total'
+      quantity: 'Quantity'
+      update: 'Update'
+      delete: 'Remove'
+      continue: '← Continue shopping'
+      sum: 'Summary'
+      ship: 'Subtotal'
+      fee: 'Shipping'
+      order: 'Place order'
+      connect: 'Sign in to order'
+      lastp: 'Shipping costs and final total will be confirmed before payment.'
+
+  accounts:
+    show:
+      title: 'My account'
+      subtitle: 'Find your information and recent orders here.'
+      profil: 'Profile'
+      name: 'Name'
+      email: 'Email'
+      modify: 'Edit my information'
+      orders: 'View all my orders'
+      last: 'Recent orders'
+      order: 'Order'
+      time: 'Placed on'
+      see: 'View'
+      empty: "You haven't placed any orders yet."
+      all: 'Discover products'
+
+  account:
+    orders:
+      index:
+        title: 'My orders'
+        subtitle: 'History of all your orders.'
+        back: '← Back to account'
+        see: 'View'
+        empty: 'No orders'
+        noOrder: "You haven't ordered anything yet."
+        all: 'View products'
+        order: 'Order'
+        date: 'Date'
+        status: 'Status'
+        amount: 'Amount'
+        action: 'Action'
+      show:
+        title: 'Order'
+        placed: 'Placed on'
+        back: '← Back to orders'
+        ordered: 'Ordered items'
+        quantity: 'Quantity'
+        address: 'Shipping address'
+        name: 'Name'
+        line: 'Address'
+        postal: 'Postal code'
+        city: 'City'
+        country: 'Country'
+        email: 'Email'
+        summary: 'Summary'
+        status: 'Status'
+        subtotal: 'Subtotal'
+        fee: 'Shipping'
+        total: 'Total'
+        unit: 'unit'
