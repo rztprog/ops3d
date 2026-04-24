@@ -31,18 +31,6 @@
 
       <!-- RIGHT DESKTOP -->
       <div class="hidden md:flex items-center gap-4">
-        <div class="flex items-center gap-2 text-sm">
-          <%= link_to "FR",
-            url_for(locale: :fr),
-            class: "#{I18n.locale == :fr ? 'font-bold text-[color:var(--light)]' : 'text-gray-500 hover:text-[color:var(--light)]'}" %>
-
-          <span class="text-gray-300">|</span>
-
-          <%= link_to "EN",
-            url_for(locale: :en),
-            class: "#{I18n.locale == :en ? 'font-bold text-[color:var(--light)]' : 'text-gray-500 hover:text-[color:var(--light)]'}" %>
-        </div>
-
         <%= link_to cart_path,
           class: "relative font-medium hover:text-[color:var(--light)]" do %>
           <i class="fa-solid fa-cart-shopping fa-xl text-xl"></i>
@@ -78,6 +66,7 @@
             new_user_registration_path,
             class: "rounded-lg bg-[color:var(--dark)] px-4 py-2 text-sm font-medium text-white transition hover:bg-[color:var(--light)]" %>
         <% end %>
+        <%= render "shared/locale_dropdown" %>
       </div>
 
       <!-- MOBILE BURGER -->
@@ -102,6 +91,7 @@
     <!-- MOBILE MENU -->
     <div data-navbar-target="menu" class="hidden border-t border-gray-200 py-4 md:hidden">
       <div class="flex flex-col gap-3">
+        <%= render "shared/locale_dropdown" %>
         <%= link_to t('navbar.home'), root_path,
           class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
 

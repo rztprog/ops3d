@@ -1,0 +1,28 @@
+<% current_flag = I18n.locale == :fr ? "🇫🇷" : "🇬🇧" %>
+
+<div class="relative" data-controller="locale-dropdown">
+  <button
+    type="button"
+    data-action="click->locale-dropdown#toggle"
+    class="cursor-pointer inline-flex items-center rounded-lg px-2 py-2 text-xl hover:bg-gray-100"
+    aria-label="Changer de langue">
+    <%= current_flag %>
+  </button>
+
+  <div
+    data-locale-dropdown-target="menu"
+    class="absolute right-0 z-50 mt-2 hidden w-44 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
+    
+    <%= link_to url_for(locale: :fr),
+      class: "flex items-center gap-3 px-4 py-3 text-sm hover:bg-gray-50 #{I18n.locale == :fr ? 'font-semibold text-[color:var(--light)]' : 'text-gray-700'}" do %>
+      <span class="text-lg">🇫🇷</span>
+      <span>Français</span>
+    <% end %>
+
+    <%= link_to url_for(locale: :en),
+      class: "flex items-center gap-3 px-4 py-3 text-sm hover:bg-gray-50 #{I18n.locale == :en ? 'font-semibold text-[color:var(--light)]' : 'text-gray-700'}" do %>
+      <span class="text-lg">🇬🇧</span>
+      <span>English</span>
+    <% end %>
+  </div>
+</div>
