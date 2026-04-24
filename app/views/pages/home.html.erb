@@ -25,11 +25,17 @@
 
       <div class="relative">
         <div class="overflow-hidden rounded-3xl border border-gray-200 bg-gray-100 shadow-sm">
-          <% if @featured_products.first&.images&.attached? %>
-            <%= image_tag @featured_products.first.images.first, class: "aspect-[4/3] w-full object-cover" %>
+          <% if "ultis5v1".present? %>
+            <%= cl_image_tag(
+              "ultis5v1",
+              class: "aspect-[4/3] w-full object-cover object-[center_70%]",
+              crop: :fill,
+              quality: "auto",
+              fetch_format: "auto"
+            ) %>
           <% else %>
             <div class="flex aspect-[4/3] items-center justify-center text-sm text-gray-400">
-              <%= link_to t(".hero.image") %>
+              <%= t(".hero.image") %>
             </div>
           <% end %>
         </div>
