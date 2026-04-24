@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_12_160120) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_24_215814) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -100,6 +100,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_12_160120) do
     t.string "shipping_mode", null: false
     t.integer "shipping_price_cents", null: false
     t.string "status", null: false
+    t.string "stripe_checkout_session_id"
+    t.string "stripe_payment_intent_id"
     t.integer "subtotal_price_cents", null: false
     t.integer "total_price_cents", null: false
     t.datetime "updated_at", null: false
