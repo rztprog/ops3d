@@ -47,6 +47,11 @@
               <span><%= number_to_currency(@order.total_price_cents / 100.0, unit: "€") %></span>
             </div>
           </div>
+
+          <%= button_to "Payer avec Stripe",
+          checkout_order_path(@order),
+          method: :post,
+          class: "..." %>
         </div>
 
         <div class="rounded-2xl border border-gray-200 bg-gray-50 p-6">
