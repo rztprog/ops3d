@@ -42,5 +42,11 @@ Rails.application.routes.draw do
     namespace :account do
       resources :orders, only: [ :index, :show ]
     end
+
+    resources :orders do
+      member do
+        post :checkout
+      end
+    end
   end
 end
