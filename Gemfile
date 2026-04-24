@@ -46,6 +46,7 @@ gem "tailwindcss-rails"
 gem "devise"
 gem "cloudinary"
 gem "activestorage-cloudinary-service"
+gem "stripe"
 
 group :development, :test do
   gem "dotenv-rails"
