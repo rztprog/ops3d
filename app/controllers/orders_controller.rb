@@ -65,6 +65,20 @@ class OrdersController < ApplicationController
     @order = current_user.orders.find(params[:id])
 
     session = Stripe::Checkout::Session.create(
+      customer_email: @order.email,
+
+      metadata: {
+        order_id: @order.id,
+        user_id: @order.user_id
+      },
+
+      payment_intent_data: {
+        metadata: {
+          order_id: @order.id,
+          user_id: @order.user_id
+        }
+      },
+
       payment_method_types: [ "card" ],
       line_items: @order.order_items.map do |item|
         {
