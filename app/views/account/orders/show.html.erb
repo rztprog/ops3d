@@ -13,6 +13,16 @@
     </div>
   </div>
 
+  <% if @order.status == "paid" %>
+    <div class="rounded-2xl border border-green-200 bg-green-50 p-6 mb-8">
+      <h2 class="text-lg font-semibold text-green-800">
+        Paiement confirmé
+      </h2>
+      <p class="mt-2 text-sm text-green-700">
+        Ta commande a bien été payée et est en cours de traitement.
+      </p>
+    </div>
+  <% end %>
   <div class="grid grid-cols-1 gap-8 xl:grid-cols-3">
     <div class="xl:col-span-2 space-y-8">
       <div class="rounded-2xl border border-gray-200 bg-white shadow-sm">

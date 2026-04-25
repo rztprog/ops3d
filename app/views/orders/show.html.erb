@@ -7,6 +7,16 @@
       </p>
     </div>
 
+    <% if @order.status == "paid" %>
+      <div class="rounded-2xl border border-green-200 bg-green-50 p-6 mb-8">
+        <h2 class="text-lg font-semibold text-green-800">
+          Paiement confirmé
+        </h2>
+        <p class="mt-2 text-sm text-green-700">
+          Ta commande a bien été payée et est en cours de traitement.
+        </p>
+      </div>
+    <% end %>
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
       <div>
         <h2 class="text-lg font-semibold text-gray-900">Articles</h2>
@@ -47,11 +57,6 @@
               <span><%= number_to_currency(@order.total_price_cents / 100.0, unit: "€") %></span>
             </div>
           </div>
-
-          <%= button_to "Payer avec Stripe",
-        checkout_order_path(@order),
-        method: :post,
-        class: "..." %>
         </div>
 
         <div class="rounded-2xl border border-gray-200 bg-gray-50 p-6">

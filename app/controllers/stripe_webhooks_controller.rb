@@ -13,15 +13,21 @@ class StripeWebhooksController < ApplicationController
 
     case event.type
     when "checkout.session.completed"
-      session = event.data.object
-      fulfill_order(session)
+      fulfill_order(event.data.object)
+    else
+      Rails.logger.info "Unhandled Stripe event: #{event.type}"
     end
 
     head :ok
-  rescue JSON::ParserError
+  rescue JSON::ParserError => e
+    Rails.logger.error "Stripe JSON error: #{e.message}"
     head :bad_request
-  rescue Stripe::SignatureVerificationError
+  rescue Stripe::SignatureVerificationError => e
+    Rails.logger.error "Stripe signature error: #{e.message}"
     head :bad_request
+  rescue => e
+    Rails.logger.error "Stripe webhook error: #{e.class} - #{e.message}"
+    head :internal_server_error
   end
 
   private
