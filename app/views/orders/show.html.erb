@@ -8,56 +8,56 @@
     </div>
 
     <% case @order.status %>
-      <% when "pending" %>
-        <div class="rounded-2xl border border-yellow-200 bg-yellow-50 p-6 mb-8">
-          <h2 class="text-lg font-semibold text-yellow-800">
-            Paiement en attente
-          </h2>
-          <p class="mt-2 text-sm text-yellow-700">
-            Ta commande est créée, mais le paiement n’a pas encore été confirmé.
-          </p>
-        </div>
+    <% when "pending" %>
+      <div class="rounded-2xl border border-yellow-200 bg-yellow-50 p-6 mb-8">
+        <h2 class="text-lg font-semibold text-yellow-800">
+          <%= t('account.orders.show.pending') %>
+        </h2>
+        <p class="mt-2 text-sm text-yellow-700">
+          <%= t('account.orders.show.pending_text') %>
+        </p>
+      </div>
 
-      <% when "paid" %>
-        <div class="rounded-2xl border border-green-200 bg-green-50 p-6 mb-8">
-          <h2 class="text-lg font-semibold text-green-800">
-            Paiement confirmé
-          </h2>
-          <p class="mt-2 text-sm text-green-700">
-            Ta commande a bien été payée et va être préparée.
-          </p>
-        </div>
+    <% when "paid" %>
+      <div class="rounded-2xl border border-green-200 bg-green-50 p-6 mb-8">
+        <h2 class="text-lg font-semibold text-green-800">
+          <%= t('account.orders.show.paid') %>
+        </h2>
+        <p class="mt-2 text-sm text-green-700">
+          <%= t('account.orders.show.paid_text') %>
+        </p>
+      </div>
 
-      <% when "in_preparation" %>
-        <div class="rounded-2xl border border-blue-200 bg-blue-50 p-6 mb-8">
-          <h2 class="text-lg font-semibold text-blue-800">
-            Commande en préparation
-          </h2>
-          <p class="mt-2 text-sm text-blue-700">
-            Ta commande est en cours de préparation.
-          </p>
-        </div>
+    <% when "in_preparation" %>
+      <div class="rounded-2xl border border-blue-200 bg-blue-50 p-6 mb-8">
+        <h2 class="text-lg font-semibold text-blue-800">
+          <%= t('account.orders.show.prep') %>
+        </h2>
+        <p class="mt-2 text-sm text-blue-700">
+          <%= t('account.orders.show.prep_text') %>
+        </p>
+      </div>
 
-      <% when "shipped" %>
-        <div class="rounded-2xl border border-green-200 bg-green-50 p-6 mb-8">
-          <h2 class="text-lg font-semibold text-green-800">
-            Commande expédiée
-          </h2>
-          <p class="mt-2 text-sm text-green-700">
-            Ta commande a été expédiée.
-          </p>
-        </div>
+    <% when "shipped" %>
+      <div class="rounded-2xl border border-green-200 bg-green-50 p-6 mb-8">
+        <h2 class="text-lg font-semibold text-green-800">
+          <%= t('account.orders.show.shipped') %>
+        </h2>
+        <p class="mt-2 text-sm text-green-700">
+          <%= t('account.orders.show.shipped_text') %>
+        </p>
+      </div>
 
-      <% when "cancelled" %>
-        <div class="rounded-2xl border border-red-200 bg-red-50 p-6 mb-8">
-          <h2 class="text-lg font-semibold text-red-800">
-            Commande annulée
-          </h2>
-          <p class="mt-2 text-sm text-red-700">
-            Cette commande a été annulée.
-          </p>
-        </div>
-      <% end %>
+    <% when "cancelled" %>
+      <div class="rounded-2xl border border-red-200 bg-red-50 p-6 mb-8">
+        <h2 class="text-lg font-semibold text-red-800">
+          <%= t('account.orders.show.cancelled') %>
+        </h2>
+        <p class="mt-2 text-sm text-red-700">
+          <%= t('account.orders.show.cancelled_text') %>
+        </p>
+      </div>
+    <% end %>
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
       <div>
         <h2 class="text-lg font-semibold text-gray-900">Articles</h2>

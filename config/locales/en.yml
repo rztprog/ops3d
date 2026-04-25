@@ -236,6 +236,16 @@ en:
         total: 'Total'
         unit: 'unit'
         stripe: 'Pay with Stripe'
+        paid: 'Payment confirmed'
+        paid_text: 'Your order has been paid and will be prepared.'
+        pending: 'Payment pending'
+        pending_text: 'Your order has been created, but the payment has not yet been confirmed.'
+        prep: 'Order in preparation'
+        prep_text: 'Your order is currently being prepared.'
+        shipped: 'Order shipped'
+        shipped_text: 'Your order has been shipped.'
+        cancelled: 'Order cancelled'
+        cancelled_text: 'This order has been cancelled.'
 
   orders:
     new:

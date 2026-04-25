@@ -207,6 +207,16 @@ fr:
         total: 'Total'
         unit: 'unité'
         stripe: 'Payer avec Stripe'
+        paid: 'Paiement confirmé'
+        paid_text: 'Ta commande a bien été payée et va être préparée.'
+        pending: 'Paiement en attente'
+        pending_text: 'Ta commande est créée, mais le paiement n’a pas encore été confirmé.'
+        prep: 'Commande en préparation'
+        prep_text: 'Ta commande est en cours de préparation.'
+        shipped: 'Commande expédiée'
+        shipped_text: 'Ta commande a été expédiée.'
+        cancelled: 'Commande annulée'
+        cancelled_text: 'Cette commande a été annulée.'
 
   orders:
     new:
