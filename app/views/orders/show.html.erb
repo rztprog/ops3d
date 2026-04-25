@@ -49,9 +49,9 @@
           </div>
 
           <%= button_to "Payer avec Stripe",
-          checkout_order_path(@order),
-          method: :post,
-          class: "..." %>
+        checkout_order_path(@order),
+        method: :post,
+        class: "..." %>
         </div>
 
         <div class="rounded-2xl border border-gray-200 bg-gray-50 p-6">
@@ -66,6 +66,37 @@
           </div>
         </div>
 
+        <%= button_to checkout_order_path(@order),
+          method: :post,
+          class: "cursor-pointer w-full flex items-center justify-center gap-3 rounded-xl bg-indigo-600 px-6 py-4 text-sm font-semibold text-white shadow-md transition hover:bg-indigo-500 hover:shadow-lg active:scale-[0.98]" do %>
+          
+          <!-- Icône carte -->
+          <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+            width="18.000000pt" height="18.000000pt" viewBox="0 0 512.000000 512.000000"
+            preserveAspectRatio="xMidYMid meet">
+
+            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+            fill="#fff" stroke="none">
+            <path d="M525 4363 c-249 -34 -458 -227 -511 -473 -20 -97 -20 -2563 0 -2660
+            48 -219 206 -387 432 -457 56 -17 149 -18 2114 -18 1967 0 2058 1 2115 18 84
+            26 181 79 242 132 91 79 170 221 193 344 14 75 14 2548 0 2623 -24 126 -103
+            266 -197 347 -55 47 -153 101 -233 128 -53 17 -140 18 -2090 19 -1119 1 -2048
+            -1 -2065 -3z m4107 -320 c66 -30 132 -95 159 -156 22 -47 24 -68 27 -239 l4
+            -188 -2262 0 -2262 0 4 188 c3 170 5 192 26 237 40 88 125 157 213 174 24 5
+            944 8 2044 7 l2000 -1 47 -22z m188 -1033 l0 -150 -2260 0 -2260 0 0 150 0
+            150 2260 0 2260 0 0 -150z m-2 -1087 l-3 -638 -24 -52 c-27 -61 -93 -126 -159
+            -156 l-47 -22 -2025 0 -2025 0 -47 22 c-66 30 -132 95 -159 156 l-24 52 -3
+            638 -3 637 2261 0 2261 0 -3 -637z"/>
+            <path d="M757 1803 c-4 -3 -7 -71 -7 -150 l0 -143 755 0 755 0 0 150 0 150
+            -748 0 c-412 0 -752 -3 -755 -7z"/>
+            <path d="M3467 1803 c-4 -3 -7 -71 -7 -150 l0 -143 150 0 150 0 0 150 0 150
+            -143 0 c-79 0 -147 -3 -150 -7z"/>
+            <path d="M4070 1660 l0 -150 150 0 151 0 -3 148 -3 147 -147 3 -148 3 0 -151z"/>
+            </g>
+            </svg>
+
+          <span><%= t('account.orders.show.stripe')%></span>
+        <% end %>
         <div class="flex flex-wrap gap-3">
           <%= link_to t('.commands'),
             account_orders_path,
