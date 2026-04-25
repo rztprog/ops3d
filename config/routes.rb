@@ -48,5 +48,7 @@ Rails.application.routes.draw do
         post :checkout
       end
     end
+
+    post "stripe/webhooks", to: "stripe_webhooks#create"
   end
 end
