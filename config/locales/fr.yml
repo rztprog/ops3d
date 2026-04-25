@@ -206,6 +206,7 @@ fr:
         fee: 'Livraison'
         total: 'Total'
         unit: 'unité'
+        stripe: 'Payer avec Stripe'
 
   orders:
     new:

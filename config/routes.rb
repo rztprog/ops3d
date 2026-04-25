@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "stripe_webhooks/create"
   scope "(:locale)", locale: /fr|en/ do
     get "orders/new"
     get "orders/create"
@@ -42,5 +43,13 @@ Rails.application.routes.draw do
     namespace :account do
       resources :orders, only: [ :index, :show ]
     end
+
+    resources :orders do
+      member do
+        post :checkout
+      end
+    end
+
+    post "stripe/webhooks", to: "stripe_webhooks#create"
   end
 end

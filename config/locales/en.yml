@@ -235,6 +235,7 @@ en:
         fee: 'Shipping'
         total: 'Total'
         unit: 'unit'
+        stripe: 'Pay with Stripe'
 
   orders:
     new:
