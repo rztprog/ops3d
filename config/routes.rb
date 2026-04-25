@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "stripe_webhooks/create"
   scope "(:locale)", locale: /fr|en/ do
     get "orders/new"
     get "orders/create"
