@@ -4,9 +4,13 @@ class OrderMailer < ApplicationMailer
   #
   #   en.order_mailer.paid_confirmation.subject
   #
-  def paid_confirmation
-    @greeting = "Hi"
 
-    mail to: "to@example.org"
+  def paid_confirmation
+    @order = params[:order]
+
+    mail(
+      to: @order.email,
+      subject: "Confirmation de ta commande ##{@order.id}"
+    )
   end
 end
