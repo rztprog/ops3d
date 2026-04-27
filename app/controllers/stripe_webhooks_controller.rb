@@ -41,5 +41,8 @@ class StripeWebhooksController < ApplicationController
       status: "paid",
       stripe_payment_intent_id: session.payment_intent
     )
+
+    # Envoie du mail une fois la commande confirmé
+    OrderMailer.with(order: order).paid_confirmation.deliver_later
   end
 end
