@@ -1,0 +1,22 @@
+Nouvelle commande payée
+
+La commande #<%= @order.id %> vient d'être payée.
+
+Client :
+<%= @order.first_name %> <%= @order.last_name %>
+<%= @order.email %>
+
+Articles :
+<% @order.order_items.each do |item| %>
+- <%= item.product_name %> x <%= item.quantity %> : <%= number_to_currency((item.unit_price_cents * item.quantity) / 100.0, unit: "€") %>
+<% end %>
+
+Total : <%= number_to_currency(@order.total_price_cents / 100.0, unit: "€") %>
+
+Livraison :
+<%= @order.first_name %> <%= @order.last_name %>
+<%= @order.address_line %>
+<%= @order.postal_code %> <%= @order.city %>
+<%= @order.country %>
+
+<%= admin_order_url(id: @order.id, locale: I18n.locale) %>

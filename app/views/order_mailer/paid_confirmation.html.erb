@@ -1,0 +1,33 @@
+<h1>Commande confirmée</h1>
+
+<p>Bonjour <%= @order.first_name %>,</p>
+
+<p>
+  Ta commande #<%= @order.id %> a bien été payée.
+</p>
+
+<h2>Résumé</h2>
+
+<ul>
+  <% @order.order_items.each do |item| %>
+    <li>
+      <%= item.product_name %> × <%= item.quantity %> —
+      <%= number_to_currency((item.unit_price_cents * item.quantity) / 100.0, unit: "€") %>
+    </li>
+  <% end %>
+</ul>
+
+<p>
+  Total :
+  <strong><%= number_to_currency(@order.total_price_cents / 100.0, unit: "€") %></strong>
+</p>
+
+<p>
+  Adresse de livraison :<br>
+  <%= @order.first_name %> <%= @order.last_name %><br>
+  <%= @order.address_line %><br>
+  <%= @order.postal_code %> <%= @order.city %><br>
+  <%= @order.country %>
+</p>
+
+<p>Merci pour ta commande.</p>
