@@ -35,7 +35,13 @@ Rails.application.routes.draw do
       root "dashboard#index"
       resources :products
       resources :categories
+
+      resources :products
+      resources :categories
       resources :orders, only: [ :index, :show, :update ]
+      resources :users, only: [ :index, :show ]
+
+      resource :settings, only: [ :edit, :update ]
     end
 
     resource :account, only: [ :show ], controller: "accounts"
