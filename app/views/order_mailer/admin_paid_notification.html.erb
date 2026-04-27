@@ -37,4 +37,5 @@
 </p>
 
 <p>
-  <%= link_to "Voir la commande dans l'admin", admin_order_url(@order) %>
+<%= link_to "Voir la commande dans l'admin",
+  admin_order_url(id: @order.id, locale: I18n.locale) %>

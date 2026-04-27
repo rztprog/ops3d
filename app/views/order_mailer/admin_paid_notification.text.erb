@@ -19,5 +19,4 @@ Livraison :
 <%= @order.postal_code %> <%= @order.city %>
 <%= @order.country %>
 
-Voir la commande :
-<%= admin_order_url(@order) %>
+<%= admin_order_url(id: @order.id, locale: I18n.locale) %>
