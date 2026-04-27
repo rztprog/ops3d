@@ -28,10 +28,17 @@ module Admin
         :shipping_price_euros
       )
 
-      {
-        shipping_mode: permitted[:shipping_mode],
-        shipping_price_cents: euros_to_cents(permitted[:shipping_price_euros])
-      }
+      if permitted[:shipping_mode] == "free"
+        {
+          shipping_mode: "free",
+          shipping_price_cents: 0
+        }
+      else
+        {
+          shipping_mode: "flat_rate",
+          shipping_price_cents: euros_to_cents(permitted[:shipping_price_euros])
+        }
+      end
     end
 
     def euros_to_cents(value)
