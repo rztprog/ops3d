@@ -44,5 +44,6 @@ class StripeWebhooksController < ApplicationController
 
     # Envoie du mail une fois la commande confirmé
     OrderMailer.with(order: order).paid_confirmation.deliver_later
+    OrderMailer.with(order: order).admin_paid_notification.deliver_later
   end
 end

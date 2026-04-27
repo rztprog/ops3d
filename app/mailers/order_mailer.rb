@@ -13,4 +13,13 @@ class OrderMailer < ApplicationMailer
       subject: "Confirmation de ta commande ##{@order.id}"
     )
   end
+
+  def admin_paid_notification
+    @order = params[:order]
+
+    mail(
+      to: ENV.fetch("ADMIN_EMAIL"),
+      subject: "Nouvelle commande payée ##{@order.id}"
+    )
+  end
 end
