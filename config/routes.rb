@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get "settings/edit"
+  end
   get "stripe_webhooks/create"
   scope "(:locale)", locale: /fr|en/ do
     get "orders/new"
