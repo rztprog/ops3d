@@ -1,7 +1,7 @@
 <h1>Nouvelle commande payée</h1>
 
 <p>
-  La commande #<%= @order.id %> vient d’être payée.
+  La commande #<%= @order.id %> vient d'être payée.
 </p>
 
 <h2>Client</h2>
@@ -16,7 +16,7 @@
 <ul>
   <% @order.order_items.each do |item| %>
     <li>
-      <%= item.product_name %> × <%= item.quantity %> —
+      <%= item.product_name %> x <%= item.quantity %> —
       <%= number_to_currency((item.unit_price_cents * item.quantity) / 100.0, unit: "€") %>
     </li>
   <% end %>
@@ -37,4 +37,4 @@
 </p>
 
 <p>
-  <%= link_to "Voir la commande dans l’admin", admin_order_url(@order) %>
+  <%= link_to "Voir la commande dans l'admin", admin_order_url(@order) %>

@@ -10,7 +10,7 @@ class OrderMailer < ApplicationMailer
 
     mail(
       to: @order.email,
-      subject: "Confirmation de ta commande ##{@order.id}"
+      subject: "OPS3D - Confirmation de ta commande ##{@order.id}"
     )
   end
 
@@ -19,7 +19,7 @@ class OrderMailer < ApplicationMailer
 
     mail(
       to: ENV.fetch("ADMIN_EMAIL"),
-      subject: "Nouvelle commande payée ##{@order.id}"
+      subject: "OPS3D - Nouvelle commande payée ##{@order.id}"
     )
   end
 end
