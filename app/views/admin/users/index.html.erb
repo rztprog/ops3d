@@ -18,7 +18,7 @@
         <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Utilisateur</th>
         <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Rôle</th>
         <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Commandes</th>
-        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Inscription</th>
+        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Date d'Inscription</th>
         <th class="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">Action</th>
       </tr>
     </thead>
@@ -28,7 +28,7 @@
         <tr class="hover:bg-gray-50">
           <td class="px-6 py-4">
             <p class="font-medium text-gray-900">
-              <%= [user.first_name, user.last_name].compact_blank.join(" ").presence || "Nom non renseigné" %>
+              <%= [user.first_name, user.last_name].compact_blank.join(" ").presence || "Pas de nom renseigné" %>
             </p>
             <p class="text-sm text-gray-500"><%= user.email %></p>
           </td>
@@ -56,7 +56,7 @@
           <td class="px-6 py-4 text-right">
             <%= link_to "Voir",
               admin_user_path(user),
-              class: "text-sm font-medium text-[color:var(--light)] hover:underline" %>
+              class: "text-sm font-medium text-[color:blue] hover:underline" %>
           </td>
         </tr>
       <% end %>

@@ -8,7 +8,7 @@
     </p>
   </div>
 
-  <%= link_to "Retour aux utilisateurs",
+  <%= link_to "← Retour aux utilisateurs",
     admin_users_path,
     class: "text-sm font-medium text-[color:var(--light)] hover:underline" %>
 </div>
@@ -79,13 +79,30 @@
                   <%= number_to_currency(order.total_price_cents / 100.0, unit: "€") %>
                 </span>
 
-                <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                <% badge_classes =
+                  case order.status
+                  when "pending"
+                    "bg-yellow-100 text-yellow-800"
+                  when "paid"
+                    "bg-blue-100 text-blue-800"
+                  when "in_preparation"
+                    "bg-indigo-100 text-indigo-800"
+                  when "shipped"
+                    "bg-green-100 text-green-800"
+                  when "cancelled"
+                    "bg-red-100 text-red-800"
+                  else
+                    "bg-gray-100 text-gray-700"
+                  end
+                %>
+
+                <span class="rounded-full px-3 py-1 text-xs font-medium <%= badge_classes %>">
                   <%= order_status_label(order.status) %>
                 </span>
 
                 <%= link_to "Voir",
                   admin_order_path(order),
-                  class: "text-sm font-medium text-[color:var(--light)] hover:underline" %>
+                  class: "text-sm font-medium text-[color:blue] hover:underline" %>
               </div>
             </div>
           <% end %>
