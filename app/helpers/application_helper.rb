@@ -10,7 +10,7 @@ module ApplicationHelper
     when "paid"
       "bg-blue-100 text-blue-800"
     when "in_preparation"
-      "bg-indigo-100 text-indigo-800"
+      "bg-lime-100 text-lime-800"
     when "shipped"
       "bg-green-100 text-green-800"
     when "cancelled"
