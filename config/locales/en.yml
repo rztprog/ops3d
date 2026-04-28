@@ -248,6 +248,12 @@ en:
         cancelled_text: 'This order has been cancelled.'
 
   orders:
+    statuses:
+      pending: 'Pending'
+      paid: 'Paid'
+      in_preparation: 'In preparation'
+      shipped: 'Shipped'
+      cancelled: 'Cancelled'
     new:
       title: 'Complete my order'
       subtitle: 'Enter your shipping information before payment.'
