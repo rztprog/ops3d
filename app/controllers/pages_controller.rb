@@ -12,4 +12,9 @@ class PagesController < ApplicationController
       Cart.find_or_create_by(guest_token: session[:guest_token])
     end
   end
+
+  def legal; end
+  def terms; end
+  def faq; end
+  def contact; end
 end
