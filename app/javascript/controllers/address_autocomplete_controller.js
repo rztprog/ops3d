@@ -1,6 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="address-autocomplete"
 export default class extends Controller {
   static targets = ["input", "suggestions", "city", "postalCode", "country"]
 
@@ -25,7 +24,7 @@ export default class extends Controller {
 
   async fetchSuggestions(query) {
     try {
-      const url = `https://data.geopf.fr/geocodage/completion?text=${encodeURIComponent(query)}&limit=5`
+      const url = `https://data.geopf.fr/geocodage/completion/?text=${encodeURIComponent(query)}&maximumResponses=5`
 
       const response = await fetch(url)
       if (!response.ok) return
@@ -41,32 +40,69 @@ export default class extends Controller {
     this.clearSuggestions()
 
     const results = data.results || data.features || []
-
     if (results.length === 0) return
 
     results.forEach((result) => {
+      const props = result.properties || result
+
+      const label =
+        props.fulltext ||
+        props.label ||
+        props.name ||
+        props.text ||
+        ""
+
+      if (!label) return
+
       const item = document.createElement("button")
       item.type = "button"
       item.className = "block w-full px-4 py-3 text-left text-sm hover:bg-gray-50"
-
-      const label = result.fulltext || result.label || result.properties?.label || result.properties?.name
-      const city = result.city || result.properties?.city || result.properties?.city_name
-      const postcode = result.postcode || result.properties?.postcode || result.properties?.postal_code
-
       item.textContent = label
 
       item.addEventListener("click", () => {
-        this.inputTarget.value = label || this.inputTarget.value
-
-        if (city && this.hasCityTarget) this.cityTarget.value = city
-        if (postcode && this.hasPostalCodeTarget) this.postalCodeTarget.value = postcode
-        if (this.hasCountryTarget) this.countryTarget.value = "France"
-
-        this.clearSuggestions()
+        this.selectAddress(label)
       })
 
       this.suggestionsTarget.appendChild(item)
     })
+  }
+
+  async selectAddress(label) {
+    this.inputTarget.value = label
+    this.clearSuggestions()
+
+    try {
+      const url = `https://data.geopf.fr/geocodage/search?q=${encodeURIComponent(label)}&limit=1`
+
+      const response = await fetch(url)
+      if (!response.ok) return
+
+      const data = await response.json()
+      const feature = data.features?.[0]
+      const props = feature?.properties
+
+      if (!props) return
+
+      const houseNumber = props.housenumber || ""
+      const streetName = props.street || props.name || ""
+      const addressLine = [houseNumber, streetName].filter(Boolean).join(" ")
+
+      this.inputTarget.value = addressLine || props.label || label
+
+      if (this.hasPostalCodeTarget) {
+        this.postalCodeTarget.value = props.postcode || ""
+      }
+
+      if (this.hasCityTarget) {
+        this.cityTarget.value = props.city || ""
+      }
+
+      if (this.hasCountryTarget) {
+        this.countryTarget.value = "France"
+      }
+    } catch (error) {
+      console.error("Address selection error:", error)
+    }
   }
 
   clearSuggestions() {
