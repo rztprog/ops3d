@@ -272,6 +272,9 @@ en:
       subtotal: 'Subtotal'
       total: 'Total'
       quantity: 'Quantity'
+      suggestion: 'Start typing your address to see suggestions. You can also enter the address manually.'
+      supplement: 'Address line 2 (optional)'
+      email_use: 'The email used is the one associated with your account.'
     show:
       confirm: 'Order confirmed'
       command: 'Your order '
