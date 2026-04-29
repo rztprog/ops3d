@@ -61,9 +61,10 @@
       <p>© <%= Time.current.year %> OPS3D. <%= t('footer.right') %>.</p>
 
       <div class="flex flex-wrap items-center gap-4">
-        <a href="#" class="hover:text-[color:var(--light)]"><%= t('footer.notice') %></a>
-        <a href="#" class="hover:text-[color:var(--light)]"><%= t('footer.tc') %></a>
-        <a href="#" class="hover:text-[color:var(--light)]">Contact</a>
+        <%= link_to "Mentions légales", legal_path, class: "hover:text-[color:var(--light)]" %>
+        <%= link_to "CGV", terms_path, class: "hover:text-[color:var(--light)]" %>
+        <%= link_to "FAQ", faq_path, class: "hover:text-[color:var(--light)]" %>
+        <%= link_to "Contact", contact_path, class: "hover:text-[color:var(--light)]" %>
       </div>
     </div>
   </div>
