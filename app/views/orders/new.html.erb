@@ -63,7 +63,7 @@
                 Commence à taper ton adresse pour voir des suggestions. Tu peux aussi saisir l'adresse manuellement.
               </p>
 
-              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 mt-4">
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 mt-6">
                 <div>
                   <%= f.label :postal_code, "Code postal", class: "block text-sm font-medium text-gray-700" %>
                   <%= f.text_field :postal_code,
@@ -81,7 +81,7 @@
                 </div>
               </div>
 
-              <div class="md:col-span-2 mt-4">
+              <div class="md:col-span-2 mt-6">
                 <%= f.label :country, "Pays", class: "block text-sm font-medium text-gray-700" %>
                 <%= f.text_field :country,
                   data: { address_autocomplete_target: "country" },
