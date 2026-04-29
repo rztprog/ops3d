@@ -15,7 +15,7 @@
 
   <% case @order.status %>
   <% when "pending" %>
-    <div class="rounded-2xl border border-yellow-200 bg-yellow-50 p-6 mb-8">
+    <div class="rounded-2xl border border-yellow-300 bg-yellow-50 p-6 mb-8">
       <h2 class="text-lg font-semibold text-yellow-800">
         <%= t('.pending') %>
       </h2>
@@ -25,27 +25,27 @@
     </div>
 
   <% when "paid" %>
-    <div class="rounded-2xl border border-green-200 bg-green-50 p-6 mb-8">
-      <h2 class="text-lg font-semibold text-green-800">
+    <div class="rounded-2xl border border-blue-300 bg-blue-50 p-6 mb-8">
+      <h2 class="text-lg font-semibold text-blue-800">
         <%= t('.paid') %>
       </h2>
-      <p class="mt-2 text-sm text-green-700">
+      <p class="mt-2 text-sm text-blue-700">
         <%= t('.paid_text') %>
       </p>
     </div>
 
   <% when "in_preparation" %>
-    <div class="rounded-2xl border border-blue-200 bg-blue-50 p-6 mb-8">
-      <h2 class="text-lg font-semibold text-blue-800">
+    <div class="rounded-2xl border border-lime-300 bg-lime-50 p-6 mb-8">
+      <h2 class="text-lg font-semibold text-lime-800">
         <%= t('.prep') %>
       </h2>
-      <p class="mt-2 text-sm text-blue-700">
+      <p class="mt-2 text-sm text-lime-700">
         <%= t('.prep_text') %>
       </p>
     </div>
 
   <% when "shipped" %>
-    <div class="rounded-2xl border border-green-200 bg-green-50 p-6 mb-8">
+    <div class="rounded-2xl border border-green-300 bg-green-50 p-6 mb-8">
       <h2 class="text-lg font-semibold text-green-800">
         <%= t('.shipped') %>
       </h2>
@@ -55,7 +55,7 @@
     </div>
 
   <% when "cancelled" %>
-    <div class="rounded-2xl border border-red-200 bg-red-50 p-6 mb-8">
+    <div class="rounded-2xl border border-red-300 bg-red-50 p-6 mb-8">
       <h2 class="text-lg font-semibold text-red-800">
         <%= t('.cancelled') %>
       </h2>
@@ -113,23 +113,7 @@
         <dl class="mt-4 space-y-4 text-sm">
           <div class="flex items-center justify-between gap-4">
             <dt class="text-gray-500"><%= t('.status') %></dt>
-              <% badge_classes =
-                case @order.status
-                when "pending"
-                  "bg-yellow-100 text-yellow-800"
-                when "paid"
-                  "bg-blue-100 text-blue-800"
-                when "in_preparation"
-                  "bg-indigo-100 text-indigo-800"
-                when "shipped"
-                  "bg-green-100 text-green-800"
-                when "cancelled"
-                  "bg-red-100 text-red-800"
-                else
-                  "bg-gray-100 text-gray-700"
-                end
-              %>
-            <dd class="rounded-full px-3 py-1 text-xs font-medium <%= badge_classes %>"><%= order_status_label(@order.status) %></dd>
+            <dd class="rounded-full px-3 py-1 text-xs font-medium <%= order_status_badge_class(@order.status) %>"><%= order_status_label(@order.status) %></dd>
           </div>
 
           <div class="flex items-center justify-between gap-4">

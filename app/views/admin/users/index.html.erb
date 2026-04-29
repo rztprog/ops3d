@@ -1,0 +1,65 @@
+<div class="mb-8 flex items-end justify-between gap-4">
+  <div>
+    <h1 class="text-3xl font-bold text-gray-900">Utilisateurs</h1>
+    <p class="mt-2 text-sm text-gray-500">
+      Consulte les comptes clients et leurs commandes.
+    </p>
+  </div>
+
+  <p class="text-sm text-gray-500">
+    <%= pluralize(@users.count, "utilisateurs") %>
+  </p>
+</div>
+
+<div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+  <table class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-gray-50">
+      <tr>
+        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Utilisateur</th>
+        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Rôle</th>
+        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Commandes</th>
+        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Date d'Inscription</th>
+        <th class="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">Action</th>
+      </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-200 bg-white">
+      <% @users.each do |user| %>
+        <tr class="hover:bg-gray-50">
+          <td class="px-6 py-4">
+            <p class="font-medium text-gray-900">
+              <%= [user.first_name, user.last_name].compact_blank.join(" ").presence || "Pas de nom renseigné" %>
+            </p>
+            <p class="text-sm text-gray-500"><%= user.email %></p>
+          </td>
+
+          <td class="px-6 py-4">
+            <% if user.admin? %>
+              <span class="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800">
+                Admin
+              </span>
+            <% else %>
+              <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                Client
+              </span>
+            <% end %>
+          </td>
+
+          <td class="px-6 py-4 text-sm text-gray-700">
+            <%= user.orders.size %>
+          </td>
+
+          <td class="px-6 py-4 text-sm text-gray-600">
+            <%= l(user.created_at, format: :short) %>
+          </td>
+
+          <td class="px-6 py-4 text-right">
+            <%= link_to "Voir",
+              admin_user_path(user),
+              class: "text-sm font-medium text-[color:blue] hover:underline" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

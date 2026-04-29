@@ -1,0 +1,100 @@
+<div class="mb-8 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+  <div>
+    <h1 class="text-3xl font-bold text-gray-900">
+      <%= [@user.first_name, @user.last_name].compact_blank.join(" ").presence || "Utilisateur ##{@user.id}" %>
+    </h1>
+    <p class="mt-2 text-sm text-gray-500">
+      Détail du compte utilisateur.
+    </p>
+  </div>
+
+  <%= link_to "← Retour aux utilisateurs",
+    admin_users_path,
+    class: "text-sm font-medium text-[color:var(--light)] hover:underline" %>
+</div>
+
+<div class="grid grid-cols-1 gap-8 xl:grid-cols-3">
+  <div class="xl:col-span-1">
+    <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      <h2 class="text-lg font-semibold text-gray-900">Informations</h2>
+
+      <dl class="mt-4 space-y-4 text-sm">
+        <div>
+          <dt class="text-gray-500">Email</dt>
+          <dd class="mt-1 font-medium text-gray-900"><%= @user.email %></dd>
+        </div>
+
+        <div>
+          <dt class="text-gray-500">Prénom</dt>
+          <dd class="mt-1 font-medium text-gray-900"><%= @user.first_name.presence || "—" %></dd>
+        </div>
+
+        <div>
+          <dt class="text-gray-500">Nom</dt>
+          <dd class="mt-1 font-medium text-gray-900"><%= @user.last_name.presence || "—" %></dd>
+        </div>
+
+        <div>
+          <dt class="text-gray-500">Rôle</dt>
+          <dd class="mt-1">
+            <% if @user.admin? %>
+              <span class="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800">
+                Admin
+              </span>
+            <% else %>
+              <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                Client
+              </span>
+            <% end %>
+          </dd>
+        </div>
+
+        <div>
+          <dt class="text-gray-500">Inscrit le</dt>
+          <dd class="mt-1 font-medium text-gray-900"><%= l(@user.created_at, format: :long) %></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="xl:col-span-2">
+    <div class="rounded-2xl border border-gray-200 bg-white shadow-sm">
+      <div class="border-b border-gray-200 px-6 py-4">
+        <h2 class="text-lg font-semibold text-gray-900">Commandes (<%= @user.orders.count() %>)</h2>
+      </div>
+
+      <% if @orders.any? %>
+        <div class="divide-y divide-gray-200">
+          <% @orders.each do |order| %>
+            <div class="flex flex-col gap-4 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p class="font-medium text-gray-900">Commande #<%= order.id %></p>
+                <p class="mt-1 text-sm text-gray-500">
+                  Passée le <%= l(order.created_at, format: :short) %>
+                </p>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <span class="text-sm font-medium text-gray-900">
+                  <%= number_to_currency(order.total_price_cents / 100.0, unit: "€") %>
+                </span>
+
+                <span class="rounded-full px-3 py-1 text-xs font-medium <%= order_status_badge_class(order.status) %>">
+                  <%= order_status_label(order.status) %>
+                </span>
+
+                <%= link_to "Voir",
+                  admin_order_path(order),
+                  class: "text-sm font-medium text-[color:blue] hover:underline" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="px-6 py-10 text-center">
+          <p class="text-gray-500">Cet utilisateur n'a encore passé aucune commande.</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get "users/index"
+    get "users/show"
+    get "settings/edit"
+  end
   get "stripe_webhooks/create"
   scope "(:locale)", locale: /fr|en/ do
     get "orders/new"
@@ -35,7 +40,13 @@ Rails.application.routes.draw do
       root "dashboard#index"
       resources :products
       resources :categories
+
+      resources :products
+      resources :categories
       resources :orders, only: [ :index, :show, :update ]
+      resources :users, only: [ :index, :show ]
+
+      resource :settings, only: [ :edit, :update ]
     end
 
     resource :account, only: [ :show ], controller: "accounts"

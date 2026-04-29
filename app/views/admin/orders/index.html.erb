@@ -7,7 +7,7 @@
   </div>
 
   <p class="text-sm text-gray-500">
-    <%= pluralize(@orders.count, "commande") %>
+    <%= pluralize(@orders.count, "commande", plural: 'commandes') %>
   </p>
 </div>
 
@@ -52,24 +52,7 @@
             </td>
 
             <td class="px-6 py-4 text-sm">
-              <% badge_classes =
-                case order.status
-                when "pending"
-                  "bg-yellow-100 text-yellow-800"
-                when "paid"
-                  "bg-blue-100 text-blue-800"
-                when "in_preparation"
-                  "bg-indigo-100 text-indigo-800"
-                when "shipped"
-                  "bg-green-100 text-green-800"
-                when "cancelled"
-                  "bg-red-100 text-red-800"
-                else
-                  "bg-gray-100 text-gray-700"
-                end
-              %>
-
-              <span class="rounded-full px-3 py-1 text-xs font-medium <%= badge_classes %>">
+              <span class="rounded-full px-3 py-1 text-xs font-medium <%= order_status_badge_class(order.status) %>">
                 <%= order_status_label(order.status) %>
               </span>
             </td>

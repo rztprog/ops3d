@@ -5,9 +5,17 @@
 
       <div class="flex items-center gap-4 text-sm">
         <%= link_to "Dashboard", admin_root_path, class: "text-gray-300 hover:text-white" %>
+        |
         <%= link_to "Produits", admin_products_path, class: "text-gray-300 hover:text-white" %>
+        |
         <%= link_to "Catégories", admin_categories_path, class: "text-gray-300 hover:text-white" %>
+        |
         <%= link_to "Commandes", admin_orders_path, class: "text-gray-300 hover:text-white" %>
+        |
+        <%= link_to "Paramètres", edit_admin_settings_path, class: "text-gray-300 hover:text-white" %>
+        |
+        <%= link_to "Utilisateurs", admin_users_path, class: "text-gray-300 hover:text-white" %>
+        |
         <%= link_to "Voir le site", root_path, class: "text-gray-300 hover:text-white" %>
       </div>
     </div>

@@ -219,6 +219,12 @@ fr:
         cancelled_text: 'Cette commande a été annulée.'
 
   orders:
+    statuses:
+      pending: 'En attente'
+      paid: 'Payée'
+      in_preparation: 'En préparation'
+      shipped: 'Expédiée'
+      cancelled: 'Annulée'
     new:
       title: 'Finaliser ma commande'
       subtitle: 'Renseigne tes informations de livraison avant le paiement.'
