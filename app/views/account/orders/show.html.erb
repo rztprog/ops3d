@@ -97,7 +97,7 @@
 
         <div class="mt-4 text-sm leading-6 text-gray-600">
           <p><%= t('.name') %> : <%= @order.first_name %> <%= @order.last_name %></p>
-          <p><%= t('.line') %> : <%= @order.address_line %></p>
+          <p><%= t('.line') %> : <%= @order.address_line %> <%= @order.address_line2.present? ? ", #{@order.address_line2}" : "" %>
           <p><%= t('.postal') %> : <%= @order.postal_code %></p>
           <p><%= t('.city') %> : <%= @order.city %></p>
           <p><%= t('.country') %> : <%= @order.country %></p>

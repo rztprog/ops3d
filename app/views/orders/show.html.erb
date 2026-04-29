@@ -58,11 +58,10 @@
         </p>
       </div>
     <% end %>
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Articles</h2>
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
       <div>
-        <h2 class="text-lg font-semibold text-gray-900">Articles</h2>
-
-        <div class="mt-4 space-y-4">
+        <div class="space-y-4">
           <% @order.order_items.each do |item| %>
             <div class="flex items-center justify-between gap-4 rounded-xl border border-gray-200 p-4">
               <div>
@@ -101,14 +100,15 @@
         </div>
 
         <div class="rounded-2xl border border-gray-200 bg-gray-50 p-6">
-          <h2 class="text-lg font-semibold text-gray-900"><%= t('.delivery') %></h2>
+          <h2 class="text-lg font-semibold text-gray-900"><%= t('.address') %></h2>
 
           <div class="mt-4 text-sm leading-6 text-gray-600">
-            <p><%= @order.first_name %> <%= @order.last_name %></p>
-            <p><%= @order.address_line %>, <%= @order.address_line2 %></p>
-            <p><%= @order.postal_code %> <%= @order.city %></p>
-            <p><%= @order.country %></p>
-            <p class="mt-2"><%= @order.email %></p>
+            <p><%= t('.name') %> : <%= @order.first_name %> <%= @order.last_name %></p>
+            <p><%= t('.line') %> : <%= @order.address_line %> <%= @order.address_line2.present? ? ", #{@order.address_line2}" : "" %></p>
+            <p><%= t('.postal') %> : <%= @order.postal_code %></p>
+            <p><%= t('.city') %> : <%= @order.city %></p>
+            <p><%= t('.country') %> : <%= @order.country %></p>
+            <p class="mt-2"><%= t('.email') %> : <%= @order.email %></p>
           </div>
         </div>
 
