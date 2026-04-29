@@ -1,7 +1,7 @@
 <div class="mx-auto container px-4 py-10">
   <div class="mb-8 flex items-end justify-between gap-4">
     <div>
-      <h1 class="text-3xl font-bold text-gray-900"><%= t(".title") %></h1>
+      <h1 class="text-3xl font-bold text-gray-900"><%= t(".title") %> (<%= @orders.count()%>)</h1>
       <p class="mt-2 text-sm text-gray-500">
         <%= t('.subtitle') %>
       </p>
