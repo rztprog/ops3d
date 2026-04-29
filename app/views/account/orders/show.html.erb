@@ -15,7 +15,7 @@
 
   <% case @order.status %>
   <% when "pending" %>
-    <div class="rounded-2xl border border-yellow-200 bg-yellow-50 p-6 mb-8">
+    <div class="rounded-2xl border border-yellow-300 bg-yellow-50 p-6 mb-8">
       <h2 class="text-lg font-semibold text-yellow-800">
         <%= t('.pending') %>
       </h2>
@@ -25,27 +25,27 @@
     </div>
 
   <% when "paid" %>
-    <div class="rounded-2xl border border-green-200 bg-green-50 p-6 mb-8">
-      <h2 class="text-lg font-semibold text-green-800">
+    <div class="rounded-2xl border border-blue-300 bg-blue-50 p-6 mb-8">
+      <h2 class="text-lg font-semibold text-blue-800">
         <%= t('.paid') %>
       </h2>
-      <p class="mt-2 text-sm text-green-700">
+      <p class="mt-2 text-sm text-blue-700">
         <%= t('.paid_text') %>
       </p>
     </div>
 
   <% when "in_preparation" %>
-    <div class="rounded-2xl border border-blue-200 bg-blue-50 p-6 mb-8">
-      <h2 class="text-lg font-semibold text-blue-800">
+    <div class="rounded-2xl border border-lime-300 bg-lime-50 p-6 mb-8">
+      <h2 class="text-lg font-semibold text-lime-800">
         <%= t('.prep') %>
       </h2>
-      <p class="mt-2 text-sm text-blue-700">
+      <p class="mt-2 text-sm text-lime-700">
         <%= t('.prep_text') %>
       </p>
     </div>
 
   <% when "shipped" %>
-    <div class="rounded-2xl border border-green-200 bg-green-50 p-6 mb-8">
+    <div class="rounded-2xl border border-green-300 bg-green-50 p-6 mb-8">
       <h2 class="text-lg font-semibold text-green-800">
         <%= t('.shipped') %>
       </h2>
@@ -55,7 +55,7 @@
     </div>
 
   <% when "cancelled" %>
-    <div class="rounded-2xl border border-red-200 bg-red-50 p-6 mb-8">
+    <div class="rounded-2xl border border-red-300 bg-red-50 p-6 mb-8">
       <h2 class="text-lg font-semibold text-red-800">
         <%= t('.cancelled') %>
       </h2>
