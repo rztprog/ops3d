@@ -31,11 +31,14 @@ class OrdersController < ApplicationController
     @total_cents = @subtotal_cents + @shipping_cents
 
     @order = current_user.orders.new(order_params)
+    @order.email = current_user.email
     @order.status = "pending"
     @order.subtotal_price_cents = @subtotal_cents
     @order.shipping_price_cents = @shipping_cents
     @order.shipping_mode = current_shipping_mode
     @order.total_price_cents = @total_cents
+
+
 
     ActiveRecord::Base.transaction do
       @order.save!
@@ -110,10 +113,10 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(
-      :email,
       :first_name,
       :last_name,
       :address_line,
+      :address_line2,
       :city,
       :postal_code,
       :country
