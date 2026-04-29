@@ -1,43 +1,39 @@
 <div class="bg-gray-100">
   <!-- HERO -->
-  <section class="mx-auto container px-4 py-16 sm:px-6 lg:px-8">
+  <section class="mx-auto container px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
     <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
-      <div>
-        <p class="text-sm font-semibold uppercase tracking-[0.25em] text-[color:var(--light)]">
+      <div class="max-w-2xl">
+        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--light)] sm:text-sm">
           <%= t(".hero.first") %>
         </p>
 
-        <h1 class="mt-4 text-5xl font-black uppercase leading-none tracking-tight text-[color:var(--dark)] sm:text-5xl lg:text-6xl">
+        <h1 class="mt-5 text-5xl font-black uppercase leading-none tracking-tight text-[color:var(--dark)] sm:text-6xl lg:text-7xl">
           OPS3D
-          <span class="block text-[color:var(--light)] text-xl sm:text-xl lg:text-2xl"><%= t(".hero.title") %></span>
+          <span class="mt-2 block text-xl leading-snug text-[color:var(--light)] sm:text-2xl lg:text-3xl">
+            <%= t(".hero.title") %>
+          </span>
         </h1>
 
-        <p class="mt-6 max-w-xl text-lg leading-8 text-gray-600">
+        <p class="mt-6 max-w-xl text-base leading-8 text-gray-700 sm:text-lg">
           <%= t(".hero.subtitle") %>
         </p>
 
-        <div class="mt-8 flex flex-wrap items-center gap-4">
+        <div class="mt-8">
           <%= link_to t(".hero.cta"),
             products_path,
-            class: "inline-flex font-semibold uppercase items-center rounded-xl bg-[color:var(--dark)] px-8 py-4 text-sm font-medium text-white hover:bg-[color:var(--light)] transition" %>
+            class: "inline-flex w-full items-center justify-center rounded-xl bg-[color:var(--dark)] px-8 py-4 text-sm font-semibold uppercase text-white transition hover:bg-[color:var(--light)] sm:w-auto" %>
         </div>
       </div>
 
-      <div class="relative">
+      <div class="relative hidden lg:block">
         <div class="overflow-hidden rounded-3xl border border-gray-200 bg-gray-100 shadow-sm">
-          <% if "ultis5v1".present? %>
-            <%= cl_image_tag(
-              "ultis5v1",
-              class: "aspect-[4/3] w-full object-cover object-[center_70%]",
-              crop: :fill,
-              quality: "auto",
-              fetch_format: "auto"
-            ) %>
-          <% else %>
-            <div class="flex aspect-[4/3] items-center justify-center text-sm text-gray-400">
-              <%= t(".hero.image") %>
-            </div>
-          <% end %>
+          <%= cl_image_tag(
+            "ultis5v1",
+            class: "aspect-[4/3] w-full object-cover object-[center_70%]",
+            crop: :fill,
+            quality: "auto",
+            fetch_format: "auto"
+          ) %>
         </div>
       </div>
     </div>
@@ -46,13 +42,15 @@
   <!-- WHY OPS3D -->
   <section class="bg-gray-200">
     <div class="mx-auto container px-4 py-16 sm:px-6 lg:px-8">
-      <div class="mb-10 flex items-center gap-4">
-        <div class="h-px flex-1 bg-gray-300 "></div>
-        <h2 class="text-center text-2xl font-black uppercase tracking-wide text-[color:var(--dark)] sm:text-3xl">
+      <div class="mb-12 flex items-center gap-4">
+        <div class="hidden h-px flex-1 bg-gray-300 sm:block"></div>
+
+        <h2 class="text-center text-3xl font-black uppercase leading-tight tracking-wide text-[color:var(--dark)] sm:text-4xl">
           <%= t(".section.why.title") %>
         </h2>
-        <div class="h-px flex-1 bg-gray-300"></div>
-      </div>
+
+      <div class="hidden h-px flex-1 bg-gray-300 sm:block"></div>
+    </div>
 
       <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
         <div class="rounded-2xl bg-white p-8 text-center shadow-sm">
@@ -258,19 +256,17 @@
   <section class="mx-auto container px-4 py-16 sm:px-6 lg:px-8">
     <div class="mb-10">
       <div class="flex items-center gap-4">
-        <div class="h-px flex-1 bg-gray-300"></div>
-
-        <h2 class="text-center text-2xl font-black uppercase tracking-wide text-[color:var(--dark)] sm:text-3xl">
+        <div class="mb-12 text-center">
+          <h2 class="text-3xl font-black uppercase leading-tight tracking-wide text-[color:var(--dark)] sm:text-4xl">
             <%= t(".section.featured.title") %>
-        </h2>
+          </h2>
 
-        <div class="h-px flex-1 bg-gray-300"></div>
-      </div>
-
-      <div class="mt-4 flex justify-center">
-        <%= link_to t(".section.featured.cta"),
-          products_path,
-          class: "inline-flex font-semibold uppercase items-center rounded-xl bg-[color:var(--dark)] px-8 py-4 text-sm font-medium text-white hover:bg-[color:var(--light)] transition" %>
+          <div class="mt-6">
+            <%= link_to t(".section.featured.cta"),
+              products_path,
+              class: "inline-flex w-full items-center justify-center rounded-xl bg-[color:var(--dark)] px-8 py-4 text-sm font-semibold uppercase text-white transition hover:bg-[color:var(--light)] sm:w-auto" %>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -329,20 +325,22 @@
 
   <!-- CTA FINAL -->
   <section class="border-t border-gray-200 bg-gray-200">
-    <div class="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-black uppercase tracking-wide text-[color:var(--dark)]">
+    <div class="mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 lg:px-8">
+
+      <h2 class="text-3xl font-black uppercase leading-tight tracking-wide text-[color:var(--dark)] sm:text-4xl">
         <%= t(".section.finalcta.title") %>
       </h2>
 
-      <p class="mx-auto mt-4 max-w-2xl text-gray-600">
+      <p class="mx-auto mt-6 max-w-2xl text-base leading-7 text-gray-600 sm:text-lg">
         <%= t(".section.finalcta.subtitle") %>
       </p>
 
-      <div class="mt-8">
+      <div class="mt-10">
         <%= link_to t('.section.finalcta.cta'),
           products_path,
-          class: "inline-flex items-center rounded-lg bg-[color:var(--dark)] px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white hover:bg-[color:var(--light)]" %>
+          class: "inline-flex w-full items-center justify-center rounded-xl bg-[color:var(--dark)] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-[color:var(--light)] sm:w-auto" %>
       </div>
+
     </div>
   </section>
 </div>
