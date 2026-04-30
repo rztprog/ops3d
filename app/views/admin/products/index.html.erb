@@ -1,4 +1,4 @@
-<div class="mb-8 flex items-end justify-between gap-4">
+<div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
   <div>
     <h1 class="text-3xl font-bold text-gray-900">Produits</h1>
     <p class="mt-2 text-sm text-gray-500">
@@ -8,7 +8,7 @@
 
   <%= link_to "Nouveau produit",
     new_admin_product_path,
-    class: "inline-flex items-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
+    class: "inline-flex w-full items-center justify-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700 sm:w-auto" %>
 </div>
 
 <% if @products.empty? %>
@@ -23,7 +23,8 @@
     </div>
   </div>
 <% else %>
-  <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+  <!-- DESKTOP TABLE -->
+  <div class="hidden overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm lg:block">
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="bg-gray-50">
         <tr>
@@ -57,7 +58,7 @@
             </td>
 
             <td class="px-6 py-4 text-sm text-gray-700">
-              <%= product.category&.name %>
+              <%= product.category&.name || "—" %>
             </td>
 
             <td class="px-6 py-4 text-sm font-medium text-gray-900">
@@ -82,14 +83,8 @@
 
             <td class="px-6 py-4">
               <div class="flex items-center justify-end gap-3">
-                <%= link_to "Voir",
-                  admin_product_path(product),
-                  class: "text-sm font-medium text-gray-600 hover:text-gray-900" %>
-
-                <%= link_to "Modifier",
-                  edit_admin_product_path(product),
-                  class: "text-sm font-medium text-indigo-600 hover:text-indigo-800" %>
-
+                <%= link_to "Voir", admin_product_path(product), class: "text-sm font-medium text-gray-600 hover:text-gray-900" %>
+                <%= link_to "Modifier", edit_admin_product_path(product), class: "text-sm font-medium text-indigo-600 hover:text-indigo-800" %>
                 <%= button_to "Supprimer",
                   admin_product_path(product),
                   method: :delete,
@@ -101,5 +96,76 @@
         <% end %>
       </tbody>
     </table>
+  </div>
+
+  <!-- MOBILE CARDS -->
+  <div class="space-y-4 lg:hidden">
+    <% @products.each do |product| %>
+      <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+        <%= link_to admin_product_path(product), class: "block p-4 hover:bg-gray-50" do %>
+          <div class="flex gap-4">
+            <div class="h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-gray-100">
+              <% if product.images.attached? %>
+                <%= image_tag product.images.first, class: "h-full w-full object-cover" %>
+              <% else %>
+                <div class="flex h-full w-full items-center justify-center text-xs text-gray-400">
+                  —
+                </div>
+              <% end %>
+            </div>
+
+            <div class="min-w-0 flex-1">
+              <div class="flex items-start justify-between gap-3">
+                <div class="min-w-0">
+                  <p class="truncate font-semibold text-gray-900"><%= product.name %></p>
+                  <p class="mt-1 text-xs uppercase tracking-wide text-gray-400">
+                    <%= product.category&.name || "Sans catégorie" %>
+                  </p>
+                </div>
+
+                <i class="fa-solid fa-chevron-right mt-1 text-xs text-gray-400"></i>
+              </div>
+
+              <p class="mt-2 line-clamp-2 text-sm leading-6 text-gray-500">
+                <%= truncate(product.description.to_s, length: 90) %>
+              </p>
+
+              <div class="mt-4 flex items-center justify-between gap-3">
+                <p class="text-lg font-black text-gray-900">
+                  <%= number_to_currency(product.price_cents / 100.0, unit: "€") %>
+                </p>
+
+                <div class="flex flex-wrap justify-end gap-2">
+                  <% if product.published? %>
+                    <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">Publié</span>
+                  <% else %>
+                    <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">Non publié</span>
+                  <% end %>
+
+                  <% if product.available? %>
+                    <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">Dispo</span>
+                  <% else %>
+                    <span class="rounded-full bg-red-100 px-3 py-1 text-xs font-medium text-red-700">Indispo</span>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="grid grid-cols-2 divide-x divide-gray-200 border-t border-gray-200">
+          <%= link_to "Modifier",
+            edit_admin_product_path(product),
+            class: "px-4 py-3 text-center text-sm font-medium text-indigo-600 hover:bg-gray-50" %>
+
+          <%= button_to "Supprimer",
+            admin_product_path(product),
+            method: :delete,
+            data: { turbo_confirm: "Supprimer ce produit ?" },
+            form_class: "contents",
+            class: "w-full px-4 py-3 text-center text-sm font-medium text-red-600 hover:bg-gray-50" %>
+        </div>
+      </div>
+    <% end %>
   </div>
 <% end %>
