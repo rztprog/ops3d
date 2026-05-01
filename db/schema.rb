@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_29_153524) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_01_144754) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -40,6 +40,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_29_153524) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "cart_item_custom_field_values", force: :cascade do |t|
+    t.bigint "cart_item_id", null: false
+    t.datetime "created_at", null: false
+    t.bigint "product_custom_field_id", null: false
+    t.datetime "updated_at", null: false
+    t.text "value"
+    t.index ["cart_item_id", "product_custom_field_id"], name: "index_cart_item_custom_values_unique", unique: true
+    t.index ["cart_item_id"], name: "index_cart_item_custom_field_values_on_cart_item_id"
+    t.index ["product_custom_field_id"], name: "index_cart_item_custom_field_values_on_product_custom_field_id"
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -78,6 +89,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_29_153524) do
 
   create_table "order_items", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.jsonb "customizations", default: {}, null: false
     t.bigint "order_id", null: false
     t.bigint "product_id"
     t.string "product_name", null: false
@@ -110,6 +122,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_29_153524) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "product_custom_fields", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "field_type", default: "text", null: false
+    t.string "label", null: false
+    t.string "placeholder"
+    t.integer "position", default: 0, null: false
+    t.bigint "product_id", null: false
+    t.boolean "required", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_custom_fields_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.boolean "available", default: true, null: false
     t.bigint "category_id", null: false
@@ -139,11 +163,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_29_153524) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cart_item_custom_field_values", "cart_items"
+  add_foreign_key "cart_item_custom_field_values", "product_custom_fields"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "products"
   add_foreign_key "carts", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
+  add_foreign_key "product_custom_fields", "products"
   add_foreign_key "products", "categories"
 end
