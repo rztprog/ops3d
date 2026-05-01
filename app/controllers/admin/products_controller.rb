@@ -11,7 +11,7 @@ module Admin
 
     def new
       @product = Product.new
-      5.times { @product.product_custom_fields.build }
+      7.times { @product.product_custom_fields.build }
     end
 
     def create
@@ -25,7 +25,7 @@ module Admin
     end
 
     def edit
-      (5 - @product.product_custom_fields.size).times { @product.product_custom_fields.build }
+      (7 - @product.product_custom_fields.size).times { @product.product_custom_fields.build }
     end
 
     def update
