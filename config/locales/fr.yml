@@ -72,6 +72,15 @@ fr:
         submit: 'Envoyer les instructions'
         back: 'Retour à la connexion'
 
+  activerecord:
+    attributes:
+      product:
+        price_cents: 'Prix'
+    errors:
+      messages:
+        blank: 'doit être renseigné'
+        not_a_number: 'doit être un nombre'
+
   navbar:
     home: 'Accueil'
     products: 'Produits'
