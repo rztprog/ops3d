@@ -11,6 +11,7 @@ module Admin
 
     def new
       @product = Product.new
+      5.times { @product.product_custom_fields.build }
     end
 
     def create
@@ -24,6 +25,7 @@ module Admin
     end
 
     def edit
+      (5 - @product.product_custom_fields.size).times { @product.product_custom_fields.build }
     end
 
     def update
@@ -46,15 +48,24 @@ module Admin
     end
 
     def product_params
-      params.require(:product).permit(
-        :name,
-        :description,
-        :price_cents,
-        :category_id,
-        :published,
-        :available,
-        images: []
-      )
+    params.require(:product).permit(
+      :name,
+      :description,
+      :price_euros,
+      :category_id,
+      :published,
+      :available,
+      images: [],
+      product_custom_fields_attributes: [
+        :id,
+        :label,
+        :field_type,
+        :required,
+        :position,
+        :placeholder,
+        :_destroy
+      ]
+    )
     end
   end
 end
