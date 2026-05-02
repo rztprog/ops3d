@@ -9,6 +9,12 @@ Client :
 Articles :
 <% @order.order_items.each do |item| %>
 - <%= item.product_name %> x <%= item.quantity %> : <%= number_to_currency((item.unit_price_cents * item.quantity) / 100.0, unit: "€") %>
+  <% if item.customizations.present? %>
+    Informations personnalisées :
+    <% item.customizations.each do |label, value| %>
+    - <%= label %> : <%= value.presence || "—" %>
+    <% end %>
+  <% end %>
 <% end %>
 
 Total : <%= number_to_currency(@order.total_price_cents / 100.0, unit: "€") %>
