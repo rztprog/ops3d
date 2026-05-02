@@ -24,7 +24,10 @@ class OrdersController < ApplicationController
 
   def create
     @cart = ensure_cart
-    @cart_items = @cart.cart_items.includes(:product)
+    @cart_items = @cart.cart_items.includes(
+      :product,
+      cart_item_custom_field_values: :product_custom_field
+    )
 
     @subtotal_cents = cart_subtotal_cents(@cart_items)
     @shipping_cents = current_shipping_cents
