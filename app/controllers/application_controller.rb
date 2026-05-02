@@ -75,19 +75,27 @@ class ApplicationController < ActionController::Base
 
     user_cart = current_user.cart || current_user.create_cart
 
-    guest_cart.cart_items.each do |item|
-      existing_item = user_cart.cart_items.find_by(product_id: item.product_id)
-
-      if existing_item
-        existing_item.quantity += item.quantity
-        existing_item.save!
-      else
+    guest_cart.cart_items.includes(:cart_item_custom_field_values).find_each do |item|
+      if item.cart_item_custom_field_values.any?
         item.update!(cart: user_cart)
+      else
+        existing_item = user_cart.cart_items
+          .left_outer_joins(:cart_item_custom_field_values)
+          .where(product_id: item.product_id, cart_item_custom_field_values: { id: nil })
+          .first
+
+        if existing_item
+          existing_item.quantity += item.quantity
+          existing_item.save!
+          item.destroy!
+        else
+          item.update!(cart: user_cart)
+        end
       end
     end
 
     # Supprime le guest_cart et le guest_token une fois mergé
-    guest_cart.destroy
+    guest_cart.destroy if guest_cart.reload.cart_items.empty?
     session[:guest_token] = nil
   end
 end
