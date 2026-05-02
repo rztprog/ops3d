@@ -275,7 +275,7 @@
     <% if @featured_products.any? %>
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <% @featured_products.each do |product| %>
-          <div class="group overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+          <div class="group flex h-full flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
             <%= link_to product_path(product), class: "block" do %>
               <div class="aspect-[4/3] overflow-hidden bg-gray-100">
                 <% if product.images.attached? %>
@@ -289,7 +289,7 @@
               </div>
             <% end %>
 
-            <div class="p-5">
+            <div class="flex flex-1 flex-col p-5">
               <% if product.category.present? %>
                 <p class="text-xs font-semibold uppercase tracking-[0.18em] text-gray-400">
                   <%= product.category.name %>
@@ -304,21 +304,22 @@
                 <%= truncate(product.description.to_s, length: 90) %>
               </p>
 
-              <div class="mt-6 flex items-center justify-between gap-4">
+              <div class="mt-auto pt-6 flex items-center justify-between gap-4">
                 <p class="text-2xl font-black text-gray-900">
                   <%= number_to_currency(product.price_cents / 100.0, unit: "€") %>
                 </p>
 
                 <%= button_to cart_items_path(product_id: product.id),
                   method: :post,
-                  class: "cursor-pointer w-full hidden sm:inline-flex items-center rounded-xl bg-[color:var(--dark)] px-4 py-2 text-sm font-medium text-white hover:bg-[color:var(--light)]" do %>
+                  form_class: "hidden sm:block",
+                  class: "cursor-pointer rounded-xl bg-[color:var(--dark)] px-4 py-2 text-sm font-medium text-white hover:bg-[color:var(--light)]" do %>
                   Ajouter
                 <% end %>
 
-                <div class='flex sm:hidden'>
+                <div class="flex sm:hidden">
                   <%= button_to cart_items_path(product_id: product.id),
                     method: :post,
-                    class: "h-11 w-11 items-center justify-center rounded-full bg-[color:var(--dark)] text-white" do %>
+                    class: "flex h-11 w-11 items-center justify-center rounded-full bg-[color:var(--dark)] text-white" do %>
                     <i class="fa-solid fa-plus"></i>
                   <% end %>
                 </div>

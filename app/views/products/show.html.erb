@@ -61,13 +61,77 @@
           </span>
         </div>
 
-        <div class="mt-6">
-          <%= button_to t('.add'),
-            cart_items_path(product_id: @product.id),
-            method: :post,
-            class: "cursor-pointer inline-flex w-full items-center justify-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
-        </div>
+        <% if user_signed_in? %>
+          <%= form_with url: cart_items_path, method: :post, local: true, class: "mt-8 space-y-6" do |f| %>
+            <%= hidden_field_tag :product_id, @product.id %>
 
+            <% if @custom_fields.any? %>
+              <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                <h2 class="text-lg font-semibold text-gray-900">
+                  <%= t('.info')%>
+                </h2>
+
+                <p class="mt-1 text-sm text-gray-500">
+                  <%= t('.info_desc')%>
+                </p>
+
+                <div class="mt-6 space-y-4">
+                  <% @custom_fields.each do |custom_field| %>
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700">
+                        <%= custom_field.label %>
+                        <% if custom_field.required? %>
+                          <span class="text-red-500">*</span>
+                        <% end %>
+                      </label>
+
+                      <% field_name = "custom_fields[#{custom_field.id}]" %>
+
+                      <% case custom_field.field_type %>
+                      <% when "textarea" %>
+                        <%= text_area_tag field_name,
+                          nil,
+                          placeholder: custom_field.placeholder,
+                          required: custom_field.required?,
+                          rows: 4,
+                          class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+
+                      <% when "number" %>
+                        <%= number_field_tag field_name,
+                          nil,
+                          placeholder: custom_field.placeholder,
+                          required: custom_field.required?,
+                          class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+
+                      <% when "checkbox" %>
+                        <label class="mt-2 flex items-center gap-2 text-sm text-gray-700">
+                          <%= check_box_tag field_name, "1", false, class: "rounded border-gray-300 text-gray-900 focus:ring-gray-900" %>
+                          <%= t('.yes')%>
+                        </label>
+
+                      <% else %>
+                        <%= text_field_tag field_name,
+                          nil,
+                          placeholder: custom_field.placeholder,
+                          required: custom_field.required?,
+                          class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+
+            <%= submit_tag t('.add'),
+              class: "w-full rounded-xl bg-gray-900 px-6 py-4 text-sm font-semibold uppercase text-white hover:bg-gray-700 cursor-pointer" %>
+          <% end %>
+        <% else %>
+          <div class="mt-6">
+            <%= link_to t('.login'),
+              new_user_session_path(return_to: product_path(@product)),
+              class: "cursor-pointer inline-flex w-full items-center justify-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
+          </div>
+        <% end %>
         <p class="mt-4 text-xs leading-5 text-gray-500">
           <%= t(".subtitle")%>
         </p>

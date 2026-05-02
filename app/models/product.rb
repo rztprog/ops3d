@@ -13,4 +13,10 @@ class Product < ApplicationRecord
   scope :published, -> { where(published: true) }
   scope :available, -> { where(available: true) }
   scope :visible, -> { where(published: true, available: true) }
+
+  # Objet avec des champs en plus
+  has_many :product_custom_fields, dependent: :destroy
+  accepts_nested_attributes_for :product_custom_fields,
+    allow_destroy: true,
+    reject_if: proc { |attrs| attrs["label"].blank? }
 end

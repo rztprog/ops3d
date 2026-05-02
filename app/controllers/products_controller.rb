@@ -4,6 +4,10 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.visible.find(params[:id])
+    @product = Product
+      .includes(:category, images_attachments: :blob)
+      .find(params[:id])
+
+    @custom_fields = @product.product_custom_fields.ordered
   end
 end

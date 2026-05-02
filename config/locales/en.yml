@@ -163,6 +163,10 @@ en:
       available: 'Availability'
       stock: 'Available on order'
       subtitle: 'Made to order. Exact lead times will be confirmed before shipping.'
+      login: 'Log in to order'
+      info: 'Custom information'
+      info_desc: 'Provide the necessary information for this product.'
+      yes: 'Yes'
 
   carts:
     show:

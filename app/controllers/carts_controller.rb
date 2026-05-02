@@ -1,7 +1,10 @@
 class CartsController < ApplicationController
   def show
     @cart = current_cart || ensure_cart
-    @cart_items = @cart.cart_items.includes(product: [ images_attachments: :blob ])
+    @cart_items = @cart.cart_items.includes(
+      { product: { images_attachments: :blob } },
+      { cart_item_custom_field_values: :product_custom_field }
+    )
 
     @subtotal_cents = @cart_items.sum { |item| item.quantity * item.product.price_cents }
 

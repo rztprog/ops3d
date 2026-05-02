@@ -24,7 +24,10 @@ class OrdersController < ApplicationController
 
   def create
     @cart = ensure_cart
-    @cart_items = @cart.cart_items.includes(:product)
+    @cart_items = @cart.cart_items.includes(
+      :product,
+      cart_item_custom_field_values: :product_custom_field
+    )
 
     @subtotal_cents = cart_subtotal_cents(@cart_items)
     @shipping_cents = current_shipping_cents
@@ -44,11 +47,18 @@ class OrdersController < ApplicationController
       @order.save!
 
       @cart_items.each do |item|
+        customizations = item.cart_item_custom_field_values
+          .includes(:product_custom_field)
+          .each_with_object({}) do |custom_value, hash|
+            hash[custom_value.product_custom_field.label] = custom_value.value
+          end
+
         @order.order_items.create!(
           product: item.product,
           product_name: item.product.name,
           quantity: item.quantity,
-          unit_price_cents: item.product.price_cents
+          unit_price_cents: item.product.price_cents,
+          customizations: customizations
         )
       end
 

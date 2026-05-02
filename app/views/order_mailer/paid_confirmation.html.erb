@@ -13,6 +13,16 @@
     <li>
       <%= item.product_name %> × <%= item.quantity %> —
       <%= number_to_currency((item.unit_price_cents * item.quantity) / 100.0, unit: "€") %>
+      <% if item.customizations.present? %>
+        <ul>
+          <% item.customizations.each do |label, value| %>
+            <li>
+              <strong><%= label %> :</strong>
+              <%= value.presence || "—" %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
     </li>
   <% end %>
 </ul>
