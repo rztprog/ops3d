@@ -152,7 +152,7 @@ en:
   products:
     index:
       title: 'Our products'
-      subtitle: 'Discover our ready-to-order 3D printed parts.'
+      subtitle: 'Explore our range of custom 3D-printed products.<br>Each item is crafted for precision, durability, and tailored to your specific needs.'
       add: 'Add'
       product: 'products'
     show:

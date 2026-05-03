@@ -132,7 +132,7 @@ fr:
   products:
     index:
       title: 'Nos produits'
-      subtitle: 'Découvre nos pièces imprimées en 3D prêtes à être commandées.'
+      subtitle: "Explorez notre sélection d'objets personnalisés en impression 3D.<br>Chaque produit est conçu pour offrir précision, durabilité et adaptation à vos besoins spécifiques."
       add: 'Ajouter'
       product: 'produits'
     show:
