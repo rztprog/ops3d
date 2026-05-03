@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "OPS3D" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "OPS3D" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Impression 3D personnalisée de qualité professionnelle." %>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Ops3d">
