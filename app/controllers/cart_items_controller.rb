@@ -1,8 +1,13 @@
 class CartItemsController < ApplicationController
   def create
-    Rails.logger.info "🔴🔴🔴🔴🔴🔴 CUSTOM PARAMS: #{params[:custom_fields].inspect}"
-    Rails.logger.info "🔴🔴🔴🔴🔴🔴 PRODUCT ID: #{params[:product_id]}"
     @product = Product.find(params[:product_id])
+
+    # Guard pour requete forgée
+    if @product.product_custom_fields.exists? && !user_signed_in?
+      redirect_to new_user_session_path, alert: "Connecte-toi pour commander ce produit personnalisé."
+      return
+    end
+
     @cart = ensure_cart
 
     custom_fields = @product.product_custom_fields.ordered
