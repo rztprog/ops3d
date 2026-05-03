@@ -17,6 +17,9 @@ class ApplicationController < ActionController::Base
   # Rend le current_cart dispo dans toutes vues
   helper_method :current_cart
 
+  # Si il ya un déclenchement de RecordNotFound
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
   def current_cart
     if user_signed_in?
       current_user.cart
@@ -52,6 +55,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def record_not_found
+    redirect_to account_path, alert: "Commande introuvable."
+  end
 
   def set_locale
     locale = params[:locale] || session[:locale] || I18n.default_locale
