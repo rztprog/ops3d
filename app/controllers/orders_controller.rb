@@ -41,8 +41,6 @@ class OrdersController < ApplicationController
     @order.shipping_mode = current_shipping_mode
     @order.total_price_cents = @total_cents
 
-
-
     ActiveRecord::Base.transaction do
       @order.save!
 
@@ -75,6 +73,12 @@ class OrdersController < ApplicationController
   end
 
   def checkout
+    # Guard pour ne pas repayée une commande
+    unless @order.status == "pending"
+      redirect_to order_path(@order), alert: "Cette commande ne peut plus être payée."
+      return
+    end
+
     @order = current_user.orders.find(params[:id])
 
     session = Stripe::Checkout::Session.create(
