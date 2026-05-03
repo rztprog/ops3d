@@ -43,6 +43,26 @@ Rails.application.configure do
   # Test du mailer avec la gem letter_opener
   config.action_mailer.delivery_method = :letter_opener
 
+  # Test reel en prod
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.raise_delivery_errors = true
+
+  # config.action_mailer.default_url_options = {
+  #   host: "localhost",
+  #   port: 3000
+  # }
+
+  # config.action_mailer.smtp_settings = {
+  #   address: ENV.fetch("SMTP_ADDRESS"),
+  #   port: ENV.fetch("SMTP_PORT").to_i,
+  #   domain: ENV.fetch("SMTP_DOMAIN"),
+  #   user_name: ENV.fetch("SMTP_USERNAME"),
+  #   password: ENV.fetch("SMTP_PASSWORD"),
+  #   authentication: :plain,
+  #   enable_starttls_auto: true
+  # }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
