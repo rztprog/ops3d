@@ -1,6 +1,9 @@
 <% content_for :title, "#{@product.name} - Impression 3D personnalisée | OPS3D" %>
 <% content_for :description,
   truncate(@product.description.to_s, length: 150) %>
+<% content_for :og_image do %>
+  <%= cl_image_path(@product.images.first.key) if @product.images.attached? %>
+<% end %>
 <div class="px-4 py-10">
   <div class="mb-6">
     <%= link_to t(".back"), products_path, class: "text-sm font-medium text-gray-600 hover:text-gray-900 hover:underline" %>
