@@ -7,7 +7,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Ops3d">
     <meta name="mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
+
+    <meta property="og:title" content="<%= content_for?(:title) ? yield(:title) : 'OPS3D' %>">
+    <meta property="og:description" content="<%= content_for?(:description) ? yield(:description) : 'Impression 3D personnalisée' %>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<%= request.original_url %>">
+    <meta property="og:image" content="<%= content_for?(:og_image) ? yield(:og_image) : cl_image_path('ultis5v1', crop: :fill, quality: 'auto', fetch_format: 'auto') %>">    <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= yield :head %>
