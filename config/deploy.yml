@@ -41,6 +41,7 @@ registry:
 env:
   secret:
     - RAILS_MASTER_KEY
+    - DATABASE_URL
     - APP_HOST
     - ADMIN_EMAIL
     - SMTP_ADDRESS
@@ -58,6 +59,8 @@ env:
     SOLID_QUEUE_IN_PUMA: true
     APP_HOST: ops3d.fr
     RAILS_SERVE_STATIC_FILES: true
+  clear:
+    SOLID_QUEUE_IN_PUMA: true
 
     # Set number of processes dedicated to Solid Queue (default: 1)
     # JOB_CONCURRENCY: 3
@@ -111,6 +114,18 @@ builder:
 #   user: app
 
 # Use accessory services (secrets come from .kamal/secrets).
+accessories:
+  db:
+    image: postgres:16
+    host: 91.98.230.71
+    env:
+      clear:
+        POSTGRES_USER: ops3d
+        POSTGRES_DB: ops3d_production
+      secret:
+        - POSTGRES_PASSWORD
+    directories:
+      - data:/var/lib/postgresql/data
 # accessories:
 #   db:
 #     image: mysql:8.0
