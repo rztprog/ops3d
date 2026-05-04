@@ -59,8 +59,6 @@ env:
     SOLID_QUEUE_IN_PUMA: true
     APP_HOST: ops3d.fr
     RAILS_SERVE_STATIC_FILES: true
-  clear:
-    SOLID_QUEUE_IN_PUMA: true
 
     # Set number of processes dedicated to Solid Queue (default: 1)
     # JOB_CONCURRENCY: 3
