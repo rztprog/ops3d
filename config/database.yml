@@ -83,33 +83,25 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-# production:
-#   primary: &primary_production
-#     <<: *default
-#     database: ops3d_production
-#     username: ops3d
-#     password: <%= ENV["OPS3D_DATABASE_PASSWORD"] %>
-#   cache:
-#     <<: *primary_production
-#     database: ops3d_production_cache
-#     migrations_paths: db/cache_migrate
-#   queue:
-#     <<: *primary_production
-#     database: ops3d_production_queue
-#     migrations_paths: db/queue_migrate
-#   cable:
-#     <<: *primary_production
-#     database: ops3d_production_cable
-#     migrations_paths: db/cable_migrate
 production:
-  primary:
-    url: <%= ENV["DATABASE_URL"] %>
+  primary: &primary_production
+    <<: *default
+    database: <%= ENV.fetch("POSTGRES_DB", "ops3d_production") %>
+    username: <%= ENV.fetch("POSTGRES_USER", "ops3d") %>
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
+    host: <%= ENV.fetch("POSTGRES_HOST", "ops3d-db") %>
+
   cache:
-    url: <%= ENV["DATABASE_URL"] %>
+    <<: *primary_production
+    database: ops3d_production_cache
     migrations_paths: db/cache_migrate
+
   queue:
-    url: <%= ENV["DATABASE_URL"] %>
+    <<: *primary_production
+    database: ops3d_production_queue
     migrations_paths: db/queue_migrate
+
   cable:
-    url: <%= ENV["DATABASE_URL"] %>
+    <<: *primary_production
+    database: ops3d_production_cable
     migrations_paths: db/cable_migrate
