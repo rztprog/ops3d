@@ -58,6 +58,7 @@ fr:
       long: '%d %B %Y à %H:%M'
 
   devise:
+    password: 'Mot de passe'
     connect: 'Se connecter'
     lost: 'Mot de passe oublié ?'
     create: 'Créer un compte'
@@ -65,6 +66,10 @@ fr:
     register: 'Inscription'
     signup: "S'inscrire"
     already: 'Déjà un compte ?'
+    new:
+      first_name: 'Prénom'
+      last_name: 'Nom'
+      confirm_pass: 'Confirmation du mot de passe'
     passwords:
       new:
         title: 'Mot de passe oublié ?'

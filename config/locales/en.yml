@@ -87,6 +87,7 @@ en:
       long: '%B %d, %Y at %H:%M'
 
   devise:
+    password: 'Password'
     connect: 'Sign in'
     lost: 'Forgot your password?'
     create: 'Create an account'
@@ -94,6 +95,10 @@ en:
     register: 'Registration'
     signup: 'Sign-up'
     already: 'Already have an account?'
+    new:
+      first_name: 'First name'
+      last_name: 'Last name'
+      confirm_pass: 'Password confirmation'
     passwords:
       new:
         title: 'Forgot your password?'
