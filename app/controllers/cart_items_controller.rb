@@ -3,10 +3,10 @@ class CartItemsController < ApplicationController
     @product = Product.find(params[:product_id])
 
     # Guard pour requete forgée
-    if @product.product_custom_fields.exists? && !user_signed_in?
-      redirect_to new_user_session_path, alert: "Connecte-toi pour commander ce produit personnalisé."
-      return
-    end
+    # if @product.product_custom_fields.exists? && !user_signed_in?
+    #   redirect_to new_user_session_path, alert: "Connecte-toi pour commander ce produit personnalisé."
+    #   return
+    # end
 
     @cart = ensure_cart
 

@@ -67,7 +67,6 @@
           </span>
         </div>
 
-        <% if user_signed_in? %>
           <%= form_with url: cart_items_path, method: :post, local: true, class: "mt-8 space-y-6" do |f| %>
             <%= hidden_field_tag :product_id, @product.id %>
 
@@ -127,23 +126,12 @@
                 </div>
               </div>
             <% end %>
-
-            <%= submit_tag t('.add'),
-              class: "w-full rounded-xl bg-gray-900 px-6 py-4 text-sm font-semibold uppercase text-white hover:bg-gray-700 cursor-pointer" %>
-          <% end %>
-        <% else %>
           <div class="mt-6">          
-            <% if @custom_fields.any? %>
-              <%= link_to t('.login'),
-                new_user_session_path(return_to: product_path(@product)),
-                class: "cursor-pointer inline-flex w-full items-center justify-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
-            <% else %>
-              <%= button_to cart_items_path(product_id: @product),
-                method: :post,
-                form_class: "hidden sm:block",
-                class: "cursor-pointer inline-flex w-full items-center justify-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" do %>
-                <%= t('.add') %>
-              <% end %>
+            <%= button_to cart_items_path(product_id: @product),
+              method: :post,
+              form_class: "hidden sm:block",
+              class: "cursor-pointer inline-flex w-full items-center justify-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" do %>
+              <%= t('.add') %>
             <% end %>
           </div>
         <% end %>
