@@ -36,15 +36,27 @@ class StripeWebhooksController < ApplicationController
     order = Order.find_by(id: session.metadata.order_id)
     return unless order
     return unless order.user_id.to_s == session.metadata.user_id.to_s
-    return if order.status == "paid"
+    should_send_emails = false
 
-    order.update!(
-      status: "paid",
-      stripe_payment_intent_id: session.payment_intent
-    )
+    Order.transaction do
+      # Pour prevenir d'une double modification SQL
+      order.lock!
 
-    # Envoie du mail une fois la commande confirmé
-    OrderMailer.with(order: order).paid_confirmation.deliver_later
-    OrderMailer.with(order: order).admin_paid_notification.deliver_later
+      return if order.status == "paid"
+
+      order.update!(
+        status: "paid",
+        stripe_checkout_session_id: session.id,
+        stripe_payment_intent_id: session.payment_intent
+      )
+
+      should_send_emails = true
+    end
+
+    # Envoie des 2 mails (admin + user) une fois la commande confirmé
+    if should_send_emails
+      OrderMailer.with(order: order).paid_confirmation.deliver_later
+      OrderMailer.with(order: order).admin_paid_notification.deliver_later
+    end
   end
 end
