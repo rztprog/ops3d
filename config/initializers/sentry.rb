@@ -4,6 +4,8 @@ Sentry.init do |config|
 
   config.environment = Rails.env
   config.enabled_environments = %w[production]
+  # config.enabled_environments = %w[development production]
 
   config.traces_sample_rate = 0.0
+  # config.debug = Rails.env.development?
 end
