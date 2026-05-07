@@ -35,6 +35,7 @@ class StripeWebhooksController < ApplicationController
   def fulfill_order(session)
     order = Order.find_by(id: session.metadata.order_id)
     return unless order
+    return unless order.user_id.to_s == session.metadata.user_id.to_s
     return if order.status == "paid"
 
     order.update!(
