@@ -81,34 +81,46 @@ class OrdersController < ApplicationController
       return
     end
 
+    line_items = @order.order_items.map do |item|
+      {
+        price_data: {
+          currency: "eur",
+          product_data: {
+            name: item.product_name
+          },
+          unit_amount: item.unit_price_cents
+        },
+        quantity: item.quantity
+      }
+    end
+
+    if @order.shipping_price_cents.to_i > 0
+      line_items << {
+        price_data: {
+          currency: "eur",
+          product_data: {
+            name: "Frais de livraison"
+          },
+          unit_amount: @order.shipping_price_cents
+        },
+        quantity: 1
+      }
+    end
+
     session = Stripe::Checkout::Session.create(
       customer_email: @order.email,
-
       metadata: {
         order_id: @order.id,
         user_id: @order.user_id
       },
-
       payment_intent_data: {
         metadata: {
           order_id: @order.id,
           user_id: @order.user_id
         }
       },
-
       payment_method_types: [ "card" ],
-      line_items: @order.order_items.map do |item|
-        {
-          price_data: {
-            currency: "eur",
-            product_data: {
-              name: item.product_name
-            },
-            unit_amount: item.unit_price_cents
-          },
-          quantity: item.quantity
-        }
-      end,
+      line_items: line_items,
       mode: "payment",
       success_url: order_url(@order),
       cancel_url: order_url(@order)
