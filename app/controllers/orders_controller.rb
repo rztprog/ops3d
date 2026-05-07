@@ -73,13 +73,13 @@ class OrdersController < ApplicationController
   end
 
   def checkout
+    @order = current_user.orders.find(params[:id])
+
     # Guard pour ne pas repayée une commande
     unless @order.status == "pending"
       redirect_to order_path(@order), alert: "Cette commande ne peut plus être payée."
       return
     end
-
-    @order = current_user.orders.find(params[:id])
 
     session = Stripe::Checkout::Session.create(
       customer_email: @order.email,
