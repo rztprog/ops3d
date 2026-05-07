@@ -33,7 +33,7 @@ class StripeWebhooksController < ApplicationController
   private
 
   def fulfill_order(session)
-    order = Order.find_by(stripe_checkout_session_id: session.id)
+    order = Order.find_by(id: session.metadata.order_id)
     return unless order
     return if order.status == "paid"
 
