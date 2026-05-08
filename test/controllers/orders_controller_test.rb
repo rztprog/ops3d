@@ -11,7 +11,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
 
     @order = Order.create!(
       user: @user,
-      status: "pending",
+      status: "paid",
       email: @user.email,
       first_name: "Jean",
       last_name: "Dupont",
@@ -29,9 +29,8 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "checkout redirects when order is already paid" do
-    Stripe::Checkout::Session.stub(:create, ->(*) { raise "Stripe should not be called" }) do
-      post checkout_order_path(locale: :fr, id: @order.id)
-    end
+    assert_equal "paid", @order.reload.status
+    post checkout_order_path(locale: :fr, id: @order.id)
 
     assert_redirected_to order_path(locale: :fr, id: @order.id)
     assert_equal "Cette commande ne peut plus être payée.", flash[:alert]

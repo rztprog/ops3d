@@ -132,10 +132,6 @@ class OrdersController < ApplicationController
 
     @order.update!(stripe_checkout_session_id: session.id)
 
-    Rails.logger.info(
-      "[OrderPaid] order_id=#{order.id} payment_intent=#{session.payment_intent}"
-    )
-
     redirect_to session.url, allow_other_host: true
   end
 
