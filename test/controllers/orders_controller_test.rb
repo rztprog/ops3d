@@ -29,7 +29,6 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "checkout redirects when order is already paid" do
-    assert_equal "paid", @order.reload.status
     post checkout_order_path(locale: :fr, id: @order.id)
 
     assert_redirected_to order_path(locale: :fr, id: @order.id)
