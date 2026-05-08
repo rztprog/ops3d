@@ -57,4 +57,20 @@ class StripeWebhooksControllerTest < ActionDispatch::IntegrationTest
       StripeWebhooksController.new.send(:fulfill_order, @session)
     end
   end
+
+  test "webhook returns bad request with invalid signature" do
+    original_secret = ENV["STRIPE_WEBHOOK_SECRET"]
+    ENV["STRIPE_WEBHOOK_SECRET"] = "whsec_test_secret"
+
+    post "/stripe_webhooks",
+        params: "{}",
+        headers: {
+          "HTTP_STRIPE_SIGNATURE" => "invalid"
+        },
+        as: :json
+
+    assert_response :bad_request
+  ensure
+    ENV["STRIPE_WEBHOOK_SECRET"] = original_secret
+  end
 end

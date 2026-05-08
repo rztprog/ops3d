@@ -2,9 +2,6 @@ class StripeWebhooksController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    Rails.logger.info(
-      "[StripeWebhook] event=#{event.type} stripe_event_id=#{event.id}"
-    )
     payload = request.body.read
     signature = request.env["HTTP_STRIPE_SIGNATURE"]
 
@@ -12,6 +9,10 @@ class StripeWebhooksController < ApplicationController
       payload,
       signature,
       ENV["STRIPE_WEBHOOK_SECRET"]
+    )
+
+    Rails.logger.info(
+      "[StripeWebhook] event=#{event.type} stripe_event_id=#{event.id}"
     )
 
     case event.type
