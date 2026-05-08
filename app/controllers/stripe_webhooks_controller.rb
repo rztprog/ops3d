@@ -2,6 +2,9 @@ class StripeWebhooksController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
+    Rails.logger.info(
+      "[StripeWebhook] event=#{event.type} stripe_event_id=#{event.id}"
+    )
     payload = request.body.read
     signature = request.env["HTTP_STRIPE_SIGNATURE"]
 
@@ -55,6 +58,9 @@ class StripeWebhooksController < ApplicationController
 
     # Envoie des 2 mails (admin + user) une fois la commande confirmé
     if should_send_emails
+      Rails.logger.info(
+        "[Mailer] paid_confirmation order_id=#{order.id}"
+      )
       OrderMailer.with(order: order).paid_confirmation.deliver_later
       OrderMailer.with(order: order).admin_paid_notification.deliver_later
     end
