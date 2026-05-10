@@ -80,3 +80,4 @@ end
 
 gem "sentry-ruby", "~> 6.5"
 gem "sentry-rails", "~> 6.5"
+gem "rack-attack"
