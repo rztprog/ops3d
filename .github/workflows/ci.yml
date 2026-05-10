@@ -155,8 +155,21 @@ jobs:
         run: |
           mkdir -p .kamal
           cat > .kamal/secrets <<EOF
-          RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}
+          ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }}
+          APP_HOST=${{ secrets.APP_HOST }}
           CLOUDINARY_URL=${{ secrets.CLOUDINARY_URL }}
+          DATABASE_URL=${{ secrets.DATABASE_URL }}
+          POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+          RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}
+          SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+          SMTP_ADDRESS=${{ secrets.SMTP_ADDRESS }}
+          SMTP_DOMAIN=${{ secrets.SMTP_DOMAIN }}
+          SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}
+          SMTP_PORT=${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}
+          STRIPE_PUBLISHABLE_KEY=${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+          STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_WEBHOOK_SECRET=${{ secrets.STRIPE_WEBHOOK_SECRET }}
           EOF
       - name: Deploy with Kamal
         env:
