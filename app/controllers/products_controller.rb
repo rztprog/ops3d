@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.visible.includes(:category)
-    Rails.logger.info "[IP DEBUG] remote_ip=#{request.remote_ip} ip=#{request.ip} xff=#{request.headers['X-Forwarded-For']}"
+    # Rails.logger.info "[IP DEBUG] remote_ip=#{request.remote_ip} ip=#{request.ip} xff=#{request.headers['X-Forwarded-For']}"
   end
 
   def show
