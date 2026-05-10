@@ -14,7 +14,16 @@
     <div>
       <div class="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
         <% if @product.images.attached? %>
-          <%= image_tag @product.images.first, class: "h-full w-full object-cover" %>
+          <%= cl_image_tag @product.images.first.key,
+            width: 1200,
+            height: 1200,
+            crop: :fill,
+            gravity: :auto,
+            quality: :auto,
+            fetch_format: :auto,
+            loading: "eager",
+            decoding: "async",
+            class: "h-full w-full object-cover" %>
         <% else %>
           <div class="flex aspect-square items-center justify-center bg-gray-100 text-sm text-gray-400">
             <%= t(".image") %>
@@ -26,7 +35,16 @@
         <div class="mt-4 grid grid-cols-4 gap-3">
           <% @product.images.each do |image| %>
             <div class="overflow-hidden rounded-xl border border-gray-200 bg-white">
-              <%= image_tag image, class: "aspect-square h-full w-full object-cover" %>
+              <%= cl_image_tag image.key,
+                width: 300,
+                height: 300,
+                crop: :fill,
+                gravity: :auto,
+                quality: :auto,
+                fetch_format: :auto,
+                loading: "lazy",
+                decoding: "async",
+                class: "aspect-square h-full w-full object-cover" %>
             </div>
           <% end %>
         </div>

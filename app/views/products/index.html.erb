@@ -29,8 +29,16 @@
           <%= link_to product_path(product), class: "block" do %>
             <div class="aspect-[4/3] overflow-hidden bg-gray-100">
               <% if product.images.attached? %>
-                <%= image_tag product.images.first,
-                  class: "h-full w-full object-cover transition duration-500 group-hover:scale-105" %>
+                <%= cl_image_tag product.images.first.key,
+                width: 600,
+                height: 600,
+                crop: :fill,
+                gravity: :auto,
+                quality: :auto,
+                fetch_format: :auto,
+                loading: "lazy",
+                decoding: "async",
+                class: "h-full w-full object-cover transition duration-500 group-hover:scale-105" %>
               <% else %>
                 <div class="flex h-full w-full items-center justify-center text-sm text-gray-400">
                   Pas d'image
