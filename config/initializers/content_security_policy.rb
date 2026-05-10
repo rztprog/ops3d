@@ -27,3 +27,22 @@
 #   # Report violations without enforcing the policy.
 #   # config.content_security_policy_report_only = true
 # end
+Rails.application.config.content_security_policy do |policy|
+  policy.default_src :self, :https
+
+  policy.base_uri :self
+  policy.form_action :self, "https://checkout.stripe.com"
+
+  policy.img_src :self, :https, :data, "https://res.cloudinary.com"
+  policy.font_src :self, :https, :data
+  policy.style_src :self, :https, :unsafe_inline
+
+  policy.script_src :self, :https, "https://js.stripe.com"
+  policy.connect_src :self, :https
+
+  policy.frame_src :self, "https://js.stripe.com", "https://checkout.stripe.com"
+  policy.object_src :none
+end
+
+# Log
+# Rails.application.config.content_security_policy_report_only = true
