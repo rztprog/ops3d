@@ -1,9 +1,8 @@
 name: CI
 
 on:
-  pull_request:
   push:
-    branches: [main]
+  pull_request:
 
 jobs:
   scan_ruby:
@@ -67,6 +66,11 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    RAILS_ENV: test
+    DATABASE_URL: postgres://postgres:postgres@localhost:5432
+    STRIPE_WEBHOOK_SECRET: whsec_test
+    SECRET_KEY_BASE: test_secret_key_base
+    CLOUDINARY_URL: cloudinary://test:test@test
 
     services:
       postgres:
