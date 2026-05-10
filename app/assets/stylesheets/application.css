@@ -1,3 +1,8 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
 /* Tailwind directives */
 @tailwind base;
 @tailwind components;
@@ -10,7 +15,3 @@
 /* Partials */
 @import "components/index.css";
 @import "pages/index.css";
-
-/*
- *= require font-awesome
- */
