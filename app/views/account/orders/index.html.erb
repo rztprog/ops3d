@@ -73,9 +73,17 @@
                 <%= number_to_currency(order.total_price_cents / 100.0, unit: "€") %>
               </p>
 
-              <i class="fa-solid fa-chevron-right text-xs text-gray-400"></i>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                class="w-3 h-3 text-gray-600 fill-current"
+              >
+                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+                  <path d="M1282 4768 l-352 -353 927 -927 928 -928 -928 -928 -927 -927 353
+                    -353 352 -352 1280 1280 1280 1280 -1280 1280 -1280 1280 -353 -352z"/>
+                </g>
+              </svg>            
             </div>
-
           <% end %>
         <% end %>
       </div>

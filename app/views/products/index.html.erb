@@ -78,7 +78,17 @@
                 <%= button_to cart_items_path(product_id: product.id),
                   method: :post,
                   class: "flex h-11 w-11 items-center justify-center rounded-full bg-[color:var(--dark)] text-white" do %>
-                  <i class="fa-solid fa-plus"></i>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                    class="w-4 h-4 text-white fill-current"
+                  >
+                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+                      <path d="M2400 3920 l0 -1200 -1200 0 -1200 0 0 -160 0 -160 1200 0 1200 0 0
+                      -1200 0 -1200 160 0 160 0 0 1200 0 1200 1200 0 1200 0 0 160 0 160 -1200 0
+                      -1200 0 0 1200 0 1200 -160 0 -160 0 0 -1200z"/>
+                    </g>
+                  </svg>
                 <% end %>
               </div>
             </div>
