@@ -151,7 +151,13 @@ jobs:
           echo "${{ secrets.KAMAL_SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan 91.98.230.71 >> ~/.ssh/known_hosts
-
+      - name: Prepare Kamal secrets
+        run: |
+          mkdir -p .kamal
+          cat > .kamal/secrets <<EOF
+          RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}
+          CLOUDINARY_URL=${{ secrets.CLOUDINARY_URL }}
+          EOF
       - name: Deploy with Kamal
         env:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
