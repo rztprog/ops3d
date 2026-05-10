@@ -32,10 +32,15 @@
         <div class="overflow-hidden rounded-3xl bord er border-gray-200 bg-gray-100 shadow-sm">
           <%= cl_image_tag(
             "ultis5v1",
-            class: "aspect-[4/3] w-full object-cover object-[center_70%]",
+            width: 1200,
+            height: 900,
             crop: :fill,
             quality: "auto",
-            fetch_format: "auto"
+            fetch_format: "auto",
+            loading: "eager",
+            fetchpriority: "high",
+            decoding: "async",
+            class: "aspect-[4/3] w-full object-cover object-[center_70%]"
           ) %>
         </div>
       </div>
