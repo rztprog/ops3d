@@ -6,36 +6,35 @@
 <% end %>
 
 <%# JSON-LD %>
+<% product_schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": @product.name,
+  "description": strip_tags(@product.description.to_s),
+  "image": @product.images.map { |image|
+    cl_image_path(
+      image.key,
+      width: 1200,
+      height: 1200,
+      crop: :fill,
+      quality: "auto",
+      fetch_format: "auto"
+    )
+  },
+  "brand": {
+    "@type": "Brand",
+    "name": "OPS3D"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": product_url(@product, locale: I18n.locale),
+    "priceCurrency": "EUR",
+    "price": format("%.2f", @product.price_cents / 100.0),
+    "availability": @product.available? ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+    "itemCondition": "https://schema.org/NewCondition"
+  }
+} %>
 <% content_for :head do %>
-  <% product_schema = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": @product.name,
-    "description": strip_tags(@product.description.to_s),
-    "image": @product.images.map { |image|
-      cl_image_path(
-        image.key,
-        width: 1200,
-        height: 1200,
-        crop: :fill,
-        quality: "auto",
-        fetch_format: "auto"
-      )
-    },
-    "brand": {
-      "@type": "Brand",
-      "name": "OPS3D"
-    },
-    "offers": {
-      "@type": "Offer",
-      "url": product_url(@product, locale: I18n.locale),
-      "priceCurrency": "EUR",
-      "price": format("%.2f", @product.price_cents / 100.0),
-      "availability": @product.available? ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-      "itemCondition": "https://schema.org/NewCondition"
-    }
-  } %>
-
   <script type="application/ld+json">
     <%= raw JSON.pretty_generate(product_schema) %>
   </script>
