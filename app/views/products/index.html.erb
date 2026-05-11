@@ -26,7 +26,7 @@
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       <% @products.each do |product| %>
         <div class="group flex h-full flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-          <%= link_to product_path(product), class: "block" do %>
+          <%= link_to product_path(product), class: "block", aria: { label: product.name } do %>
             <div class="aspect-[4/3] overflow-hidden bg-gray-100">
               <% if product.images.attached? %>
                 <%= cl_image_tag product.images.first.key,

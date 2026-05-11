@@ -284,7 +284,7 @@
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <% @featured_products.each do |product| %>
           <div class="group flex h-full flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-            <%= link_to product_path(product), class: "block" do %>
+            <%= link_to product_path(product), class: "block", aria: { label: product.name } do %>
               <div class="aspect-[4/3] overflow-hidden bg-gray-100">
                 <% if product.images.attached? %>
                   <%= image_tag product.images.first,
@@ -327,6 +327,7 @@
                 <div class="flex sm:hidden">
                   <%= button_to cart_items_path(product_id: product.id),
                     method: :post,
+                    aria: { label: t(.'add') },
                     class: "flex h-11 w-11 items-center justify-center rounded-full bg-[color:var(--dark)]" do %>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

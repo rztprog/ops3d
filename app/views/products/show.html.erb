@@ -23,7 +23,8 @@
             fetch_format: :auto,
             loading: "eager",
             decoding: "async",
-            class: "h-full w-full object-cover" %>
+            class: "h-full w-full object-cover",
+            aria: { label: @product.name } %>
         <% else %>
           <div class="flex aspect-square items-center justify-center bg-gray-100 text-sm text-gray-400">
             <%= t(".image") %>
@@ -44,7 +45,8 @@
                 fetch_format: :auto,
                 loading: "lazy",
                 decoding: "async",
-                class: "aspect-square h-full w-full object-cover" %>
+                class: "aspect-square h-full w-full object-cover",
+                aria: { label: @product.name } %>
             </div>
           <% end %>
         </div>

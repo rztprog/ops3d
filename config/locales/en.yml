@@ -115,6 +115,7 @@ en:
     cart: 'My cart'
     account: 'My account'
     menu: 'Open menu'
+    seeCart: 'View my cart'
 
   footer:
     account: 'Account'
@@ -131,6 +132,7 @@ en:
         subtitle: 'Technical 3D printed parts, supports, mounts, and custom manufacturing designed for professionals, demanding enthusiasts, and use cases where reliability truly matters.'
         cta: 'Browse the catalog'
         image: 'Product visual coming soon'
+      add: 'Add to cart'
       section:
         why:
           title: 'Why choose OPS3D?'

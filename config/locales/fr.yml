@@ -95,6 +95,7 @@ fr:
     cart: 'Mon panier'
     account: 'Mon compte'
     menu: 'Ouvrir le menu'
+    seeCart: 'Voir mon panier'
 
   footer:
     account: 'Compte'
@@ -111,6 +112,7 @@ fr:
         subtitle: 'Pièces techniques imprimées en 3D, supports, fixations et fabrications sur mesure pensées pour les professionnels, les passionnés exigeants et les usages où la fiabilité compte vraiment.'
         cta: 'Découvrir le catalogue'
         image: 'Visuel produit à venir'
+      add: "Ajouter au panier"
       section:
         why:
           title: 'Pourquoi choisir OPS3D ?'
