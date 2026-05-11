@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+
+@import "../stylesheets/config/fonts.css";
+@import "../stylesheets/config/colors.css";
+@import "../stylesheets/components/index.css";
+@import "../stylesheets/pages/index.css";
