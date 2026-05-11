@@ -4,6 +4,8 @@ SitemapGenerator::Sitemap.default_host = "https://ops3d.fr"
 # Si le sitemap commence à devenir gros supprimer le compress false
 SitemapGenerator::Sitemap.compress = false
 
+SitemapGenerator::Sitemap.public_path = "public/"
+
 SitemapGenerator::Sitemap.create do
   # Put links creation logic here.
   #
