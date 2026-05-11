@@ -1,2 +1,2 @@
 #!/bin/sh
-bundle exec kamal app exec "bin/rails sitemap:refresh"
+bundle exec kamal app exec --reuse "bin/rails sitemap:refresh"
