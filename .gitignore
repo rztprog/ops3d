@@ -46,3 +46,7 @@
 
 # Ignore kamal
 .kamal/secrets
+
+# Ignore sitemap local
+/public/sitemap.xml
+/public/sitemap.xml.gz
