@@ -40,6 +40,7 @@
             loading: "eager",
             fetchpriority: "high",
             decoding: "async",
+            alt: t(".hero.photo"),
             class: "aspect-[4/3] w-full object-cover object-[center_70%]"
           ) %>
         </div>
@@ -288,6 +289,7 @@
               <div class="aspect-[4/3] overflow-hidden bg-gray-100">
                 <% if product.images.attached? %>
                   <%= image_tag product.images.first,
+                    alt: product.name,
                     class: "h-full w-full object-cover transition duration-500 group-hover:scale-105" %>
                 <% else %>
                   <div class="flex h-full w-full items-center justify-center text-sm text-gray-400">
@@ -327,8 +329,8 @@
                 <div class="flex sm:hidden">
                   <%= button_to cart_items_path(product_id: product.id),
                     method: :post,
-                    aria: { label: t(.'add') },
-                    class: "flex h-11 w-11 items-center justify-center rounded-full bg-[color:var(--dark)]" do %>
+                    class: "flex h-11 w-11 items-center justify-center rounded-full bg-[color:var(--dark)]",
+                    aria: { label: t('.add') } do %>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 512 512"
