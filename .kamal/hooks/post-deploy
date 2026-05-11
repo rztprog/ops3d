@@ -1,0 +1,2 @@
+#!/bin/sh
+bundle exec kamal app exec "bin/rails sitemap:refresh"
