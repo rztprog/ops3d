@@ -13,6 +13,12 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="<%= request.original_url %>">
     <meta property="og:image" content="<%= content_for?(:og_image) ? yield(:og_image) : cl_image_path('ultis5v1', crop: :fill, quality: 'auto', fetch_format: 'auto') %>">    <%= csrf_meta_tags %>
+    <meta property="og:site_name" content="OPS3D">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= content_for?(:title) ? yield(:title) : "OPS3D" %>">
+    <meta name="twitter:description" content="<%= content_for?(:description) ? yield(:description) : "Impression 3D et accessoires personnalisés." %>">
+    <meta name="twitter:image" content="<%= content_for?(:og_image) ? yield(:og_image) : image_url("og-default.jpg") %>">
     <%= csp_meta_tag %>
 
     <%= yield :head %>
