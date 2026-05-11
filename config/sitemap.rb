@@ -26,12 +26,12 @@ SitemapGenerator::Sitemap.create do
   #   end
 
 
-  add root_path, changefreq: "daily", priority: 1.0
+  add root_path(locale: :fr), changefreq: "daily", priority: 1.0
 
-  add products_path, changefreq: "daily", priority: 0.9
+  add products_path(locale: :fr), changefreq: "daily", priority: 0.9
 
-  Product.find_each do |product|
-    add product_path(product),
+  Product.where(published: true).find_each do |product|
+    add product_path(locale: :fr, id: product),
         lastmod: product.updated_at,
         changefreq: "weekly",
         priority: 0.8
