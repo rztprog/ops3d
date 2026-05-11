@@ -30,6 +30,7 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), :lastmod => article.updated_at
   #   end
 
+
   %i[fr en].each do |locale|
     add root_path(locale: locale), changefreq: "daily", priority: locale == :fr ? 1.0 : 0.8
     add products_path(locale: locale), changefreq: "daily", priority: 0.9
@@ -39,5 +40,6 @@ SitemapGenerator::Sitemap.create do
           lastmod: product.updated_at,
           changefreq: "weekly",
           priority: 0.8
+    end
   end
 end
