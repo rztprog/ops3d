@@ -288,7 +288,15 @@
             <%= link_to product_path(product), class: "block", aria: { label: product.name } do %>
               <div class="aspect-[4/3] overflow-hidden bg-gray-100">
                 <% if product.images.attached? %>
-                  <%= image_tag product.images.first,
+                  <%= cl_image_tag product.images.first.key,
+                    width: 600,
+                    height: 600,
+                    crop: :fill,
+                    gravity: :auto,
+                    quality: :auto,
+                    fetch_format: :auto,
+                    loading: "lazy",
+                    decoding: "async",
                     alt: product.name,
                     class: "h-full w-full object-cover transition duration-500 group-hover:scale-105" %>
                 <% else %>
@@ -322,6 +330,7 @@
                 <%= button_to cart_items_path(product_id: product.id),
                   method: :post,
                   form_class: "hidden sm:block",
+                  aria: { label: t('.add') },
                   class: "cursor-pointer rounded-xl bg-[color:var(--dark)] px-4 py-2 text-sm font-medium text-white hover:bg-[color:var(--light)]" do %>
                   Ajouter
                 <% end %>
