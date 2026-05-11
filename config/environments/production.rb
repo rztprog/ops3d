@@ -114,4 +114,5 @@ Rails.application.configure do
 
   # Rack attack
   config.middleware.use Rack::Attack
+  config.middleware.use Rack::Deflater
 end
