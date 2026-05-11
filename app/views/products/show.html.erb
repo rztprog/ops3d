@@ -196,6 +196,6 @@
 %>
 <% content_for :head do %>
   <script type="application/ld+json">
-    <%= raw JSON.pretty_generate(product_schema) %>
+    <%= json_escape(product_schema.to_json).html_safe %>
   </script>
 <% end %>
