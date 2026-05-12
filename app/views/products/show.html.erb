@@ -2,7 +2,7 @@
 <% content_for :description,
   truncate(@product.description.to_s, length: 150) %>
 <% content_for :og_image do %>
-  <%= cl_image_tag(@product.images.first.key, width: 1200, height: 630, crop: :fill, quality: "auto:eco", fetch_format: "jpg") if @product.images.attached? %>
+  <%= cl_image_path(@product.images.first.key, width: 1200, height: 630, crop: :fill, quality: "auto:eco", fetch_format: "jpg") if @product.images.attached? %>
 <% end %>
 
 <div class="px-4 py-10">
