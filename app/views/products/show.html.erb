@@ -12,7 +12,7 @@
 
   <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
     <!-- Galerie -->
-    <div>
+    <div data-controller="gallery">
       <div class="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
         <% if @product.images.attached? %>
           <%= cl_image_tag @product.images.first.key,
@@ -25,7 +25,8 @@
             loading: "eager",
             decoding: "async",
             class: "h-full w-full object-cover",
-            aria: { label: @product.name } %>
+            alt: @product.name,
+            data: { gallery_target: "main" } %>
         <% else %>
           <div class="flex aspect-square items-center justify-center bg-gray-100 text-sm text-gray-400">
             <%= t(".image") %>
@@ -36,7 +37,20 @@
       <% if @product.images.attached? && @product.images.size > 1 %>
         <div class="mt-4 grid grid-cols-4 gap-3">
           <% @product.images.each do |image| %>
-            <div class="overflow-hidden rounded-xl border border-gray-200 bg-white">
+            <button
+              type="button"
+              data-action="click->gallery#change"
+              data-image="<%= cl_image_path(
+                image.key,
+                width: 1200,
+                height: 1200,
+                crop: :fill,
+                gravity: :auto,
+                quality: :auto,
+                fetch_format: :auto
+              ) %>"
+              class="overflow-hidden rounded-xl border border-gray-200 bg-white cursor-pointer"
+            >
               <%= cl_image_tag image.key,
                 width: 300,
                 height: 300,
@@ -47,8 +61,8 @@
                 loading: "lazy",
                 decoding: "async",
                 class: "aspect-square h-full w-full object-cover",
-                aria: { label: @product.name } %>
-            </div>
+                alt: @product.name %>
+            </button>
           <% end %>
         </div>
       <% end %>
