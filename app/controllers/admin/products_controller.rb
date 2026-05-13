@@ -49,6 +49,16 @@ module Admin
       redirect_to admin_products_path, notice: "Produit supprimé avec succès."
     end
 
+    def remove_image
+      @product = Product.find(params[:id])
+      image = @product.images.find(params[:image_id])
+
+      image.purge
+
+      redirect_to edit_admin_product_path(@product),
+        notice: "Image supprimée."
+    end
+
     private
 
     def set_product

@@ -122,28 +122,37 @@
       </div>
 
       <% if @product.persisted? && @product.images.attached? %>
-        <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <div class="flex grid grid-cols-2 gap-4 sm:grid-cols-4">
           <% @product.images.each do |image| %>
             <% next unless image.blob&.persisted? %>
 
-            <div class="overflow-hidden rounded-xl border border-gray-200 bg-gray-50">
-              <%= image_tag image, class: "h-32 w-full object-cover" %>
+            <div class="relative rounded-xl border border-gray-200 bg-gray-50">
+              <%= image_tag image, class: "rounded-xl h-32 w-full object-cover" %>
+
+              <%= link_to "✕",
+                remove_image_admin_product_path(@product, image_id: image.id),
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Supprimer cette image ?"
+                },
+                class: "z-100 absolute -top-2 -right-3 flex h-7 w-7 items-center justify-center rounded-full bg-red-600 text-white shadow hover:bg-red-700"
+              %>
             </div>
           <% end %>
         </div>
       <% end %>
+    </div>
 
-      <div class="flex items-center gap-6">
-        <label class="flex items-center gap-2 text-sm text-gray-700">
-          <%= f.check_box :published, class: "rounded border-gray-300" %>
-          <span>Publié</span>
-        </label>
+    <div class="flex items-center gap-6 pt-2">
+      <label class="flex items-center gap-2 text-sm text-gray-700">
+        <%= f.check_box :published, class: "rounded border-gray-300" %>
+        <span>Publié</span>
+      </label>
 
-        <label class="flex items-center gap-2 text-sm text-gray-700">
-          <%= f.check_box :available, class: "rounded border-gray-300" %>
-          <span>Disponible</span>
-        </label>
-      </div>
+      <label class="flex items-center gap-2 text-sm text-gray-700">
+        <%= f.check_box :available, class: "rounded border-gray-300" %>
+        <span>Disponible</span>
+      </label>
     </div>
 
     <div class="flex items-center gap-3 pt-2">
