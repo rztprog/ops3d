@@ -46,7 +46,9 @@ Rails.application.routes.draw do
       resources :products
       resources :categories
 
-      resources :products
+      resources :products do
+        delete :remove_image, on: :member
+      end
       resources :categories
       resources :orders, only: [ :index, :show, :update ]
       resources :users, only: [ :index, :show ]
