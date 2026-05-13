@@ -20,7 +20,7 @@
     </div>
 
     <div class="flex items-center gap-3">
-      <%= f.submit class: "rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
+      <%= f.submit "#{ action_name == 'new' ? 'Créer' : 'Mettre à jour' }", class: "rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
 
       <%= link_to "Annuler",
         admin_categories_path,
