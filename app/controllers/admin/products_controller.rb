@@ -30,10 +30,14 @@ module Admin
     end
 
     def update
-      attrs = product_params.except(:price_euros)
+      attrs = product_params.except(:price_euros, :images)
       attrs[:price_cents] = euros_to_cents(product_params[:price_euros])
 
       if @product.update(attrs)
+        if product_params[:images].present?
+          @product.images.attach(product_params[:images])
+        end
+
         redirect_to admin_products_path, notice: "Produit mis à jour avec succès."
       else
         render :edit, status: :unprocessable_entity
