@@ -1,51 +1,167 @@
-<h1>Nouvelle commande payée</h1>
+<div style="margin:0;padding:40px 20px;background:#f5f5f5;font-family:Arial,sans-serif;color:#111827;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center">
+        <table
+          role="presentation"
+          width="100%"
+          cellspacing="0"
+          cellpadding="0"
+          style="max-width:640px;background:#ffffff;border-radius:24px;overflow:hidden;border:1px solid #e5e7eb;"
+        >
+          <!-- Header -->
+          <tr>
+            <td style="padding:32px 40px;background: #1F3046;color:#ffffff;">
+              <div style="display: flex; justify-content: flex-end;">
+                <span style="
+                  display:inline-block;
+                  margin-top:16px;
+                  padding:6px 12px;
+                  background:#dcfce7;
+                  color:#166534;
+                  border-radius:999px;
+                  font-size:12px;
+                  font-weight:700;
+                  text-transform:uppercase;
+                  letter-spacing:0.04em;
+                ">
+                  Paiement confirmé
+                </span>
+              </div>
+              <p style="margin:0;font-size:14px;color:#cbd5e1;">
+                Nouvelle commande payée
+              </p>
 
-<p>
-  La commande #<%= @order.id %> vient d'être payée.
-</p>
+              <h1 style="margin:12px 0 0;font-size:30px;font-weight:700;line-height:1.2;">
+                <%= @order.first_name %> <%= @order.last_name %>
+              </h1>
 
-<h2>Client</h2>
+              <p style="margin:12px 0 0;font-size:15px;line-height:1.6;color:#d1d5db;">
+                Commande #<%= @order.id %><br>
+                <%= @order.email %>
+              </p>
+            </td>
+          </tr>
 
-<p>
-  <%= @order.first_name %> <%= @order.last_name %><br>
-  <%= @order.email %>
-</p>
+          <!-- Content -->
+          <tr>
+            <td style="padding:40px;">
+              <h2 style="margin:0 0 24px;font-size:16px;line-height:1.7;">
+                Articles
+              </h2>
 
-<h2>Articles</h2>
+              <!-- Order Summary -->
+              <table
+                role="presentation"
+                width="100%"
+                cellspacing="0"
+                cellpadding="0"
+                style="border-collapse:collapse;margin-bottom:32px;"
+              >
+                <% @order.order_items.each do |item| %>
+                  <tr>
+                    <td style="padding:16px 0;border-bottom:1px solid #e5e7eb;">
+                      <div style="font-size:15px;font-weight:600;color:#111827;">
+                        <%= item.product_name %>
+                      </div>
 
-<ul>
-  <% @order.order_items.each do |item| %>
-    <li>
-      <%= item.product_name %> x <%= item.quantity %> —
-      <%= number_to_currency((item.unit_price_cents * item.quantity) / 100.0, unit: "€") %>
-      <% if item.customizations.present? %>
-        <ul>
-          <% item.customizations.each do |label, value| %>
-            <li>
-              <strong><%= label %> :</strong>
-              <%= value.presence || "—" %>
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+                      <div style="margin-top:4px;font-size:14px;color:#6b7280;">
+                        Quantité : <%= item.quantity %>
+                      </div>
 
-<p>
-  Total :
-  <strong><%= number_to_currency(@order.total_price_cents / 100.0, unit: "€") %></strong>
-</p>
+                      <% if item.customizations.present? %>
+                        <div style="margin-top:10px;">
+                          <% item.customizations.each do |label, value| %>
+                            <div style="font-size:13px;color:#4b5563;line-height:1.6;">
+                              <strong><%= label %> :</strong>
+                              <%= value.presence || "—" %>
+                            </div>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </td>
 
-<h2>Livraison</h2>
+                    <td
+                      align="right"
+                      style="padding:16px 0;border-bottom:1px solid #e5e7eb;font-size:15px;font-weight:600;color:#111827;white-space:nowrap;"
+                    >
+                      <%= number_to_currency(
+                        (item.unit_price_cents * item.quantity) / 100.0,
+                        unit: "€"
+                      ) %>
+                    </td>
+                  </tr>
+                <% end %>
+              </table>
 
-<p>
-  <%= @order.first_name %> <%= @order.last_name %><br>
-  <%= @order.address_line %><br>
-  <%= @order.postal_code %> <%= @order.city %><br>
-  <%= @order.country %>
-</p>
+              <!-- Total -->
+              <table
+                role="presentation"
+                width="100%"
+                cellspacing="0"
+                cellpadding="0"
+                style="margin-bottom:32px;"
+              >
+                <tr>
+                  <td style="font-size:16px;color:#374151;">
+                    Total
+                  </td>
 
-<p>
-<%= link_to "Voir la commande dans l'admin",
-  admin_order_url(id: @order.id, locale: I18n.locale) %>
+                  <td
+                    align="right"
+                    style="font-size:22px;font-weight:700;color:#111827;"
+                  >
+                    <%= number_to_currency(
+                      @order.total_price_cents / 100.0,
+                      unit: "€"
+                    ) %>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Shipping -->
+              <div
+                style="padding:24px;background:#f9fafb;border-radius:16px;border:1px solid #e5e7eb;"
+              >
+                <h2 style="margin:0 0 16px;font-size:16px;color:#111827;">
+                  Adresse de livraison
+                </h2>
+
+                <p style="margin:0;font-size:14px;line-height:1.8;color:#4b5563;">
+                  <%= @order.first_name %> <%= @order.last_name %><br>
+                  <%= @order.address_line %><br>
+                  <%= @order.postal_code %> <%= @order.city %><br>
+                  <%= @order.country %>
+                </p>
+              </div>
+
+              <div style="margin-top:32px;text-align:center;">
+                <%= link_to "Voir la commande dans l'admin",
+                  admin_order_url(id: @order.id),
+                  style: "
+                    display:inline-block;
+                    padding:16px 28px;
+                    background:#1F3046;
+                    color:#ffffff;
+                    text-decoration:none;
+                    border-radius:14px;
+                    font-size:15px;
+                    font-weight:600;
+                  " %>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td
+              style="padding:24px 40px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center;"
+            >
+              © OPS3D 2026 — L'exigence terrain appliquée à l'impression 3D
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>

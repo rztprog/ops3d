@@ -1,43 +1,142 @@
-<h1>Commande confirmée</h1>
+<<div style="margin:0;padding:40px 20px;background:#f5f5f5;font-family:Arial,sans-serif;color:#111827;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center">
+        <table
+          role="presentation"
+          width="100%"
+          cellspacing="0"
+          cellpadding="0"
+          style="max-width:640px;background:#ffffff;border-radius:24px;overflow:hidden;border:1px solid #e5e7eb;"
+        >
+          <!-- Header -->
+          <tr>
+            <td style="padding:32px 40px;background: #1F3046;color:#ffffff;">
+              <h1 style="margin:0;font-size:28px;font-weight:700;">
+                OPS3D
+              </h1>
 
-<p>Bonjour <%= @order.first_name %>,</p>
+              <p style="margin:12px 0 0;font-size:15px;line-height:1.6;color:#d1d5db;">
+                Commande confirmée
+              </p>
+            </td>
+          </tr>
 
-<p>
-  Ta commande #<%= @order.id %> a bien été payée.
-</p>
+          <!-- Content -->
+          <tr>
+            <td style="padding:40px;">
+              <p style="margin:0 0 24px;font-size:16px;line-height:1.7;">
+                Bonjour <strong><%= @order.first_name %></strong>,
+              </p>
 
-<h2>Résumé</h2>
+              <p style="margin:0 0 32px;font-size:16px;line-height:1.7;color:#374151;">
+                Ta commande
+                <strong>#<%= @order.id %></strong>
+                a bien été payée et est maintenant en préparation.
+              </p>
 
-<ul>
-  <% @order.order_items.each do |item| %>
-    <li>
-      <%= item.product_name %> × <%= item.quantity %> —
-      <%= number_to_currency((item.unit_price_cents * item.quantity) / 100.0, unit: "€") %>
-      <% if item.customizations.present? %>
-        <ul>
-          <% item.customizations.each do |label, value| %>
-            <li>
-              <strong><%= label %> :</strong>
-              <%= value.presence || "—" %>
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+              <!-- Order Summary -->
+              <table
+                role="presentation"
+                width="100%"
+                cellspacing="0"
+                cellpadding="0"
+                style="border-collapse:collapse;margin-bottom:32px;"
+              >
+                <% @order.order_items.each do |item| %>
+                  <tr>
+                    <td style="padding:16px 0;border-bottom:1px solid #e5e7eb;">
+                      <div style="font-size:15px;font-weight:600;color:#111827;">
+                        <%= item.product_name %>
+                      </div>
 
-<p>
-  Total :
-  <strong><%= number_to_currency(@order.total_price_cents / 100.0, unit: "€") %></strong>
-</p>
+                      <div style="margin-top:4px;font-size:14px;color:#6b7280;">
+                        Quantité : <%= item.quantity %>
+                      </div>
 
-<p>
-  Adresse de livraison :<br>
-  <%= @order.first_name %> <%= @order.last_name %><br>
-  <%= @order.address_line %><br>
-  <%= @order.postal_code %> <%= @order.city %><br>
-  <%= @order.country %>
-</p>
+                      <% if item.customizations.present? %>
+                        <div style="margin-top:10px;">
+                          <% item.customizations.each do |label, value| %>
+                            <div style="font-size:13px;color:#4b5563;line-height:1.6;">
+                              <strong><%= label %> :</strong>
+                              <%= value.presence || "—" %>
+                            </div>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </td>
 
-<p>Merci pour ta commande.</p>
+                    <td
+                      align="right"
+                      style="padding:16px 0;border-bottom:1px solid #e5e7eb;font-size:15px;font-weight:600;color:#111827;white-space:nowrap;"
+                    >
+                      <%= number_to_currency(
+                        (item.unit_price_cents * item.quantity) / 100.0,
+                        unit: "€"
+                      ) %>
+                    </td>
+                  </tr>
+                <% end %>
+              </table>
+
+              <!-- Total -->
+              <table
+                role="presentation"
+                width="100%"
+                cellspacing="0"
+                cellpadding="0"
+                style="margin-bottom:32px;"
+              >
+                <tr>
+                  <td style="font-size:16px;color:#374151;">
+                    Total
+                  </td>
+
+                  <td
+                    align="right"
+                    style="font-size:22px;font-weight:700;color:#111827;"
+                  >
+                    <%= number_to_currency(
+                      @order.total_price_cents / 100.0,
+                      unit: "€"
+                    ) %>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Shipping -->
+              <div
+                style="padding:24px;background:#f9fafb;border-radius:16px;border:1px solid #e5e7eb;"
+              >
+                <h2 style="margin:0 0 16px;font-size:16px;color:#111827;">
+                  Adresse de livraison
+                </h2>
+
+                <p style="margin:0;font-size:14px;line-height:1.8;color:#4b5563;">
+                  <%= @order.first_name %> <%= @order.last_name %><br>
+                  <%= @order.address_line %><br>
+                  <%= @order.postal_code %> <%= @order.city %><br>
+                  <%= @order.country %>
+                </p>
+              </div>
+
+              <p style="margin:32px 0 0;font-size:14px;line-height:1.7;color:#6b7280;">
+                Merci pour ta commande.<br>
+                Tu recevras un nouvel email lorsque celle-ci sera expédiée.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td
+              style="padding:24px 40px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center;"
+            >
+              © OPS3D 2026 — L'exigence terrain appliquée à l'impression 3D
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>>
