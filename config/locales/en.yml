@@ -105,6 +105,12 @@ en:
         subtitle: "Enter your email and we'll send you reset instructions."
         submit: 'Send reset instructions'
         back: 'Back to sign in'
+    confirm:
+      title: 'Email Address Confirmation'
+      hello: 'Welcome'
+      thanks: 'Thank you for registering on OPS3D.'
+      click: 'Simply click the large blue button below to verify your email address.'
+      button: 'Confirm my email address'
 
   navbar:
     home: 'Home'
