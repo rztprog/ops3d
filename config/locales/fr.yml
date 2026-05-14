@@ -89,10 +89,16 @@ fr:
       button: 'Changer mon mot de passe'
       ignore: "Si vous n'avez pas fait cette demande, veuillez ignorer cet email."
       new: "Votre mot de passe ne changera pas tant que vous n'aurez pas accédé au lien ci-dessous et créé un nouveau."
+      change: 'Nous vous contactons pour vous informer que votre mot de passe a été modifié.'
     email:
       title: 'Changement de votre adresse email'
       new: 'Nous vous contactons pour vous informer que votre adresse e-mail est désormais'
       now: 'Nous vous contactons pour vous informer que votre adresse e-mail a été modifiée et est désormais'
+    unlock:
+      title: 'Déverrouillez votre compte'
+      description: 'Votre compte a été verrouillé suite à un nombre excessif de tentatives de connexion infructueuses.'
+      click: 'Cliquez sur le lien ci-dessous pour déverrouiller votre compte'
+      account: 'Déverrouiller mon compte'
 
   activerecord:
     attributes:

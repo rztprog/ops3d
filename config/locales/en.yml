@@ -118,10 +118,16 @@ en:
       button: 'Change my password'
       ignore: "If you didn't request this, please ignore this email."
       new: "Your password won't change until you access the link below and create a new one."
+      change: "We're contacting you to notify you that your password has been changed."
     email:
       title: 'Change of email address'
       new: "We're contacting you to notify you that your email is being changed to"
       now: "We're contacting you to notify you that your email has been changed to"
+    unlock:
+      title: 'Unlock your account'
+      description: 'Your account has been locked due to an excessive number of unsuccessful sign in attempts.'
+      click: 'Click the link below to unlock your account'
+      account: 'Unlock my account'
 
   navbar:
     home: 'Home'
