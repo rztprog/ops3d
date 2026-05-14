@@ -105,6 +105,14 @@ en:
         subtitle: "Enter your email and we'll send you reset instructions."
         submit: 'Send reset instructions'
         back: 'Back to sign in'
+      edit:
+        title: 'Change your password'
+        subtitle: 'Enter your new password'
+        new: 'New password'
+        mini: 'characters minimum'
+        confirm: 'Confirm new password'
+        newp: 'new-password'
+        change: 'Change my password'
     confirm:
       title: 'Email Address Confirmation'
       hello: 'Welcome'
