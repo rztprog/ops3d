@@ -1,7 +1,57 @@
-<p>Hello <%= @email %>!</p>
+<div style="margin:0;padding:40px 20px;background:#f5f5f5;font-family:Arial,sans-serif;color:#111827;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center">
+        <table
+          role="presentation"
+          width="100%"
+          cellspacing="0"
+          cellpadding="0"
+          style="max-width:640px;background:#ffffff;border-radius:24px;overflow:hidden;border:1px solid #e5e7eb;"
+        >
+          <!-- Header -->
+          <tr>
+            <td style="padding:32px 40px;background: #1F3046;color:#ffffff;">
+              <h1 style="margin:0;font-size:28px;font-weight:700;">
+                OPS3D
+              </h1>
 
-<% if @resource.try(:unconfirmed_email?) %>
-  <p>We're contacting you to notify you that your email is being changed to <%= @resource.unconfirmed_email %>.</p>
-<% else %>
-  <p>We're contacting you to notify you that your email has been changed to <%= @resource.email %>.</p>
-<% end %>
+              <h2 style="margin:12px 0 0;font-size:15px;line-height:1.6;color:#d1d5db;">
+                <%= t("devise.email.title") %>
+              </h2>
+              
+            </td>
+          </tr>
+
+          <!-- Content -->
+          <tr>
+            <td style="padding:40px;">
+              <p style="margin:0 0 24px;font-size:16px;line-height:1.7;">
+                <%= t("devise.reset.hi") %> <strong><%= @email %></strong>.
+              </p>
+
+              <% if @resource.try(:unconfirmed_email?) %>
+                <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#374151;">
+                  <%= t('devise.email.new') %> <%= @resource.unconfirmed_email %>
+                </p>
+              <% else %>
+                <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#374151;">
+                  <%= t('devise.email.now') %> <%= @resource.email %>
+                </p>              
+              <% end %>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td
+              style="padding:24px 40px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center;"
+            >
+              © OPS3D 2026 — L'exigence terrain appliquée à l'impression 3D
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>

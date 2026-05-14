@@ -89,6 +89,10 @@ fr:
       button: 'Changer mon mot de passe'
       ignore: "Si vous n'avez pas fait cette demande, veuillez ignorer cet email."
       new: "Votre mot de passe ne changera pas tant que vous n'aurez pas accédé au lien ci-dessous et créé un nouveau."
+    email:
+      title: 'Changement de votre adresse email'
+      new: 'Nous vous contactons pour vous informer que votre adresse e-mail est désormais'
+      now: 'Nous vous contactons pour vous informer que votre adresse e-mail a été modifiée et est désormais'
 
   activerecord:
     attributes:
