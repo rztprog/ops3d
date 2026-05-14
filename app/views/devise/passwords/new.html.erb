@@ -11,7 +11,19 @@
 
   <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, class: "space-y-6") do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <% if resource.errors.any? %>
+        <div class="mb-6 rounded-xl border border-red-200 bg-red-50 p-4">
+          <h2 class="text-sm font-semibold text-red-800">
+            Le formulaire contient <%= pluralize(resource.errors.count, "erreurs") %>.
+          </h2>
+
+          <ul class="mt-2 list-disc pl-5 text-sm text-red-700">
+            <% resource.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
       <div>
         <%= f.label :email, t("activerecord.attributes.user.email", default: "Email"), class: "block text-sm font-medium text-gray-700" %>
