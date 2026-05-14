@@ -6,7 +6,8 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
       email: "jeandupont@mailexample.com",
       password: "password123",
       first_name: "Jean",
-      last_name: "Dupont"
+      last_name: "Dupont",
+      confirmed_at: Time.current
     )
 
     @order = Order.create!(
