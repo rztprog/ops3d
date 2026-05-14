@@ -112,11 +112,12 @@ en:
       click: 'Simply click the large blue button below to verify your email address.'
       button: 'Confirm my email address'
     reset:
+      hi: 'Hi'
       title: 'Password Change'
-      description: "Someone has requested a link to change your password. You can do so via the link below."
+      description: 'Someone has requested a link to change your password. You can do so via the link below.'
       button: 'Change my password'
       ignore: "If you didn't request this, please ignore this email."
-      new: "Your password won't change until you access the link above and create a new one."
+      new: "Your password won't change until you access the link below and create a new one."
 
   navbar:
     home: 'Home'

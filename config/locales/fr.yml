@@ -83,11 +83,12 @@ fr:
       click: 'Clique simplement sur le gros bouton bleu ci-dessous pour vérifier ton adresse e-mail.'
       button: 'Confirmer mon adresse email'
     reset:
+      hi: 'Bonjour'
       title: 'Changement de mot de passe'
       description: "Quelqu'un a demandé un lien pour modifier votre mot de passe. Vous pouvez le faire via le lien ci-dessous."
       button: 'Changer mon mot de passe'
       ignore: "Si vous n'avez pas fait cette demande, veuillez ignorer cet email."
-      new: "Votre mot de passe ne changera pas tant que vous n'aurez pas accédé au lien ci-dessus et créé un nouveau."
+      new: "Votre mot de passe ne changera pas tant que vous n'aurez pas accédé au lien ci-dessous et créé un nouveau."
 
   activerecord:
     attributes:
