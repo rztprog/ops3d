@@ -19,4 +19,21 @@ module ApplicationHelper
       "bg-gray-100 text-gray-700"
     end
   end
+
+  def markdown(text)
+    return "" if text.blank?
+
+    html = Commonmarker.to_html(
+      text,
+      options: {
+        extension: {
+          autolink: true,
+          strikethrough: true,
+          table: true
+        }
+      }
+    )
+
+    sanitize(html)
+  end
 end
