@@ -68,7 +68,7 @@
     </div>
     <!-- Layout -->
     <% full_width_page = controller_name == "pages" && action_name == "home" %>
-    <main class="flex-1 <%= full_width_page ? "" : "container mx-auto px-5" %>">
+    <main class="flex-1 <%= full_width_page ? "" : "container mx-auto px-4" %>">
       <%= yield %>
     </main>
     <%= render "shared/footer" %>
