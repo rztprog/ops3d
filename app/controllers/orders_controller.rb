@@ -150,10 +150,6 @@ class OrdersController < ApplicationController
   private
 
   def set_order
-    @order = current_user.orders.includes(:order_items).find(params[:id])
-  end
-
-  def set_order
     @order = Order.includes(:order_items).find(params[:id])
 
     return if user_signed_in? && @order.user_id == current_user.id
