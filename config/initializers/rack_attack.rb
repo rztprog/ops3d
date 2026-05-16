@@ -12,4 +12,11 @@ class Rack::Attack
       req.ip
     end
   end
+
+  # Orders spam
+  throttle("orders/ip", limit: 5, period: 1.minute) do |req|
+    if req.path == "/orders" && req.post?
+      req.ip
+    end
+  end
 end
