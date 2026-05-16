@@ -85,8 +85,6 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    @order = current_user.orders.find(params[:id])
-
     # Guard pour ne pas repayée une commande
     unless @order.status == "pending"
       redirect_to order_path(@order), alert: "Cette commande ne peut plus être payée."
@@ -139,7 +137,7 @@ class OrdersController < ApplicationController
     )
 
     Rails.logger.info(
-      "[StripeCheckout] order_id=#{@order.id} user_id=#{current_user.id}"
+      "[StripeCheckout] order_id=#{@order.id} user_id=#{current_user&.id}"
     )
 
     @order.update!(stripe_checkout_session_id: session.id)
