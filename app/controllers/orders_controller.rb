@@ -43,9 +43,6 @@ class OrdersController < ApplicationController
     @order.user = current_user if user_signed_in?
     @order.email = current_user.email if user_signed_in?
 
-    session[:guest_order_ids] ||= []
-    session[:guest_order_ids] << @order.id unless user_signed_in?
-
     @order.email ||= current_user&.email
     @order.status = "pending"
     @order.subtotal_price_cents = @subtotal_cents
@@ -55,6 +52,9 @@ class OrdersController < ApplicationController
 
     ActiveRecord::Base.transaction do
       @order.save!
+
+      session[:guest_order_ids] ||= []
+      session[:guest_order_ids] << @order.id unless user_signed_in?
 
       @cart_items.each do |item|
         customizations = item.cart_item_custom_field_values
