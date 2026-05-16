@@ -43,6 +43,9 @@ class OrdersController < ApplicationController
     @order.user = current_user if user_signed_in?
     @order.email = current_user.email if user_signed_in?
 
+    session[:guest_order_ids] ||= []
+    session[:guest_order_ids] << @order.id unless user_signed_in?
+
     @order.email ||= current_user&.email
     @order.status = "pending"
     @order.subtotal_price_cents = @subtotal_cents
@@ -148,6 +151,16 @@ class OrdersController < ApplicationController
 
   def set_order
     @order = current_user.orders.includes(:order_items).find(params[:id])
+  end
+
+  def set_order
+    @order = Order.includes(:order_items).find(params[:id])
+
+    return if user_signed_in? && @order.user_id == current_user.id
+
+    return if session[:guest_order_ids]&.include?(@order.id)
+
+    redirect_to root_path, alert: "Accès refusé."
   end
 
   def order_params
