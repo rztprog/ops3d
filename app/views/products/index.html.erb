@@ -60,7 +60,11 @@
             </h3>
 
             <p class="mt-2 line-clamp-2 text-sm leading-6 text-gray-500">
-              <%= truncate(product.description.to_s, length: 90) %>
+              <%= truncate(
+                product.description.to_s
+                  .gsub(/[#*_`>\-\[\]\(\)]/, ""),
+                length: 90
+              ) %>                  
             </p>
 
             <div class="mt-auto pt-6 flex items-center justify-between gap-4">

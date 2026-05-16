@@ -51,7 +51,11 @@
                 <div>
                   <p class="font-medium text-gray-900"><%= product.name %></p>
                   <p class="text-sm text-gray-500">
-                    <%= truncate(product.description.to_s, length: 60) %>
+                    <%= truncate(
+                      product.description.to_s
+                        .gsub(/[#*_`>\-\[\]\(\)]/, ""),
+                      length: 90
+                    ) %>                  
                   </p>
                 </div>
               </div>
