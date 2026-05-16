@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   # before_action :authenticate_user!
   before_action :ensure_cart_present, only: [ :new, :create ]
-  before_action :set_order, only: [ :show ]
+  before_action :set_order, only: [ :show, :checkout ]
 
   def index
     @orders = current_user.orders.order(created_at: :desc)
