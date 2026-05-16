@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :order_items, dependent: :destroy
 
   STATUSES = %w[pending paid in_preparation shipped cancelled].freeze
