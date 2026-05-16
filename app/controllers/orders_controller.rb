@@ -37,11 +37,11 @@ class OrdersController < ApplicationController
     @shipping_cents = current_shipping_cents
     @total_cents = @subtotal_cents + @shipping_cents
 
-    @order = if user_signed_in?
-      current_user.orders.new(order_params)
-    else
-      Order.new(order_params)
-    end
+    @order = Order.new(order_params)
+
+    # If user is logged
+    @order.user = current_user if user_signed_in?
+    @order.email = current_user.email if user_signed_in?
 
     @order.email ||= current_user&.email
     @order.status = "pending"
