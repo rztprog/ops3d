@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :ensure_cart_present, only: [ :new, :create ]
   before_action :set_order, only: [ :show ]
 
@@ -15,11 +15,15 @@ class OrdersController < ApplicationController
     @shipping_cents = current_shipping_cents
     @total_cents = @subtotal_cents + @shipping_cents
 
-    @order = current_user.orders.new(
-      email: current_user.email,
-      first_name: current_user.first_name,
-      last_name: current_user.last_name
-    )
+    @order = if user_signed_in?
+      current_user.orders.new(
+        email: current_user.email,
+        first_name: current_user.first_name,
+        last_name: current_user.last_name
+      )
+    else
+      Order.new
+    end
   end
 
   def create
@@ -33,8 +37,13 @@ class OrdersController < ApplicationController
     @shipping_cents = current_shipping_cents
     @total_cents = @subtotal_cents + @shipping_cents
 
-    @order = current_user.orders.new(order_params)
-    @order.email = current_user.email
+    @order = if user_signed_in?
+      current_user.orders.new(order_params)
+    else
+      Order.new(order_params)
+    end
+
+    @order.email ||= current_user&.email
     @order.status = "pending"
     @order.subtotal_price_cents = @subtotal_cents
     @order.shipping_price_cents = @shipping_cents

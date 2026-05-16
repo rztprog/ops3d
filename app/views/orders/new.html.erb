@@ -39,11 +39,14 @@
             <div class="md:col-span-2">
               <%= f.label :email, "Email", class: "block text-sm font-medium text-gray-700" %>
 
-              <%= f.email_field :email,
-                value: current_user.email,
-                disabled: true,
-                class: "mt-1 block w-full rounded-xl border border-gray-300 bg-gray-100 px-4 py-3 text-sm text-gray-500 cursor-not-allowed" %>
+              <% email = user_signed_in? ? current_user.email : "" %>
+              <% disabled = user_signed_in? ? true : false %>
+              <% disabledClass = "cursor-not-allowed bg-gray-100 text-gray-500" if user_signed_in? %>
 
+              <%= f.email_field :email,
+                value: email,
+                disabled: disabled,
+                class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm #{disabledClass}" %>
               
               <%# <p class="mt-1 text-xs text-gray-500">
                  t('.email_use')

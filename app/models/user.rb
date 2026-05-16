@@ -9,4 +9,14 @@ class User < ApplicationRecord
   has_one :cart, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
+
+  # Order without login
+  after_confirmation :attach_previous_orders
+
+  def attach_previous_orders
+    Order.where(
+      email: email,
+      user_id: nil
+    ).update_all(user_id: id)
+  end
 end

@@ -146,15 +146,9 @@
           </div>
 
           <div class="mt-6">
-            <% if user_signed_in? %>
-              <%= link_to t(".order"),
-                new_order_path,
-                class: "inline-flex w-full items-center justify-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
-            <% else %>
-              <%= link_to t(".connect"),
-                new_user_session_path,
-                class: "inline-flex w-full items-center justify-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
-            <% end %>
+            <%= link_to t(".order"),
+              new_order_path,
+              class: "inline-flex w-full items-center justify-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
           </div>
 
           <p class="mt-4 text-xs leading-5 text-gray-500">
