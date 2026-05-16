@@ -154,6 +154,7 @@ class OrdersController < ApplicationController
     params.require(:order).permit(
       :first_name,
       :last_name,
+      :email,
       :address_line,
       :address_line2,
       :city,
