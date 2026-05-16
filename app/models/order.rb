@@ -2,6 +2,10 @@ class Order < ApplicationRecord
   belongs_to :user, optional: true
   has_many :order_items, dependent: :destroy
 
+  before_validation do
+    self.email = email.to_s.downcase.strip
+  end
+
   STATUSES = %w[pending paid in_preparation shipped cancelled].freeze
 
   validates :status, presence: true, inclusion: { in: STATUSES }

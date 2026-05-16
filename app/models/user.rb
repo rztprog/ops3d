@@ -10,10 +10,12 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
 
-  # Order without login
-  after_confirmation :attach_previous_orders
+  before_validation do
+    self.email = email.to_s.downcase.strip
+  end
 
-  def attach_previous_orders
+  # Order without login
+  def after_confirmation
     Order.where(
       email: email,
       user_id: nil
