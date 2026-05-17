@@ -8,6 +8,10 @@ class PromoCode < ApplicationRecord
     numericality: { greater_than_or_equal_to: 0 },
     allow_nil: true
 
+  validates :value,
+    presence: true,
+    unless: -> { discount_type == "free_shipping" }
+
   scope :active, -> {
     where(active: true)
   }
