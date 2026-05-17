@@ -137,7 +137,7 @@ class OrdersController < ApplicationController
     )
 
     Rails.logger.info(
-      "[StripeCheckout] order_id=#{@order.id} user_id=#{current_user&.id}"
+      "[StripeCheckout] order_id=#{@order.id} user_id=#{current_user ? current_user.id : "guest=#{@order.email}"}"
     )
 
     @order.update!(stripe_checkout_session_id: session.id)
