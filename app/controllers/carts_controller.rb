@@ -1,5 +1,8 @@
 class CartsController < ApplicationController
   def show
+    @promo_code = PromoCode.new
+    @applied_promo = @cart.promo_code
+
     @cart = current_cart || ensure_cart
     @cart_items = @cart.cart_items.includes(
       { product: { images_attachments: :blob } },
