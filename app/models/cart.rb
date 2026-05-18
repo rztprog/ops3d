@@ -7,6 +7,32 @@ class Cart < ApplicationRecord
 
   validate :user_or_guest_token_present
 
+  def subtotal_cents
+    cart_items.includes(:product).sum do |item|
+      item.quantity * item.product.price_cents
+    end
+  end
+
+  def shipping_cents
+    settings = Ops3dSetting.first
+
+    return 0 unless settings
+
+    return 0 if promo_code&.free_shipping?
+
+    settings.shipping_mode == "flat_rate" ? settings.shipping_price_cents : 0
+  end
+
+  def discount_cents
+    return 0 unless promo_code&.usable?
+
+    promo_code.compute_discount(subtotal_cents)
+  end
+
+  def total_cents
+    subtotal_cents + shipping_cents - discount_cents
+  end
+
   private
 
   def user_or_guest_token_present
