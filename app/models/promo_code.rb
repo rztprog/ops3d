@@ -12,9 +12,8 @@ class PromoCode < ApplicationRecord
     presence: true,
     unless: -> { discount_type == "free_shipping" }
 
-  scope :active, -> {
-    where(active: true)
-  }
+  scope :active, -> { where(active: true) }
+
 
   def expired?
     expires_at.present? && expires_at.past?
