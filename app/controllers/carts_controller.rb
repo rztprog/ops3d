@@ -1,14 +1,13 @@
 class CartsController < ApplicationController
   def show
-    @promo_code = PromoCode.new
-
     @cart = current_cart || ensure_cart
-    @applied_promo = @cart.promo_code
 
     @cart_items = @cart.cart_items.includes(
       { product: { images_attachments: :blob } },
       { cart_item_custom_field_values: :product_custom_field }
     )
+
+    @applied_promo = @cart.promo_code
 
     @subtotal_cents = @cart_items.sum { |item| item.quantity * item.product.price_cents }
 
@@ -20,7 +19,14 @@ class CartsController < ApplicationController
         0
       end
 
-    @total_cents = @subtotal_cents + @shipping_cents
+    @discount_cents =
+      if @applied_promo&.active?
+        [ @applied_promo.discount_cents, @subtotal_cents ].min
+      else
+        0
+      end
+
+    @total_cents = @subtotal_cents + @shipping_cents - @discount_cents
   end
 
   def apply_promo_code
