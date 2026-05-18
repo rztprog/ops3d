@@ -1,30 +1,15 @@
 class PromoCode < ApplicationRecord
-  TYPES = %w[fixed percent free_shipping]
+  before_validation :normalize_code
 
-  validates :code, presence: true, uniqueness: true
-  validates :discount_type, inclusion: { in: TYPES }
-
-  validates :value,
-    numericality: { greater_than_or_equal_to: 0 },
-    allow_nil: true
-
-  validates :value,
-    presence: true,
-    unless: -> { discount_type == "free_shipping" }
+  validates :code, presence: true, uniqueness: { case_sensitive: false }
+  validates :discount_cents, numericality: { greater_than_or_equal_to: 0 }
+  validates :active, inclusion: { in: [ true, false ] }
 
   scope :active, -> { where(active: true) }
 
+  private
 
-  def expired?
-    expires_at.present? && expires_at.past?
-  end
-
-  def usable?
-    return false unless active?
-    return false if expired?
-
-    return true if max_uses.blank?
-
-    uses_count < max_uses
+  def normalize_code
+    self.code = code.to_s.strip.upcase
   end
 end
