@@ -30,20 +30,17 @@ class CartsController < ApplicationController
   end
 
   def apply_promo_code
-    @cart = current_cart
+    @cart = current_cart || ensure_cart
 
-    promo = PromoCode.find_by(
+    promo = PromoCode.active.find_by(
       code: params[:code].to_s.strip.upcase
     )
 
     if promo.present?
       @cart.update!(promo_code: promo)
-
-      redirect_to cart_path,
-        notice: "Code promo appliqué."
+      redirect_to cart_path, notice: "Code promo appliqué."
     else
-      redirect_to cart_path,
-        alert: "Code promo invalide."
+      redirect_to cart_path, alert: "Code promo invalide."
     end
   end
 end
