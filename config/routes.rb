@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
     resource :cart, only: [ :show ] do
       post :apply_promo_code
+      delete :remove_promo_code
     end
 
     resources :cart_items, only: [ :create, :update, :destroy ]
