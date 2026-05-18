@@ -43,4 +43,11 @@ class CartsController < ApplicationController
       redirect_to cart_path, alert: "Code promo invalide."
     end
   end
+
+  def remove_promo_code
+    @cart = current_cart || ensure_cart
+    @cart.update!(promo_code: nil)
+
+    redirect_to cart_path, notice: "Code promo retiré."
+  end
 end
