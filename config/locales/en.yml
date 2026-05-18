@@ -227,6 +227,10 @@ en:
       order: 'Place order'
       connect: 'Sign in to order'
       lastp: 'Shipping costs and final total will be confirmed before payment.'
+      apply: 'Apply'
+      code: 'Promo Code'
+      remove: 'Remove'
+      discount: 'Discount'
 
   accounts:
     show:

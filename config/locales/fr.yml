@@ -208,6 +208,10 @@ fr:
       order: 'Passer la commande'
       connect: 'Se connecter pour commander'
       lastp: 'Les frais de livraison et le total final seront confirmés avant paiement.'
+      apply: 'Appliquer'
+      code: 'Code Promo'
+      remove: 'Retirer'
+      discount: 'Réduction'
 
   accounts:
     show:

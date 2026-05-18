@@ -138,6 +138,52 @@
             </div>
 
             <div class="border-t border-gray-200 pt-4">
+              <% if @applied_promo.present? %>
+                <div class="mt-3 rounded-xl bg-green-50 px-4 py-3 text-sm">
+                  <div class="flex items-center justify-between gap-4">
+                    <div>
+                      <p class="font-semibold text-green-800">
+                        <%= @applied_promo.code %>
+                      </p>
+
+                      <p class="text-green-700">
+                        - <%= number_to_currency(@discount_cents / 100.0, unit: "€") %>
+                      </p>
+                    </div>
+
+                    <%= button_to t('.remove'),
+                      remove_promo_code_cart_path,
+                      method: :delete,
+                      class: "text-sm font-medium text-red-600 hover:text-red-700 cursor-pointer" %>
+                  </div>
+                </div>
+              <% else %>
+                <%= form_with url: apply_promo_code_cart_path,
+                  method: :post,
+                  local: true,
+                  class: "mt-3 flex gap-2" do %>
+
+                  <%= text_field_tag :code,
+                    nil,
+                    placeholder: t('.code'),
+                    class: "block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+
+                  <%= submit_tag t('.apply'),
+                    class: "cursor-pointer rounded-xl bg-gray-900 px-4 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
+                <% end %>
+              <% end %>
+            </div>
+
+            <% if @discount_cents.to_i > 0 %>
+              <div class="flex items-center justify-between text-green-700">
+                <span><%= t('.discount') %></span>
+                <span>
+                  - <%= number_to_currency(@discount_cents / 100.0, unit: "€") %>
+                </span>
+              </div>
+            <% end %>
+
+            <div class="border-t border-gray-200 pt-4">
               <div class="flex items-center justify-between text-base font-semibold text-gray-900">
                 <span><%= t(".total") %></span>
                 <span><%= number_to_currency(@total_cents / 100.0, unit: "€") %></span>
