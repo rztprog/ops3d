@@ -1,9 +1,10 @@
 class CartsController < ApplicationController
   def show
     @promo_code = PromoCode.new
-    @applied_promo = @cart.promo_code
 
     @cart = current_cart || ensure_cart
+    @applied_promo = @cart.promo_code
+
     @cart_items = @cart.cart_items.includes(
       { product: { images_attachments: :blob } },
       { cart_item_custom_field_values: :product_custom_field }
@@ -20,5 +21,23 @@ class CartsController < ApplicationController
       end
 
     @total_cents = @subtotal_cents + @shipping_cents
+  end
+
+  def apply_promo_code
+    @cart = current_cart
+
+    promo = PromoCode.find_by(
+      code: params[:code].to_s.strip.upcase
+    )
+
+    if promo.present?
+      @cart.update!(promo_code: promo)
+
+      redirect_to cart_path,
+        notice: "Code promo appliqué."
+    else
+      redirect_to cart_path,
+        alert: "Code promo invalide."
+    end
   end
 end
