@@ -108,6 +108,21 @@ class OrdersController < ApplicationController
       }
     end
 
+    # Add discount stripe
+    discounts = []
+
+    if @order.discount_cents.to_i.positive?
+      coupon = Stripe::Coupon.create(
+        amount_off: @order.discount_cents,
+        currency: "eur",
+        duration: "once",
+        name: @order.promo_code.presence || "Code promo"
+      )
+
+      discounts << { coupon: coupon.id }
+    end
+
+    # Add shipping price
     if @order.shipping_price_cents.to_i > 0
       line_items << {
         price_data: {
@@ -125,16 +140,21 @@ class OrdersController < ApplicationController
       customer_email: @order.email,
       metadata: {
         order_id: @order.id,
-        user_id: @order.user_id
+        user_id: @order.user_id,
+        promo_code: @order.promo_code,
+        discount_cents: @order.discount_cents
       },
       payment_intent_data: {
         metadata: {
           order_id: @order.id,
-          user_id: @order.user_id
+          user_id: @order.user_id,
+          promo_code: @order.promo_code,
+          discount_cents: @order.discount_cents
         }
       },
       payment_method_types: [ "card" ],
       line_items: line_items,
+      discounts: discounts,
       mode: "payment",
       success_url: order_url(@order),
       cancel_url: order_url(@order)
