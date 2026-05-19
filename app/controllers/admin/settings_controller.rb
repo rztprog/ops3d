@@ -3,6 +3,8 @@ module Admin
     before_action :set_settings
 
     def edit
+      @promo_codes = PromoCode.order(created_at: :desc)
+      @promo_code = PromoCode.new
     end
 
     def update
