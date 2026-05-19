@@ -7,7 +7,6 @@ class PromoCode < ApplicationRecord
 
   scope :active, -> { where(active: true) }
 
-
   def expired?
     expires_at.present? && expires_at.past?
   end

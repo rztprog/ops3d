@@ -2,31 +2,18 @@ class CartsController < ApplicationController
   def show
     @cart = current_cart || ensure_cart
 
+    @promo_code = PromoCode.new
+    @applied_promo = @cart.promo_code
+
     @cart_items = @cart.cart_items.includes(
       { product: { images_attachments: :blob } },
       { cart_item_custom_field_values: :product_custom_field }
     )
 
-    @applied_promo = @cart.promo_code
-
-    @subtotal_cents = @cart_items.sum { |item| item.quantity * item.product.price_cents }
-
-    settings = Ops3dSetting.first
-    @shipping_cents =
-      if settings&.shipping_mode == "flat_rate"
-        settings.shipping_price_cents
-      else
-        0
-      end
-
-    @discount_cents =
-      if @applied_promo&.active?
-        [ @applied_promo.discount_cents, @subtotal_cents ].min
-      else
-        0
-      end
-
-    @total_cents = @subtotal_cents + @shipping_cents - @discount_cents
+    @subtotal_cents = @cart.subtotal_cents
+    @shipping_cents = @cart.shipping_cents
+    @discount_cents = @cart.discount_cents
+    @total_cents = @cart.total_cents
   end
 
   def apply_promo_code
