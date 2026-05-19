@@ -8,6 +8,9 @@
 # Robots.txt
 
 User-agent: *
-Allow: /
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkout
+Disallow: /users
 
 Sitemap: https://ops3d.fr/sitemap.xml
