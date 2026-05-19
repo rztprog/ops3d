@@ -18,8 +18,6 @@ class Cart < ApplicationRecord
 
     return 0 unless settings
 
-    return 0 if promo_code&.free_shipping?
-
     settings.shipping_mode == "flat_rate" ? settings.shipping_price_cents : 0
   end
 
