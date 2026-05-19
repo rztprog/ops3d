@@ -7,31 +7,8 @@ class PromoCode < ApplicationRecord
 
   scope :active, -> { where(active: true) }
 
-  def expired?
-    expires_at.present? && expires_at.past?
-  end
-
   def usable?
-    return false unless active?
-    return false if expired?
-
-    return true if max_uses.blank?
-
-    uses_count.to_i < max_uses
-  end
-
-  def free_shipping?
-    code == "FREE"
-  end
-
-  def compute_discount(subtotal_cents)
-    return 0 unless usable?
-
-    if free_shipping?
-      Ops3dSetting.first&.shipping_price_cents.to_i
-    else
-      value.to_i
-    end
+    active?
   end
 
   private
