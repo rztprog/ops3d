@@ -42,6 +42,11 @@
           href="<%= url_for(locale: :en) %>">
     <link rel="alternate" hreflang="x-default" href="<%= root_url(locale: :fr) %>">
 
+    <%# NoIndex %>
+    <% if controller_name.in?(%w[ carts orders sessions registrations ]) %>
+      <meta name="robots" content="noindex,nofollow">
+    <% end %>
+
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
