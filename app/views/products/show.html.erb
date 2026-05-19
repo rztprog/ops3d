@@ -228,8 +228,27 @@
     }
   }
 %>
+
+<% breadcrumb_schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbs_for(@product).each_with_index.map do |item, index|
+    {
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item[:name],
+      "item": item[:url]
+    }
+  end
+}
+%>
+
 <% content_for :head do %>
   <script type="application/ld+json">
     <%= json_escape(product_schema.to_json).html_safe %>
+  </script>
+
+  <script type="application/ld+json">
+    <%= json_escape(breadcrumb_schema.to_json).html_safe %>
   </script>
 <% end %>
