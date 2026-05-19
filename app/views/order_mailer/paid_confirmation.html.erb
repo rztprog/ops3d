@@ -87,6 +87,24 @@
                 cellpadding="0"
                 style="margin-bottom:32px;"
               >
+                <% if @order.discount_cents.to_i.positive? %>
+                  <tr>
+                    <td style="padding-bottom:10px;font-size:14px;color:#16a34a;">
+                      Réduction
+                      <% if @order.promo_code.present? %>
+                        <span style="color:#6b7280;">(<%= @order.promo_code %>)</span>
+                      <% end %>
+                    </td>
+
+                    <td
+                      align="right"
+                      style="padding-bottom:10px;font-size:14px;font-weight:600;color:#16a34a;"
+                    >
+                      - <%= number_to_currency(@order.discount_cents / 100.0, unit: "€") %>
+                    </td>
+                  </tr>
+                <% end %>
+
                 <tr>
                   <td style="font-size:16px;color:#374151;">
                     Total
