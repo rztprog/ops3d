@@ -58,6 +58,7 @@ Rails.application.routes.draw do
       resources :users, only: [ :index, :show ]
 
       resource :settings, only: [ :edit, :update ]
+      resources :promo_codes, only: [ :create, :destroy ]
     end
 
     resource :account, only: [ :show ], controller: "accounts"
