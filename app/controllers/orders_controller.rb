@@ -33,9 +33,10 @@ class OrdersController < ApplicationController
       cart_item_custom_field_values: :product_custom_field
     )
 
-    @subtotal_cents = cart_subtotal_cents(@cart_items)
-    @shipping_cents = current_shipping_cents
-    @total_cents = @subtotal_cents + @shipping_cents
+    @subtotal_cents = @cart.subtotal_cents
+    @shipping_cents = @cart.shipping_cents
+    @discount_cents = @cart.discount_cents
+    @total_cents = @cart.total_cents
 
     @order = Order.new(order_params)
 
@@ -44,8 +45,11 @@ class OrdersController < ApplicationController
     @order.email = current_user.email if user_signed_in?
 
     @order.email ||= current_user&.email
+
     @order.status = "pending"
     @order.subtotal_price_cents = @subtotal_cents
+    @order.discount_cents = @discount_cents
+    @order.promo_code = @cart.promo_code&.code
     @order.shipping_price_cents = @shipping_cents
     @order.shipping_mode = current_shipping_mode
     @order.total_price_cents = @total_cents
