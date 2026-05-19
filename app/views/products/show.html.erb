@@ -6,6 +6,26 @@
 <% end %>
 
 <div class="py-10">
+  <nav class="mb-6 text-sm text-gray-500">
+    <% breadcrumbs_for(@product).each_with_index do |item, index| %>
+
+      <% unless index.zero? %>
+        <span class="mx-2"> > </span>
+      <% end %>
+
+      <% if index == breadcrumbs_for(@product).size - 1 %>
+        <span class="font-medium text-gray-900">
+          <%= item[:name] %>
+        </span>
+      <% else %>
+        <%= link_to item[:name],
+          item[:url],
+          class: "hover:text-gray-900 hover:underline" %>
+      <% end %>
+
+    <% end %>
+  </nav>
+
   <div class="mb-6">
     <%= link_to t(".back"), products_path, class: "text-sm font-medium text-gray-600 hover:text-gray-900 hover:underline" %>
   </div>
