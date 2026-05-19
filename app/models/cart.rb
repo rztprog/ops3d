@@ -24,7 +24,7 @@ class Cart < ApplicationRecord
   def discount_cents
     return 0 unless promo_code&.usable?
 
-    promo_code.compute_discount(subtotal_cents)
+    [ promo_code.discount_cents, subtotal_cents ].min
   end
 
   def total_cents
