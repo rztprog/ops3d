@@ -50,4 +50,4 @@ Rails.application.config.content_security_policy_nonce_generator = ->(request) {
 
 Rails.application.config.content_security_policy_nonce_directives = %w[script-src]
 # Log
-Rails.application.config.content_security_policy_report_only = true
+# Rails.application.config.content_security_policy_report_only = true
