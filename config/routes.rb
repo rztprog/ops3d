@@ -71,6 +71,11 @@ Rails.application.routes.draw do
       member do
         post :checkout
       end
+
+      resource :paypal_checkout, only: [ :create ], controller: "paypal_checkouts" do
+        get :success
+        get :cancel
+      end
     end
 
     post "/stripe_webhooks", to: "stripe_webhooks#create"
