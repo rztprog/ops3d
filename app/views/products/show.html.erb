@@ -237,18 +237,19 @@
       "@type": "ListItem",
       "position": index + 1,
       "name": item[:name],
-      "item": item[:url]
+
+"item": item[:url]
     }
   end
 }
 %>
 
 <% content_for :head do %>
-  <script type="application/ld+json">
+  <script type="application/ld+json" nonce="<%= content_security_policy_nonce %>">
     <%= json_escape(product_schema.to_json).html_safe %>
   </script>
 
-  <script type="application/ld+json">
+  <script type="application/ld+json" nonce="<%= content_security_policy_nonce %>">
     <%= json_escape(breadcrumb_schema.to_json).html_safe %>
   </script>
 <% end %>
