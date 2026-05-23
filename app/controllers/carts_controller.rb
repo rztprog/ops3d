@@ -13,6 +13,7 @@ class CartsController < ApplicationController
     @subtotal_cents = @cart.subtotal_cents
     @shipping_cents = @cart.shipping_cents
     @discount_cents = @cart.discount_cents
+
     @total_cents = @cart.total_cents
   end
 
