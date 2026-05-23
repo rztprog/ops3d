@@ -274,6 +274,7 @@ fr:
         shipped_text: 'Ta commande a été expédiée.'
         cancelled: 'Commande annulée'
         cancelled_text: 'Cette commande a été annulée.'
+        or: 'Ou'
 
   orders:
     statuses:

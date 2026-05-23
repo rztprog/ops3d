@@ -146,6 +146,16 @@
             <span><%= t('account.orders.show.stripe')%></span>
           <% end %>
 
+          <div class="flex items-center gap-4">
+            <div class="hidden sm:block h-px flex-1 bg-gray-300"></div>
+
+            <h2 class="mx-auto text-center font-black uppercase leading-tight tracking-wide text-[color:var(--light)] ">
+              <%= t("account.orders.show.or") %>
+            </h2>
+
+            <div class="hidden sm:block h-px flex-1 bg-gray-300"></div>
+          </div>
+
           <%= button_to order_paypal_checkout_path(@order),
             method: :post,
             data: { turbo: false },

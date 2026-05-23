@@ -293,6 +293,7 @@ en:
         shipped_text: 'Your order has been shipped.'
         cancelled: 'Order cancelled'
         cancelled_text: 'This order has been cancelled.'
+        or: 'Or'
 
   orders:
     statuses:
