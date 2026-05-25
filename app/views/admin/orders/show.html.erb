@@ -130,8 +130,34 @@
 
         <div class="flex items-center justify-between gap-4">
           <dt class="text-gray-500">Statut</dt>
-          <dd class="font-medium text-gray-900"><%= @order.status %></dd>
+          <dd class="font-medium text-gray-900"><%= order_status_label(@order.status) %></dd>
         </div>
+
+        <div class="flex items-center justify-between gap-4">
+          <dt class="text-gray-500">Paiement</dt>
+
+          <dd class="font-medium text-gray-900">
+            <%= @order.payment_provider&.capitalize || "—" %>
+          </dd>
+        </div>
+
+        <% transaction_id =
+          @order.payment_provider == "paypal" ?
+          @order.paypal_capture_id :
+          @order.stripe_payment_intent_id
+        %>
+
+        <% if transaction_id.present? %>
+          <div class="flex items-center justify-between gap-4">
+            <dt class="text-gray-500">
+              Transaction
+            </dt>
+
+            <dd class="font-mono text-xs text-gray-900">
+              <%= transaction_id %>
+            </dd>
+          </div>
+        <% end %>
       </dl>
     </div>
   </div>
