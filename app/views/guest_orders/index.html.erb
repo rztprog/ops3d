@@ -1,11 +1,11 @@
 <div class="mx-auto py-10">
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900">
-      Mes commandes
+      <%= t('.orders') %>
     </h1>
 
     <p class="mt-2 text-sm text-gray-500">
-      Retrouve les commandes effectuées depuis cet appareil.
+      <%= t('.back') %>
     </p>
   </div>
 
@@ -17,18 +17,15 @@
 
       <div>
         <h2 class="font-bold text-amber-900">
-          Conseil
+          <%= t('.advice') %>
         </h2>
 
         <p class="mt-1 text-sm leading-6 text-amber-800">
-          Ces commandes sont liées à cet appareil uniquement.
-          Si tu effaces tes cookies ou changes de navigateur, elles ne seront plus accessibles.
-
-          Crée un compte avec la même adresse email pour retrouver automatiquement toutes tes commandes.
+          <%= t('.description') %>
         </p>
 
         <div class="mt-4">
-          <%= link_to "Créer un compte",
+          <%= link_to t('.account'),
             new_user_registration_path,
             class: "inline-flex items-center rounded-xl bg-[color:var(--dark)] px-4 py-2 text-sm font-medium text-white hover:bg-[color:var(--light)]" %>
         </div>
@@ -45,7 +42,7 @@
           <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 class="text-lg font-semibold text-gray-900">
-                Commande #<%= order.id %>
+                <%= t('.order') %> #<%= order.id %>
               </h2>
 
               <p class="mt-1 text-sm text-gray-500">

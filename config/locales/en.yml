@@ -147,6 +147,7 @@ en:
     account: 'My account'
     menu: 'Open menu'
     seeCart: 'View my cart'
+    guest: 'Voir my orders'
 
   footer:
     account: 'Account'
@@ -337,3 +338,15 @@ en:
       country: 'Country'
       email: 'Email'
       discount: 'Discount'
+
+  guest_orders:
+    index:
+      orders: 'My orders'
+      back: 'Find the orders placed from this device.'
+      advice: 'Advice'
+      description: 'These orders are linked only to this device.
+        If you clear your cookies or switch browsers, they will no longer be accessible.
+
+        Create an account using the same email address to automatically retrieve all your orders.'
+      account: 'Create an account'
+      order: 'Order'

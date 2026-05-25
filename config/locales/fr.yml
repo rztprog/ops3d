@@ -128,6 +128,7 @@ fr:
     account: 'Mon compte'
     menu: 'Ouvrir le menu'
     seeCart: 'Voir mon panier'
+    guest: 'Voir mes commandes'
 
   footer:
     account: 'Compte'
@@ -318,3 +319,15 @@ fr:
       country: 'Pays'
       email: 'Email'
       discount: 'Réduction'
+
+  guest_orders:
+    index:
+      orders: 'Mes commandes'
+      back: 'Retrouve les commandes effectuées depuis cet appareil.'
+      advice: 'Conseil'
+      description: 'Ces commandes sont liées à cet appareil uniquement.
+        Si tu effaces tes cookies ou changes de navigateur, elles ne seront plus accessibles.
+
+        Crée un compte avec la même adresse email pour retrouver automatiquement toutes tes commandes.'
+      account: 'Créer un compte'
+      order: 'Commande'

@@ -197,10 +197,14 @@
             <span>Payer avec PayPal</span>
           <% end %>
         <% end %>
+        
+        <% orders_path = user_signed_in? ? account_orders_path : guest_orders_path %>
+
         <div class="flex flex-wrap gap-3">
           <%= link_to t('.commands'),
-            account_orders_path,
+            orders_path,
             class: "inline-flex items-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
+
           <%= link_to t('products.show.back'),
             products_path,
             class: "inline-flex items-center rounded-xl border border-gray-300 px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50" %>
