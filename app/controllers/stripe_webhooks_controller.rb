@@ -51,7 +51,8 @@ class StripeWebhooksController < ApplicationController
       order.update!(
         status: "paid",
         stripe_checkout_session_id: session.id,
-        stripe_payment_intent_id: session.payment_intent
+        stripe_payment_intent_id: session.payment_intent,
+        payment_provider: "stripe"
       )
 
       should_send_emails = true
