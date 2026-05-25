@@ -1,30 +1,93 @@
-<h1>Mes commandes</h1>
+<div class="mx-auto py-10">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900">
+      Mes commandes
+    </h1>
 
-<div class="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
-  Pour retrouver tes commandes sur tous tes appareils, crée un compte avec la même adresse email.
-</div>
+    <p class="mt-2 text-sm text-gray-500">
+      Retrouve les commandes effectuées depuis cet appareil.
+    </p>
+  </div>
 
-<% if @orders.any? %>
-  <% @orders.each do |order| %>
-    <%= link_to order_path(order),
-      class: "block rounded-2xl border border-gray-200 bg-white p-5 shadow-sm hover:bg-gray-50" do %>
-      <div class="flex items-center justify-between">
-        <div>
-          <p class="font-semibold text-gray-900">Commande #<%= order.id %></p>
-          <p class="text-sm text-gray-500"><%= l(order.created_at, format: :short) %></p>
-        </div>
+  <div class="mb-8 rounded-2xl border border-amber-200 bg-amber-50 p-5 shadow-sm <%= order_status_badge_class("pending") %>">
+    <div class="flex items-start gap-3">
+      <div class="mt-0.5 text-amber-600">
+        ⚠
+      </div>
 
-        <div class="text-right">
-          <p class="font-semibold text-gray-900">
-            <%= number_to_currency(order.total_price_cents / 100.0, unit: "€") %>
-          </p>
-          <p class="text-sm text-gray-500"><%= order.status %></p>
+      <div>
+        <h2 class="font-bold text-amber-900">
+          Conseil
+        </h2>
+
+        <p class="mt-1 text-sm leading-6 text-amber-800">
+          Ces commandes sont liées à cet appareil uniquement.
+          Si tu effaces tes cookies ou changes de navigateur, elles ne seront plus accessibles.
+
+          Crée un compte avec la même adresse email pour retrouver automatiquement toutes tes commandes.
+        </p>
+
+        <div class="mt-4">
+          <%= link_to "Créer un compte",
+            new_user_registration_path,
+            class: "inline-flex items-center rounded-xl bg-[color:var(--dark)] px-4 py-2 text-sm font-medium text-white hover:bg-[color:var(--light)]" %>
         </div>
       </div>
-    <% end %>
-  <% end %>
-<% else %>
-  <div class="rounded-2xl border border-gray-200 bg-white p-10 text-center shadow-sm">
-    <p class="text-gray-500">Aucune commande invitée sur cet appareil.</p>
+    </div>
   </div>
-<% end %>
+
+  <% if @orders.any? %>
+    <div class="space-y-4">
+      <% @orders.each do |order| %>
+        <%= link_to order_path(order),
+          class: "block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-gray-300 hover:shadow-md" do %>
+
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 class="text-lg font-semibold text-gray-900">
+                Commande #<%= order.id %>
+              </h2>
+
+              <p class="mt-1 text-sm text-gray-500">
+                <%= l(order.created_at, format: :short) %>
+              </p>
+            </div>
+
+            <div class="text-left sm:text-right">
+              <p class="text-lg font-semibold text-gray-900">
+                <%= number_to_currency(
+                  order.total_price_cents / 100.0,
+                  unit: "€"
+                ) %>
+              </p>
+
+              <span class="mt-2 inline-flex rounded-full px-3 py-1 text-xs font-medium <%= order_status_badge_class(order.status) %>">
+                <%= order_status_label(order.status) %>
+              </span>
+            </div>
+          </div>
+
+        <% end %>
+      <% end %>
+    </div>
+
+  <% else %>
+
+    <div class="rounded-2xl border border-gray-200 bg-white p-10 text-center shadow-sm">
+      <h2 class="text-xl font-semibold text-gray-900">
+        Aucune commande trouvée
+      </h2>
+
+      <p class="mt-2 text-gray-500">
+        Aucune commande invitée n'est enregistrée sur cet appareil.
+      </p>
+
+      <div class="mt-6">
+        <%= link_to "Voir les produits",
+          products_path,
+          class: "inline-flex items-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
