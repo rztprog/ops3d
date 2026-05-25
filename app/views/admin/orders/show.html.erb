@@ -98,6 +98,21 @@
           </dd>
         </div>
 
+        <% if @order.discount_cents.to_i > 0 %>
+          <div class="flex items-center justify-between gap-4">
+            <dt class="text-green-700">
+              Réduction
+            </dt>
+
+            <dd class="font-medium text-green-700">
+              - <%= number_to_currency(
+                @order.discount_cents / 100.0,
+                unit: "€"
+              ) %>
+            </dd>
+          </div>
+        <% end %>
+
         <div class="border-t border-gray-200 pt-4 flex items-center justify-between gap-4">
           <dt class="text-gray-900 font-semibold">Total</dt>
           <dd class="font-semibold text-gray-900">
@@ -127,6 +142,18 @@
           <dt class="text-gray-500">Mode livraison</dt>
           <dd class="font-medium text-gray-900"><%= @order.shipping_mode %></dd>
         </div>
+
+        <% if @order.promo_code.present? %>
+          <div class="flex items-center justify-between gap-4">
+            <dt class="text-gray-500">
+              Code promo
+            </dt>
+
+            <dd class="font-medium text-gray-900">
+              <%= @order.promo_code %>
+            </dd>
+          </div>
+        <% end %>
 
         <div class="flex items-center justify-between gap-4">
           <dt class="text-gray-500">Statut</dt>
