@@ -4,6 +4,11 @@ class PaypalCheckoutsController < ApplicationController
   def create
     access_token = paypal_access_token
 
+    unless @order.status == "pending"
+      redirect_to order_path(@order), alert: "Cette commande ne peut plus être payée."
+      return
+    end
+
     response = HTTParty.post(
       paypal_api_url("/v2/checkout/orders"),
       headers: {
