@@ -148,6 +148,21 @@
             <span><%= number_to_currency(@shipping_cents / 100.0, unit: "€") %></span>
           </div>
 
+          <% if @discount_cents.to_i > 0 %>
+            <div class="flex items-center justify-between text-green-700">
+              <span>
+                <%= t(".discount") %>
+                <% if @cart.promo_code.present? %>
+                  (<%= @cart.promo_code.code %>)
+                <% end %>
+              </span>
+
+              <span>
+                - <%= number_to_currency(@discount_cents / 100.0, unit: "€") %>
+              </span>
+            </div>
+          <% end %>
+
           <div class="flex items-center justify-between border-t border-gray-200 pt-4 text-base font-semibold text-gray-900">
             <span><%= t('.total') %></span>
             <span><%= number_to_currency(@total_cents / 100.0, unit: "€") %></span>

@@ -301,6 +301,7 @@ fr:
       subtotal: 'Sous-total'
       total: 'Total'
       quantity: 'Quantité'
+      discount: 'Réduction'
       suggestion: "Commence à taper ton adresse pour voir des suggestions. Tu peux aussi saisir l'adresse manuellement."
       supplement: "Complément d'adresse (facultatif)"
       email_use: "L'email utilisé est celui de ton compte."
@@ -316,3 +317,4 @@ fr:
       city: 'Ville'
       country: 'Pays'
       email: 'Email'
+      discount: 'Réduction'

@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
     @subtotal_cents = cart_subtotal_cents(@cart_items)
     @shipping_cents = current_shipping_cents
     @discount_cents = @cart.discount_cents
-    @total_cents = @subtotal_cents + @shipping_cents
+    @total_cents = @cart.total_cents
 
     @order = if user_signed_in?
       current_user.orders.new(
