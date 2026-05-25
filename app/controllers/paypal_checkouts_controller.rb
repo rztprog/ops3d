@@ -41,8 +41,60 @@ class PaypalCheckoutsController < ApplicationController
   end
 
   def success
-    redirect_to order_path(@order),
-      notice: "Paiement PayPal à finaliser"
+    if @order.status == "paid"
+      redirect_to order_path(@order), notice: "Commande déjà payée."
+      return
+    end
+
+    access_token = paypal_access_token
+
+    response = HTTParty.post(
+      paypal_api_url("/v2/checkout/orders/#{@order.paypal_order_id}/capture"),
+      headers: {
+        "Content-Type" => "application/json",
+        "Authorization" => "Bearer #{access_token}"
+      },
+      body: {}.to_json
+    )
+
+    body = JSON.parse(response.body)
+
+    unless response.success?
+      Rails.logger.error("[PayPalCapture] order_id=#{@order.id} response=#{body}")
+      redirect_to order_path(@order), alert: "Le paiement PayPal n'a pas pu être confirmé."
+      return
+    end
+
+    capture = body.dig("purchase_units", 0, "payments", "captures", 0)
+
+    unless body["status"] == "COMPLETED" && capture&.dig("status") == "COMPLETED"
+      Rails.logger.error("[PayPalCapture] order_id=#{@order.id} unexpected_status=#{body}")
+      redirect_to order_path(@order), alert: "Le paiement PayPal n'est pas confirmé."
+      return
+    end
+
+    should_send_emails = false
+
+    Order.transaction do
+      @order.lock!
+
+      unless @order.status == "paid"
+        @order.update!(
+          status: "paid",
+          payment_provider: "paypal",
+          paypal_capture_id: capture["id"]
+        )
+
+        should_send_emails = true
+      end
+    end
+
+    if should_send_emails
+      OrderMailer.with(order: @order).paid_confirmation.deliver_later
+      OrderMailer.with(order: @order).admin_paid_notification.deliver_later
+    end
+
+    redirect_to order_path(@order), notice: "Paiement PayPal confirmé."
   end
 
   def cancel
