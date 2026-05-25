@@ -79,5 +79,6 @@ Rails.application.routes.draw do
     end
 
     post "/stripe_webhooks", to: "stripe_webhooks#create"
+    post "/paypal_webhooks", to: "paypal_webhooks#create"
   end
 end
