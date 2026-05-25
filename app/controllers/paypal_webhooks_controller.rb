@@ -44,7 +44,7 @@ class PaypalWebhooksController < ApplicationController
 
       order.update!(
         status: "paid",
-        payment_provider: "paypal",
+        payment_provider: "Paypal",
         paypal_capture_id: capture["id"]
       )
 

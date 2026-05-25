@@ -35,7 +35,7 @@ class PaypalCheckoutsController < ApplicationController
     body = JSON.parse(response.body)
 
     @order.update!(
-      payment_provider: "paypal",
+      payment_provider: "Paypal",
       paypal_order_id: body["id"]
     )
 
@@ -86,7 +86,7 @@ class PaypalCheckoutsController < ApplicationController
       unless @order.status == "paid"
         @order.update!(
           status: "paid",
-          payment_provider: "paypal",
+          payment_provider: "Paypal",
           paypal_capture_id: capture["id"]
         )
 

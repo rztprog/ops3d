@@ -52,7 +52,7 @@ class StripeWebhooksController < ApplicationController
         status: "paid",
         stripe_checkout_session_id: session.id,
         stripe_payment_intent_id: session.payment_intent,
-        payment_provider: "stripe"
+        payment_provider: "Stripe (CB)"
       )
 
       should_send_emails = true
