@@ -50,36 +50,6 @@
 
       <!-- RIGHT DESKTOP -->
       <div class="hidden md:flex items-center gap-4">
-        <% unless user_signed_in? %>
-          <%= link_to guest_orders_path,
-            class: "text-sm font-medium hover:text-[color:var(--light)]",
-            aria: { label: t('navbar.guest') } do %>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-              class="w-7 h-7 fill-current"
-            >
-              <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
-                <path d="M1143 4532 c-540 -312 -981 -571 -980 -575 4 -14 1941 -1130 1962
-                -1131 27 -1 1978 1125 1967 1136 -8 8 -1962 1139 -1966 1137 0 0 -443 -255
-                -983 -567z"/>
-                <path d="M0 2553 l0 -1139 973 -561 c534 -309 980 -565 990 -568 16 -7 17 51
-                17 1131 l0 1139 -975 563 c-536 309 -981 565 -990 568 -13 6 -15 -109 -15
-                -1133z"/>
-                <path d="M3258 3123 l-978 -566 0 -1140 c0 -981 2 -1138 14 -1134 16 6 588
-                336 647 373 l36 22 -14 74 c-23 118 -12 386 20 510 57 217 168 410 327 568
-                232 231 519 355 840 363 l105 2 3 748 c2 595 0 747 -10 746 -7 0 -453 -255
-                -990 -566z"/>
-                <path d="M4090 1890 c-381 -37 -702 -307 -811 -682 -26 -92 -37 -317 -20 -411
-                70 -369 338 -655 698 -748 250 -64 536 -13 753 134 66 45 186 163 236 234 212
-                295 229 701 42 1018 -66 113 -212 262 -313 321 -185 108 -385 153 -585 134z
-                m240 -585 l0 -195 195 0 195 0 0 -150 0 -150 -195 0 -195 0 0 -195 0 -195
-                -150 0 -150 0 0 195 0 195 -190 0 -190 0 0 150 0 150 190 0 190 0 0 188 c0
-                104 3 192 7 195 3 4 71 7 150 7 l143 0 0 -195z"/>
-              </g>
-            </svg>
-          <% end %>
-        <% end %>
 
         <%= link_to cart_path,
           class: "relative inline-flex items-center justify-center hover:text-[color:var(--light)] transition-colors",
@@ -107,6 +77,28 @@
             <span class="absolute -top-2 -right-3 rounded-full bg-red-500 px-2 py-0.5 text-xs text-white">
               <%= current_cart.cart_items.sum(:quantity) %>
             </span>
+          <% end %>
+        <% end %>
+
+        <% unless user_signed_in? %>
+          <%= link_to guest_orders_path,
+            class: "text-sm font-medium hover:text-[color:var(--light)]",
+            aria: { label: t('navbar.guest') } do %>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              class="w-7 h-7 fill-current"
+            >
+              <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+                <path d="M2385 5106 c-232 -39 -409 -118 -583 -262 -276 -227 -432 -557 -432
+                -912 0 -549 357 -1016 885 -1158 408 -109 846 9 1146 308 320 320 433 805 287
+                1232 -115 337 -404 626 -738 739 -173 59 -403 80 -565 53z"/>
+                <path d="M2030 2560 c-352 -26 -671 -160 -935 -394 -214 -189 -388 -475 -460
+                -756 -45 -173 -47 -203 -52 -817 l-5 -593 1982 0 1982 0 -5 593 c-5 614 -7
+                644 -52 817 -57 221 -171 438 -328 621 -224 262 -553 447 -906 511 -106 19
+                -160 21 -616 23 -275 2 -547 0 -605 -5z"/>
+              </g>
+            </svg>
           <% end %>
         <% end %>
 
