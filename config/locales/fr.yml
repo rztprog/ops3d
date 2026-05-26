@@ -331,3 +331,6 @@ fr:
         Crée un compte avec la même adresse email pour retrouver automatiquement toutes tes commandes.'
       account: 'Créer un compte'
       order: 'Commande'
+      noOrder: 'Aucune commande trouvée'
+      device: "Aucune commande invitée n'est enregistrée sur cet appareil."
+      products: 'Voir les produits'

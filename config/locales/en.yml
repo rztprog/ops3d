@@ -350,3 +350,6 @@ en:
         Create an account using the same email address to automatically retrieve all your orders.'
       account: 'Create an account'
       order: 'Order'
+      noOrder: 'No order found'
+      device: 'No guest order is registered on this device.'
+      products: 'View products'
