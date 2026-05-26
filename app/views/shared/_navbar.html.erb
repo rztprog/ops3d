@@ -184,6 +184,11 @@
         <%= link_to t('navbar.cart'), cart_path,
           class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
 
+        <% unless user_signed_in? %>
+          <%= link_to t('navbar.guest'), guest_orders_path,
+            class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>
+        <% end %>
+
         <% if user_signed_in? %>
           <%= link_to t('navbar.account'), account_path,
           class: "rounded-lg px-3 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[color:var(--light)]" %>

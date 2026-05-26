@@ -147,7 +147,7 @@ en:
     account: 'My account'
     menu: 'Open menu'
     seeCart: 'View my cart'
-    guest: 'Voir my orders'
+    guest: 'View my orders'
 
   footer:
     account: 'Account'
