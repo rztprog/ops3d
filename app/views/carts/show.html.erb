@@ -48,7 +48,11 @@
 
                     <% if product.description.present? %>
                       <p class="mt-1 text-sm text-gray-500">
-                        <%= truncate(product.description, length: 110) %>
+                        <%= truncate(
+                          product.description.to_s
+                            .gsub(/[#*_`>\-\[\]\(\)]/, ""),
+                          length: 90
+                        ) %>
                       </p>
                     <% end %>
 
