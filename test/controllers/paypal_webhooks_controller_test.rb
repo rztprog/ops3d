@@ -49,7 +49,7 @@ class PaypalWebhooksControllerTest < ActionDispatch::IntegrationTest
     @order.reload
 
     assert_equal "paid", @order.status
-    assert_equal "paypal", @order.payment_provider
+    assert_equal "Paypal", @order.payment_provider
     assert_equal "CAPTURE_123", @order.paypal_capture_id
   end
 
