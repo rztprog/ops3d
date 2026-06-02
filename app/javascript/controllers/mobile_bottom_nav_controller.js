@@ -3,6 +3,8 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
+    if (this.element.dataset.stickyAlways === "true") return
+
     this.lastScrollY = window.scrollY
     this.ticking = false
 
@@ -20,8 +22,13 @@ export default class extends Controller {
     window.requestAnimationFrame(() => {
       const currentScrollY = window.scrollY
       const diff = currentScrollY - this.lastScrollY
-
-      if (currentScrollY < 80) {
+      const bottomReached =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 150
+      
+      if (bottomReached) {
+        this.show()
+      } else if (currentScrollY < 80) {
         this.show()
       } else if (diff > 8) {
         this.hide()
