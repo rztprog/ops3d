@@ -1,40 +1,103 @@
 <!-- app/views/shared/_mobile_bottom_nav.html.erb -->
 <nav class="fixed inset-x-0 bottom-0 z-50 border-t border-gray-300 bg-white/95 backdrop-blur md:hidden">
-  <div class="grid grid-cols-4 text-[color:var(--dark)]">
-    <%= link_to root_path,
-      class: "flex flex-col items-center justify-center gap-1 py-2 text-xs font-medium" do %>
-      <span class="text-lg">⌂</span>
-      <span>Accueil</span>
-    <% end %>
-
+  <div class="grid grid-cols-3 text-[color:var(--dark)] pt-2">
     <%= link_to products_path,
       class: "flex flex-col items-center justify-center gap-1 py-2 text-xs font-medium" do %>
-      <span class="text-lg">▦</span>
+      <span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+            class="w-7 h-7 fill-current"
+          >
+          <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+            <path d="M1035 5105 c-306 -67 -522 -308 -555 -618 -12 -113 -12 -3781 0
+            -3752 4 11 20 53 35 93 53 143 171 291 302 380 137 93 249 131 413 140 l115 7
+            3 1883 2 1882 -127 -1 c-71 0 -155 -7 -188 -14z"/>
+            <path d="M1650 3235 l0 -1885 1498 2 1497 3 3 1883 2 1882 -1500 0 -1500 0 0
+            -1885z m2168 -602 l-3 -148 -627 -3 -628 -2 0 150 0 150 630 0 631 0 -3 -147z
+            m0 -645 l3 -148 -631 0 -630 0 0 150 0 150 628 -2 627 -3 3 -147z"/>
+            <path d="M1175 1048 c-89 -17 -191 -74 -265 -147 -81 -81 -124 -164 -147 -280
+            -49 -246 92 -493 338 -594 l54 -22 1738 -3 1737 -2 0 150 0 150 -140 0 -140 0
+            -2 378 -3 377 -1560 1 c-948 1 -1580 -2 -1610 -8z"/>
+          </g>
+        </svg>
+      </span>
       <span>Produits</span>
     <% end %>
 
     <%= link_to cart_path,
-      class: "relative flex flex-col items-center justify-center gap-1 py-2 text-xs font-medium" do %>
-      <span class="text-lg">🛒</span>
-      <span>Panier</span>
-
-      <% if current_cart && current_cart.cart_items.any? %>
-        <span class="absolute right-6 top-1 rounded-full bg-red-500 px-1.5 py-0.5 text-[10px] text-white">
-          <%= current_cart.cart_items.sum(:quantity) %>
+      class: "relative flex flex-col items-center justify-center gap-1 py-2 text-xs font-medium",
+        aria: { label: t('navbar.seeCart') } do %>
+        <span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              class="w-7 h-7 fill-current"
+            >
+            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+              <path d="M4140 5005 c0 -2 -27 -133 -60 -290 -33 -157 -60 -288 -60 -290 0 -3
+                -904 -5 -2010 -5 -1106 0 -2010 -1 -2010 -3 0 -7 371 -2265 376 -2290 l6 -27
+                1574 0 1574 0 -5 -22 c-3 -13 -21 -99 -41 -193 -19 -93 -37 -180 -41 -192 l-5
+                -23 -1459 0 -1459 0 0 -170 0 -170 1589 0 c1047 0 1592 3 1596 10 5 8 705
+                3321 705 3336 0 2 160 4 355 4 l355 0 0 165 0 165 -490 0 c-269 0 -490 -2
+                -490 -5z"/>
+              <path d="M636 988 c-123 -16 -261 -110 -319 -216 -147 -271 10 -598 312 -653
+              168 -30 352 52 445 199 76 121 88 289 28 416 -85 183 -266 281 -466 254z"/>
+              <path d="M3286 989 c-133 -19 -273 -121 -329 -241 -99 -210 -32 -440 166 -569
+              214 -139 514 -50 627 186 60 123 53 294 -16 411 -38 65 -122 142 -189 174 -54
+              26 -83 33 -175 44 -14 1 -52 -1 -84 -5z"/>
+            </g>
+          </svg>
+          <% if current_cart && current_cart.cart_items.any? %>
+            <span class="absolute top-1 right-12 rounded-full bg-red-500 px-2 py-0.5 text-xs text-white">
+              <%= current_cart.cart_items.sum(:quantity) %>
+            </span>
+          <% end %>
         </span>
-      <% end %>
+        <span>Panier</span>
     <% end %>
 
     <% if user_signed_in? %>
       <%= link_to account_path,
-        class: "flex flex-col items-center justify-center gap-1 py-2 text-xs font-medium" do %>
-        <span class="text-lg">◉</span>
+        class: "flex flex-col items-center justify-center gap-1 py-2 text-xs font-medium",
+          aria: { label: t('navbar.guest') } do %>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+            class="w-7 h-7 fill-current"
+          >
+            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+              <path d="M2385 5106 c-232 -39 -409 -118 -583 -262 -276 -227 -432 -557 -432
+              -912 0 -549 357 -1016 885 -1158 408 -109 846 9 1146 308 320 320 433 805 287
+              1232 -115 337 -404 626 -738 739 -173 59 -403 80 -565 53z"/>
+              <path d="M2030 2560 c-352 -26 -671 -160 -935 -394 -214 -189 -388 -475 -460
+              -756 -45 -173 -47 -203 -52 -817 l-5 -593 1982 0 1982 0 -5 593 c-5 614 -7
+              644 -52 817 -57 221 -171 438 -328 621 -224 262 -553 447 -906 511 -106 19
+              -160 21 -616 23 -275 2 -547 0 -605 -5z"/>
+            </g>
+          </svg>
         <span>Compte</span>
       <% end %>
     <% else %>
       <%= link_to guest_orders_path,
         class: "flex flex-col items-center justify-center gap-1 py-2 text-xs font-medium" do %>
-        <span class="text-lg">◉</span>
+          <span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              class="w-7 h-7 fill-current"
+            >
+              <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+                <path d="M2385 5106 c-232 -39 -409 -118 -583 -262 -276 -227 -432 -557 -432
+                -912 0 -549 357 -1016 885 -1158 408 -109 846 9 1146 308 320 320 433 805 287
+                1232 -115 337 -404 626 -738 739 -173 59 -403 80 -565 53z"/>
+                <path d="M2030 2560 c-352 -26 -671 -160 -935 -394 -214 -189 -388 -475 -460
+                -756 -45 -173 -47 -203 -52 -817 l-5 -593 1982 0 1982 0 -5 593 c-5 614 -7
+                644 -52 817 -57 221 -171 438 -328 621 -224 262 -553 447 -906 511 -106 19
+                -160 21 -616 23 -275 2 -547 0 -605 -5z"/>
+              </g>
+            </svg>
+          </span>
         <span>Commandes</span>
       <% end %>
     <% end %>
