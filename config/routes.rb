@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  # A supprimer quand google aura nettoyer
+  get "/:locale/products/index", to: redirect(status: 301) { |params, _|
+  "/#{params[:locale]}/products"
+}, constraints: { locale: /fr|en/ }
+
   namespace :admin do
     get "users/index"
     get "users/show"
