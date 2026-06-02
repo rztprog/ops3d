@@ -8,6 +8,7 @@
 # Robots.txt
 
 User-agent: *
+
 Disallow: /cart
 Disallow: /orders
 Disallow: /checkout

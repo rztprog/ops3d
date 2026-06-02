@@ -6,16 +6,6 @@ Rails.application.routes.draw do
   end
   get "stripe_webhooks/create"
   scope "(:locale)", locale: /fr|en/ do
-    get "orders/new"
-    get "orders/create"
-    get "orders/show"
-    get "orders/index"
-    get "cart_items/create"
-    get "cart_items/update"
-    get "cart_items/destroy"
-    get "carts/show"
-    get "products/index"
-    get "products/show"
     devise_for :users
     root to: "pages#home"
     get "mentions-legales", to: "pages#legal", as: :legal
