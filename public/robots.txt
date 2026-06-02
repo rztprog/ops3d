@@ -12,5 +12,6 @@ Disallow: /cart
 Disallow: /orders
 Disallow: /checkout
 Disallow: /users
+Disallow: /guest_orders
 
 Sitemap: https://ops3d.fr/sitemap.xml

@@ -62,12 +62,12 @@
               data-action="click->gallery#change"
               data-image="<%= cl_image_path(
                 image.key,
-                width: 1200,
-                height: 1200,
+                width: 300,
+                height: 300,
                 crop: :fill,
                 gravity: :auto,
                 quality: :auto,
-                fetch_format: :auto
+                fetch_format: :webp
               ) %>"
               class="overflow-hidden rounded-xl border border-gray-200 bg-white cursor-pointer"
             >
