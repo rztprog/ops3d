@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
   # A supprimer quand google aura nettoyer
   get "/:locale/products/index", to: redirect(status: 301) { |params, _|
-  "/#{params[:locale]}/products"
-}, constraints: { locale: /fr|en/ }
+    "/#{params[:locale]}/products"
+  }, constraints: { locale: /fr|en/ }
 
   namespace :admin do
     get "users/index"
     get "users/show"
     get "settings/edit"
   end
-  get "stripe_webhooks/create"
+
+  post "/stripe_webhooks", to: "stripe_webhooks#create"
+  post "/paypal_webhooks", to: "paypal_webhooks#create"
+
   scope "(:locale)", locale: /fr|en/ do
     devise_for :users
     root to: "pages#home"
@@ -74,8 +77,5 @@ Rails.application.routes.draw do
         get :cancel
       end
     end
-
-    post "/stripe_webhooks", to: "stripe_webhooks#create"
-    post "/paypal_webhooks", to: "paypal_webhooks#create"
   end
 end
