@@ -73,6 +73,8 @@ module Admin
       :category_id,
       :published,
       :available,
+      :fulfillment_mode,
+      :stock_quantity,
       images: [],
       product_custom_fields_attributes: [
         :id,
