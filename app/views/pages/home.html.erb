@@ -287,7 +287,12 @@
         <% @featured_products.each do |product| %>
           <div class="group flex h-full flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
             <%= link_to product_path(product), class: "block", aria: { label: product.name } do %>
-              <div class="aspect-[4/3] overflow-hidden bg-gray-100">
+              <div class="relative aspect-[4/3] overflow-hidden bg-gray-100">
+                <div class="absolute right-3 top-3 z-10">
+                  <span class="inline-flex rounded-full border px-3 py-1 text-xs font-medium shadow-sm backdrop-blur <%= product_availability_badge_class(product) %>">
+                    <%= product_availability_label(product) %>
+                  </span>
+                </div>
                 <% if product.images.attached? %>
                   <%= cl_image_tag product.images.first.key,
                     width: 378,
