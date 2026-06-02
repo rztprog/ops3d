@@ -33,7 +33,7 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# HrefLang %>
-    <link rel="canonical" href="<%= request.original_url %>">
+    <link rel="canonical" href="<%= @canonical_url || url_for(only_path: false) %>">
     <link rel="alternate"
           hreflang="fr"
           href="<%= url_for(locale: :fr, only_path: false) %>">
