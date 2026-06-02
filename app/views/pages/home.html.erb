@@ -32,8 +32,8 @@
         <div class="overflow-hidden rounded-3xl bord er border-gray-200 bg-gray-100 shadow-sm">
           <%= cl_image_tag(
             "ultis5v1",
-            width: 1200,
-            height: 900,
+            width: 604,
+            height: 453,
             crop: :fill,
             quality: "auto:eco",
             fetch_format: "auto",
@@ -295,13 +295,13 @@
                 </div>
                 <% if product.images.attached? %>
                   <%= cl_image_tag product.images.first.key,
-                    width: 378,
-                    height: 378,
+                    width: 292,
+                    height: 292,
                     crop: :fill,
                     gravity: :auto,
                     quality: "auto:eco",
                     fetch_format: :webp,
-                    sizes: "378px",
+                    sizes: "292px",
                     loading: "lazy",
                     decoding: "async",
                     alt: product.name,
