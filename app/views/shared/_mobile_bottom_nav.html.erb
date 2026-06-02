@@ -27,7 +27,7 @@
           </g>
         </svg>
       </span>
-      <span>Produits</span>
+      <span><%= t("navbar.products") %></span>
     <% end %>
 
     <%= link_to cart_path,
@@ -62,7 +62,7 @@
             </span>
           <% end %>
         </span>
-        <span>Panier</span>
+        <span><%= t("navbar.simpleCart") %></span>
     <% end %>
 
     <% if user_signed_in? %>
@@ -87,7 +87,7 @@
               -160 21 -616 23 -275 2 -547 0 -605 -5z"/>
             </g>
           </svg>
-        <span>Compte</span>
+        <span><%= t("footer.account") %></span>
       <% end %>
     <% else %>
       <%= link_to guest_orders_path,
@@ -112,7 +112,7 @@
               </g>
             </svg>
           </span>
-        <span>Commandes</span>
+        <span><%= t("navbar.orders") %></span>
       <% end %>
     <% end %>
   </div>

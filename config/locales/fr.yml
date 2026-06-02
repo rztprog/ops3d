@@ -129,6 +129,8 @@ fr:
     menu: 'Ouvrir le menu'
     seeCart: 'Voir mon panier'
     guest: 'Voir mes commandes'
+    orders: 'Commandes'
+    simpleCart: 'Panier'
 
   footer:
     account: 'Compte'

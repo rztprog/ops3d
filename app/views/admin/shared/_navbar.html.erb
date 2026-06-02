@@ -54,7 +54,7 @@
 
     <!-- MOBILE MENU -->
     <div data-admin-navbar-target="menu" class="hidden border-t border-white/10 py-4 lg:hidden">
-      <div class="flex flex-col gap-2 text-sm">
+      <div class="flex flex-col gap-2 text-xl">
 
         <%= link_to "Dashboard", admin_root_path,
           data: { action: "click->admin-navbar#close" },
@@ -86,7 +86,7 @@
 
         <!-- USER -->
         <div class="mt-4 border-t border-white/10 pt-4">
-          <p class="truncate px-3 text-xs text-gray-400">
+          <p class="truncate px-3 text-xl text-gray-400">
             <%= current_user.email %>
           </p>
 
@@ -94,7 +94,7 @@
             <%= button_to "Déconnexion",
               destroy_user_session_path,
               method: :delete,
-              class: "w-full cursor-pointer rounded-lg bg-white/10 px-3 py-2 text-left text-sm text-white hover:bg-white/20" %>
+              class: "w-full cursor-pointer rounded-lg bg-white/10 px-3 py-2 text-left text-xl text-white hover:bg-white/20" %>
           </div>
         </div>
 

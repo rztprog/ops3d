@@ -148,6 +148,8 @@ en:
     menu: 'Open menu'
     seeCart: 'View my cart'
     guest: 'View my orders'
+    orders: 'Orders'
+    simpleCart: 'Cart'
 
   footer:
     account: 'Account'
