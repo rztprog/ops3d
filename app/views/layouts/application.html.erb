@@ -47,7 +47,7 @@
     <link rel="dns-prefetch" href="//res.cloudinary.com">
 
     <%# NoIndex %>
-    <% if controller_name.in?(%w[ carts orders sessions registrations ]) %>
+    <% if controller_name.in?(%w[carts cart_items orders guest_orders paypal_checkouts paypal_webhooks stripe_webhooks sessions registrations ]) %>
       <meta name="robots" content="noindex,nofollow">
     <% end %>
 
