@@ -1,0 +1,42 @@
+<!-- app/views/shared/_mobile_bottom_nav.html.erb -->
+<nav class="fixed inset-x-0 bottom-0 z-50 border-t border-gray-300 bg-white/95 backdrop-blur md:hidden">
+  <div class="grid grid-cols-4 text-[color:var(--dark)]">
+    <%= link_to root_path,
+      class: "flex flex-col items-center justify-center gap-1 py-2 text-xs font-medium" do %>
+      <span class="text-lg">⌂</span>
+      <span>Accueil</span>
+    <% end %>
+
+    <%= link_to products_path,
+      class: "flex flex-col items-center justify-center gap-1 py-2 text-xs font-medium" do %>
+      <span class="text-lg">▦</span>
+      <span>Produits</span>
+    <% end %>
+
+    <%= link_to cart_path,
+      class: "relative flex flex-col items-center justify-center gap-1 py-2 text-xs font-medium" do %>
+      <span class="text-lg">🛒</span>
+      <span>Panier</span>
+
+      <% if current_cart && current_cart.cart_items.any? %>
+        <span class="absolute right-6 top-1 rounded-full bg-red-500 px-1.5 py-0.5 text-[10px] text-white">
+          <%= current_cart.cart_items.sum(:quantity) %>
+        </span>
+      <% end %>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <%= link_to account_path,
+        class: "flex flex-col items-center justify-center gap-1 py-2 text-xs font-medium" do %>
+        <span class="text-lg">◉</span>
+        <span>Compte</span>
+      <% end %>
+    <% else %>
+      <%= link_to guest_orders_path,
+        class: "flex flex-col items-center justify-center gap-1 py-2 text-xs font-medium" do %>
+        <span class="text-lg">◉</span>
+        <span>Commandes</span>
+      <% end %>
+    <% end %>
+  </div>
+</nav>
