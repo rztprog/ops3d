@@ -266,7 +266,7 @@ fr:
         fee: 'Livraison'
         total: 'Total'
         unit: 'unité'
-        stripe: 'Payer avec Stripe'
+        stripe: 'Payer par Carte'
         paid: 'Paiement confirmé'
         paid_text: 'Ta commande a bien été payée et va être préparée.'
         pending: 'Paiement en attente'

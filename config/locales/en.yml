@@ -285,7 +285,7 @@ en:
         fee: 'Shipping'
         total: 'Total'
         unit: 'unit'
-        stripe: 'Pay with Stripe'
+        stripe: 'Pay with Card'
         paid: 'Payment confirmed'
         paid_text: 'Your order has been paid and will be prepared.'
         pending: 'Payment pending'
