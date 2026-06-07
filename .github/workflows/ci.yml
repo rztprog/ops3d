@@ -173,7 +173,7 @@ jobs:
           PAYPAL_CLIENT_ID=${{ secrets.PAYPAL_CLIENT_ID }}
           PAYPAL_CLIENT_SECRET=${{ secrets.PAYPAL_CLIENT_SECRET }}
           PAYPAL_WEBHOOK_ID=${{ secrets.PAYPAL_WEBHOOK_ID }}
-          PAYPAL_MODE=production
+          PAYPAL_MODE=${{ secrets.PAYPAL_MODE }}
           EOF
       - name: Deploy with Kamal
         env:
