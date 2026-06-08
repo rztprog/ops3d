@@ -71,11 +71,11 @@
         </div>
 
         <% if @featured_products.any? %>
-          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
             <% @featured_products.each do |product| %>
-              <div class="group flex h-full flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <div class="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg sm:rounded-3xl">
                 <%= link_to product_path(product), class: "block", aria: { label: product.name } do %>
-                  <div class="relative aspect-[4/3] overflow-hidden bg-gray-100">
+                  <div class="relative aspect-square overflow-hidden bg-gray-100 sm:aspect-[4/3]">
                     <div class="absolute right-3 top-3 z-10">
                       <span class="inline-flex rounded-full border px-3 py-1 text-xs font-medium shadow-sm backdrop-blur <%= product_availability_badge_class(product) %>">
                         <%= product_availability_label(product) %>
@@ -102,18 +102,18 @@
                   </div>
                 <% end %>
 
-                <div class="flex flex-1 flex-col p-5">
+                <div class="flex flex-1 flex-col p-3 sm:p-5">
                   <% if product.category.present? %>
-                    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-gray-700">
+                    <p class="hidden text-xs font-semibold uppercase tracking-[0.18em] text-gray-700 sm:block">
                       <%= product.category.name %>
                     </p>
                   <% end %>
 
-                  <h3 class="mt-3 text-xl font-bold text-gray-900">
+                  <h3 class="line-clamp-2 text-sm font-bold leading-snug text-gray-900 sm:mt-3 sm:text-xl">
                     <%= link_to product.name, product_path(product), class: "hover:text-[color:var(--light)]" %>
                   </h3>
 
-                  <p class="mt-2 line-clamp-2 text-sm leading-6 text-gray-500">
+                  <p class="mt-2 hidden line-clamp-2 text-sm leading-6 text-gray-500 sm:block">
                     <%= truncate(
                       product.description.to_s
                         .gsub(/[#*_`>\-\[\]\(\)]/, ""),
@@ -121,8 +121,8 @@
                     ) %>
                   </p>
 
-                  <div class="mt-auto pt-6 flex items-center justify-between gap-4">
-                    <p class="text-2xl font-black text-gray-900">
+                  <div class="mt-auto flex items-center justify-between gap-2 pt-3 sm:gap-4 sm:pt-6">
+                    <p class="text-base font-black text-gray-900 sm:text-2xl">
                       <%= number_to_currency(product.price_cents / 100.0, unit: "€") %>
                     </p>
 
