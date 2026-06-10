@@ -194,7 +194,7 @@
             <div class="border-t border-gray-200 pt-4">
               <div class="flex items-center justify-between text-base font-semibold text-gray-900">
                 <span><%= t(".total") %></span>
-                <span><%= number_to_currency(@total_cents / 100.0, unit: "€") %></span>
+                <span class="text-xl"><%= number_to_currency(@total_cents / 100.0, unit: "€") %></span>
               </div>
             </div>
           </div>
