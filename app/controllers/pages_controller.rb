@@ -18,4 +18,6 @@ class PagesController < ApplicationController
   def faq; end
   def contact; end
   def about; end
+
+  def training; end
 end

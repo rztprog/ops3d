@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: ENV.fetch("SMTP_USERNAME", "contact@ops3d.fr")
+  default from: ENV.fetch("MAIL_FROM", "OPS3D <contact@ops3d.fr>")
   layout "mailer"
 end

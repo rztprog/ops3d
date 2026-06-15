@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post "/paypal_webhooks", to: "paypal_webhooks#create"
 
   scope "(:locale)", locale: /fr|en/ do
+    get "formation", to: "pages#training", as: :training
     devise_for :users
     root to: "pages#home"
     get "mentions-legales", to: "pages#legal", as: :legal
