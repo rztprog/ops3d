@@ -34,6 +34,7 @@ SitemapGenerator::Sitemap.create do
   %i[fr en].each do |locale|
     add root_path(locale: locale), changefreq: "daily", priority: locale == :fr ? 1.0 : 0.8
     add products_path(locale: locale), changefreq: "daily", priority: 0.9
+    add training_path(locale: locale), changefreq: "monthly", priority: 0.7
 
     Product.where(published: true).find_each do |product|
       add product_path(locale: locale, id: product),
