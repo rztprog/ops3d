@@ -40,13 +40,7 @@ class CartItemsController < ApplicationController
       end
     else
       cart_item = @cart.cart_items.find_or_initialize_by(product: @product)
-
-      if cart_item.new_record?
-        cart_item.quantity = 1
-      else
-        cart_item.quantity += 1
-      end
-
+      cart_item.quantity = cart_item.persisted? ? cart_item.quantity + 1 : 1
       cart_item.save!
     end
 
