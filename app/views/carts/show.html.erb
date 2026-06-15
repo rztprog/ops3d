@@ -122,17 +122,29 @@
                 </div>
 
                 <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-                  <%= form_with model: item, url: cart_item_path(item), method: :patch, local: true, class: "flex items-end gap-3" do |f| %>
-                    <div>
-                      <%= f.label :quantity, t(".quantity"), class: "block text-sm font-medium text-gray-700" %>
-                      <%= f.number_field :quantity,
-                        min: 1,
-                        class: "mt-1 w-24 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none" %>
-                    </div>
+                  <div class="flex items-center rounded-full border-2 border-yellow-400 bg-white px-2 py-1">
+                    <% if item.quantity > 1 %>
+                      <%= button_to "-",
+                        cart_item_path(item, cart_item: { quantity: item.quantity - 1 }),
+                        method: :patch,
+                        class: "flex h-9 w-9 items-center justify-center text-xl font-medium text-gray-900" %>
+                    <% else %>
+                      <%= button_to cart_item_path(item),
+                        method: :delete,
+                        class: "flex h-9 w-9 items-center justify-center text-gray-900" do %>
+                        🗑
+                      <% end %>
+                    <% end %>
 
-                    <%= f.submit t(".update"),
-                      class: "cursor-pointer rounded-xl border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:text-white hover:bg-[color:var(--dark)]" %>
-                  <% end %>
+                    <span class="flex h-9 min-w-8 items-center justify-center text-sm font-semibold text-gray-900">
+                      <%= item.quantity %>
+                    </span>
+
+                    <%= button_to "+",
+                      cart_item_path(item, cart_item: { quantity: item.quantity + 1 }),
+                      method: :patch,
+                      class: "flex h-9 w-9 items-center justify-center text-xl font-medium text-gray-900" %>
+                  </div>
 
                   <%= button_to t(".delete"),
                     cart_item_path(item),
