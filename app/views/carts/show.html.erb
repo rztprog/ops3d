@@ -34,7 +34,7 @@
 
       <div class="mt-3 h-2 overflow-hidden rounded-full bg-gray-200">
         <div
-          class="h-full rounded-full bg-[color:var(--dark)] transition-all"
+          class="h-full rounded-full transition-all duration-500 ease-out <%= @free_shipping_unlocked ? 'bg-green-500' : 'bg-[color:var(--dark)]' %>"
           style="width: <%= @free_shipping_progress_percent %>%">
         </div>
       </div>
@@ -121,29 +121,29 @@
                   </div>
                 </div>
 
-                <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-                  <div class="flex items-center rounded-full border-2 border-yellow-400 bg-white px-2 py-1">
+                <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between">
+                  <div class="inline-flex items-center rounded-full border-2 border-yellow-400 bg-white px-2 cursor-pointer">
                     <% if item.quantity > 1 %>
                       <%= button_to "-",
                         cart_item_path(item, cart_item: { quantity: item.quantity - 1 }),
                         method: :patch,
-                        class: "flex h-9 w-9 items-center justify-center text-xl font-medium text-gray-900" %>
+                        class: "flex h-8 w-8 items-center justify-center text-3xl font-bold text-gray-900 px-2 cursor-pointer hover:text-gray-600" %>
                     <% else %>
                       <%= button_to cart_item_path(item),
                         method: :delete,
-                        class: "flex h-9 w-9 items-center justify-center text-gray-900" do %>
+                        class: "flex h-8 w-8 items-center px-2 justify-center text-gray-900 cursor-pointer" do %>
                         🗑
                       <% end %>
                     <% end %>
 
-                    <span class="flex h-9 min-w-8 items-center justify-center text-sm font-semibold text-gray-900">
+                    <span class="min-w-8 px-2 text-lg font-semibold text-center">
                       <%= item.quantity %>
                     </span>
 
                     <%= button_to "+",
                       cart_item_path(item, cart_item: { quantity: item.quantity + 1 }),
                       method: :patch,
-                      class: "flex h-9 w-9 items-center justify-center text-xl font-medium text-gray-900" %>
+                      class: "flex h-8 w-8 items-center justify-center text-2xl font-bold px-3 text-gray-900 cursor-pointer hover:text-gray-600" %>
                   </div>
 
                   <%= button_to t(".delete"),
