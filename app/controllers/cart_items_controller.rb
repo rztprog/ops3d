@@ -62,8 +62,13 @@ class CartItemsController < ApplicationController
   end
 
   def destroy
+    @cart = ensure_cart
     cart_item = ensure_cart.cart_items.find(params[:id])
     cart_item.destroy
+
+    if @cart.cart_items.reload.empty?
+      @cart.update!(promo_code: nil)
+    end
 
     redirect_to cart_path, notice: "Produit supprimé du panier."
   end

@@ -77,6 +77,7 @@ class OrdersController < ApplicationController
         )
       end
 
+      @cart.update!(promo_code: nil)
       @cart.cart_items.destroy_all
     end
 

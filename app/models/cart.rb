@@ -23,6 +23,7 @@ class Cart < ApplicationRecord
   end
 
   def discount_cents
+    return 0 if cart_items.empty?
     return 0 unless promo_code&.usable?
 
     [ promo_code.discount_cents, subtotal_cents ].min
