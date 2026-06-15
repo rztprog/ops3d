@@ -166,7 +166,10 @@ class OrdersController < ApplicationController
       "[StripeCheckout] order_id=#{@order.id} user_id=#{current_user ? current_user.id : "guest=#{@order.email}"}"
     )
 
-    @order.update!(stripe_checkout_session_id: session.id)
+    @order.update!(
+      stripe_checkout_session_id: session.id,
+      payment_provider: "stripe"
+    )
 
     redirect_to session.url, allow_other_host: true
   end

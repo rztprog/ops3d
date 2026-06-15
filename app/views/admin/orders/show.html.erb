@@ -218,7 +218,7 @@
         </div>
 
         <% transaction_id =
-          @order.payment_provider == "Paypal" ?
+          @order.payment_provider == "paypal" ?
           @order.paypal_capture_id :
           @order.stripe_payment_intent_id
         %>
