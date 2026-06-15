@@ -8,7 +8,7 @@ class CartsController < ApplicationController
     @cart_items = @cart.cart_items.includes(
       { product: { images_attachments: :blob } },
       { cart_item_custom_field_values: :product_custom_field }
-    )
+    ).order(created_at: :desc)
 
     @subtotal_cents = @cart.subtotal_cents
     @shipping_cents = @cart.shipping_cents
