@@ -84,6 +84,10 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
+  config.action_mailer.default_options = {
+    from: ENV.fetch("MAIL_FROM", "OPS3D <contact@ops3d.fr>")
+  }
+
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via bin/rails credentials:edit.
   # config.action_mailer.smtp_settings = {
   #   user_name: Rails.application.credentials.dig(:smtp, :user_name),
