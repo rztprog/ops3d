@@ -14,6 +14,11 @@ class CartsController < ApplicationController
     @shipping_cents = @cart.shipping_cents
     @discount_cents = @cart.discount_cents
 
+    @free_shipping_threshold_cents = @cart.free_shipping_threshold_cents
+    @amount_until_free_shipping_cents = @cart.amount_until_free_shipping_cents
+    @free_shipping_progress_percent = @cart.free_shipping_progress_percent
+    @free_shipping_unlocked = @cart.free_shipping_unlocked?
+
     @total_cents = @cart.total_cents
   end
 

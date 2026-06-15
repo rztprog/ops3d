@@ -19,6 +19,32 @@
       </div>
     </div>
   <% else %>
+    <div class="mb-6 rounded-2xl border border-gray-200 bg-gray-50 p-4">
+      <% if @free_shipping_unlocked %>
+        <p class="text-sm font-medium text-green-700">
+          Livraison offerte débloquée.
+        </p>
+      <% else %>
+        <p class="text-sm font-medium text-gray-900">
+          Plus que
+          <%= number_to_currency(@amount_until_free_shipping_cents / 100.0, unit: "€") %>
+          pour profiter de la livraison offerte.
+        </p>
+      <% end %>
+
+      <div class="mt-3 h-2 overflow-hidden rounded-full bg-gray-200">
+        <div
+          class="h-full rounded-full bg-[color:var(--dark)] transition-all"
+          style="width: <%= @free_shipping_progress_percent %>%">
+        </div>
+      </div>
+
+      <p class="mt-2 text-xs text-gray-500">
+        Livraison offerte dès
+        <%= number_to_currency(@free_shipping_threshold_cents / 100.0, unit: "€") %>
+        d'achat.
+      </p>
+    </div>
     <hr class="mb-8 text-gray-300"/>
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
       <!-- Colonne gauche -->

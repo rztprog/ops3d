@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
     @cart_items = @cart.cart_items.includes(:product)
 
     @subtotal_cents = cart_subtotal_cents(@cart_items)
-    @shipping_cents = current_shipping_cents
+    @shipping_cents = @cart.shipping_cents
     @discount_cents = @cart.discount_cents
     @total_cents = @cart.total_cents
 

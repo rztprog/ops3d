@@ -15,8 +15,9 @@ class Cart < ApplicationRecord
 
   def shipping_cents
     settings = Ops3dSetting.first
-
     return 0 unless settings
+
+    return 0 if subtotal_cents >= settings.free_shipping_threshold_cents.to_i
 
     settings.shipping_mode == "flat_rate" ? settings.shipping_price_cents : 0
   end
@@ -29,6 +30,24 @@ class Cart < ApplicationRecord
 
   def total_cents
     subtotal_cents + shipping_cents - discount_cents
+  end
+
+  def free_shipping_threshold_cents
+    Ops3dSetting.first&.free_shipping_threshold_cents.to_i
+  end
+
+  def amount_until_free_shipping_cents
+    [ free_shipping_threshold_cents - subtotal_cents, 0 ].max
+  end
+
+  def free_shipping_progress_percent
+    return 100 if free_shipping_threshold_cents.zero?
+
+    [ (subtotal_cents.to_f / free_shipping_threshold_cents * 100).round, 100 ].min
+  end
+
+  def free_shipping_unlocked?
+    subtotal_cents >= free_shipping_threshold_cents
   end
 
   private
