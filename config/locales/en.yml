@@ -294,8 +294,11 @@ en:
         prep_text: 'Your order is currently being prepared.'
         shipped: 'Order shipped'
         shipped_text: 'Your order has been shipped.'
+        refunded: 'Order refunded'
+        refunded_text: 'This order has been refunded.'
         cancelled: 'Order cancelled'
         cancelled_text: 'This order has been cancelled.'
+        commands: 'My orders'
         or: 'Or'
 
   orders:
@@ -305,6 +308,7 @@ en:
       in_preparation: 'In preparation'
       shipped: 'Shipped'
       cancelled: 'Cancelled'
+      refunded: 'Refunded'
     new:
       title: 'Complete my order'
       subtitle: 'Enter your shipping information before payment.'

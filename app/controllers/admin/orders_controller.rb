@@ -10,7 +10,13 @@ module Admin
     end
 
     def update
-      if @order.update(order_params)
+      attrs = order_params.to_h
+
+      if attrs[:status] == "refunded" && @order.refunded_at.blank?
+        attrs[:refunded_at] = Time.current
+      end
+
+      if @order.update(attrs)
         redirect_to admin_order_path(@order), notice: "Statut de la commande mis à jour."
       else
         redirect_to admin_order_path(@order), alert: "Impossible de mettre à jour la commande."
@@ -24,7 +30,7 @@ module Admin
     end
 
     def order_params
-      params.require(:order).permit(:status)
+      params.require(:order).permit(:status, :refund_reason)
     end
   end
 end

@@ -54,6 +54,16 @@
       </p>
     </div>
 
+  <% when "refunded" %>
+    <div class="rounded-2xl border border-orange-200 bg-orange-50 p-6 mb-8">
+      <h2 class="text-lg font-semibold text-orange-800">
+        <%= t('.refunded') %>
+      </h2>
+      <p class="mt-2 text-sm text-orange-700">
+        <%= t('.refunded_text') %>
+      </p>
+    </div>
+
   <% when "cancelled" %>
     <div class="rounded-2xl border border-red-300 bg-red-50 p-6 mb-8">
       <h2 class="text-lg font-semibold text-red-800">
@@ -228,7 +238,7 @@
         <% orders_path = user_signed_in? ? account_orders_path : guest_orders_path %>
 
         <div class="flex flex-wrap gap-3">
-          <%= link_to t('.commands'),
+          <%= link_to t('account.orders.show.commands'),
             orders_path,
             class: "inline-flex items-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
 

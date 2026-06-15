@@ -275,8 +275,11 @@ fr:
         prep_text: 'Ta commande est en cours de préparation.'
         shipped: 'Commande expédiée'
         shipped_text: 'Ta commande a été expédiée.'
+        refunded: 'Commande remboursée'
+        refunded_text: 'Cette commande a été remboursée.'
         cancelled: 'Commande annulée'
         cancelled_text: 'Cette commande a été annulée.'
+        commands: 'Mes commandes'
         or: 'Ou'
 
   orders:
@@ -286,6 +289,7 @@ fr:
       in_preparation: 'En préparation'
       shipped: 'Expédiée'
       cancelled: 'Annulée'
+      refunded: 'Remboursée'
     new:
       title: 'Finaliser ma commande'
       subtitle: 'Renseigne tes informations de livraison avant le paiement.'

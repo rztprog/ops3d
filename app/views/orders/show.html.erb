@@ -48,6 +48,17 @@
         </p>
       </div>
 
+    <% when "refunded" %>
+      <div class="rounded-2xl border border-gray-200 bg-gray-50 p-6 mb-8">
+        <h2 class="text-lg font-semibold text-gray-800">
+          <%= t('account.orders.show.refunded') %>
+        </h2>
+        <p class="mt-2 text-sm text-gray-700">
+          <%= t('account.orders.show.refunded_text') %>
+        </p>
+      </div>
+    <% end %>
+
     <% when "cancelled" %>
       <div class="rounded-2xl border border-red-200 bg-red-50 p-6 mb-8">
         <h2 class="text-lg font-semibold text-red-800">

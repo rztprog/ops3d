@@ -6,7 +6,14 @@ class Order < ApplicationRecord
     self.email = email.to_s.downcase.strip
   end
 
-  STATUSES = %w[pending paid in_preparation shipped cancelled].freeze
+  STATUSES = %w[
+    pending
+    paid
+    in_preparation
+    shipped
+    refunded
+    cancelled
+  ].freeze
 
   validates :status, presence: true, inclusion: { in: STATUSES }
 
