@@ -124,15 +124,50 @@
                 <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between">
                   <div class="inline-flex items-center rounded-full border-2 border-yellow-400 bg-white px-2 cursor-pointer">
                     <% if item.quantity > 1 %>
-                      <%= button_to "-",
-                        cart_item_path(item, cart_item: { quantity: item.quantity - 1 }),
+                      <%= button_to cart_item_path(item, cart_item: { quantity: item.quantity - 1 }),
                         method: :patch,
-                        class: "flex h-8 w-8 items-center justify-center text-3xl font-bold text-gray-900 px-2 cursor-pointer hover:text-gray-300" %>
+                        class: "flex h-8 w-8 items-center justify-center px-2 cursor-pointer text-black hover:text-[color:var(--light)]" do %>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 512 512"
+                          class="fill-current"
+                        >
+                          <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+                            <path d="M0 2560 l0 -160 2560 0 2560 0 0 160 0 160 -2560 0 -2560 0 0 -160z"/>
+                          </g>
+                        </svg>
+                      <% end %>
                     <% else %>
                       <%= button_to cart_item_path(item),
                         method: :delete,
-                        class: "flex h-8 w-8 items-center px-2 justify-center text-gray-900 cursor-pointer" do %>
-                        🗑
+                        class: "flex h-8 w-8 items-center px-2 justify-center text-gray-900 cursor-pointer text-black hover:text-[color:var(--light)]" do %>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 512 512"
+                          class="fill-current"
+                        >
+                          <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+                            <path d="M1885 5101 c-77 -34 -112 -100 -103 -190 l3 -40 -546 -3 -545 -3 -37
+                            -25 c-43 -29 -87 -108 -87 -154 1 -69 65 -156 128 -174 35 -9 3689 -9 3724 0
+                            63 18 127 105 128 174 0 46 -44 125 -87 154 l-37 25 -545 3 -546 2 3 40 c9 91
+                            -26 157 -103 191 -37 17 -80 19 -675 19 -595 0 -638 -2 -675 -19z"/>
+                            <path d="M680 4169 c-32 -13 -78 -56 -96 -91 -8 -15 -14 -51 -14 -81 0 -70
+                            415 -3799 429 -3855 15 -58 46 -98 96 -122 41 -20 62 -20 1465 -20 1403 0
+                            1424 0 1465 20 50 24 81 64 96 122 14 56 429 3785 429 3855 0 30 -6 66 -14 81
+                            -19 36 -65 78 -99 91 -38 15 -3721 14 -3757 0z m3483 -356 c3 -6 -376 -3416
+                            -382 -3440 -1 -2 -550 -3 -1221 -3 -671 0 -1220 1 -1221 3 -6 24 -385 3434
+                            -382 3440 5 9 3201 9 3206 0z"/>
+                            <path d="M2524 3400 c-54 -12 -101 -48 -123 -94 -21 -42 -21 -49 -21 -1214 0
+                            -1276 -3 -1208 56 -1264 36 -33 74 -48 124 -48 50 0 88 15 124 48 59 56 56
+                            -12 56 1264 0 1169 0 1172 -21 1215 -33 68 -121 110 -195 93z"/>
+                            <path d="M1643 3099 c-44 -13 -100 -70 -114 -118 -10 -33 1 -172 71 -902 47
+                            -498 87 -877 95 -894 29 -68 94 -109 172 -109 42 0 60 5 94 29 57 41 79 85 79
+                            160 0 33 -36 432 -79 886 -56 592 -83 834 -94 855 -42 82 -133 119 -224 93z"/>
+                            <path d="M3350 3095 c-43 -20 -77 -51 -97 -89 -11 -21 -38 -265 -94 -855 -43
+                            -454 -79 -853 -79 -886 0 -75 22 -119 79 -160 33 -23 52 -29 94 -29 101 0 170
+                            63 187 170 4 32 43 430 86 885 l78 825 -23 48 c-42 85 -149 127 -231 91z"/>
+                          </g>
+                        </svg>
                       <% end %>
                     <% end %>
 
@@ -140,10 +175,21 @@
                       <%= item.quantity %>
                     </span>
 
-                    <%= button_to "+",
-                      cart_item_path(item, cart_item: { quantity: item.quantity + 1 }),
+                    <%= button_to cart_item_path(item, cart_item: { quantity: item.quantity + 1 }),
                       method: :patch,
-                      class: "flex h-8 w-8 items-center justify-center text-2xl font-bold px-3 text-gray-900 cursor-pointer hover:text-gray-300" %>
+                      class: "flex h-10 w-10 items-center justify-center text-2xl font-bold px-3 cursor-pointer text-black hover:text-[color:var(--light)]" do %>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 512 512"
+                          class="fill-current"
+                        >
+                          <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+                            <path d="M2400 3920 l0 -1200 -1200 0 -1200 0 0 -160 0 -160 1200 0 1200 0 0
+                            -1200 0 -1200 160 0 160 0 0 1200 0 1200 1200 0 1200 0 0 160 0 160 -1200 0
+                            -1200 0 0 1200 0 1200 -160 0 -160 0 0 -1200z"/>
+                          </g>
+                        </svg>
+                      <% end %>
                   </div>
 
                   <%= button_to t(".delete"),
