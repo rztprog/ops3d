@@ -279,7 +279,7 @@ fr:
         refunded_text: 'Cette commande a été remboursée.'
         cancelled: 'Commande annulée'
         cancelled_text: 'Cette commande a été annulée.'
-        commands: 'Mes commandes'
+        commands: '← Retour aux commandes'
         or: 'Ou'
 
   orders:
