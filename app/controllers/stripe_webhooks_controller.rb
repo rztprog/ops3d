@@ -37,13 +37,14 @@ class StripeWebhooksController < ApplicationController
   private
 
   def fulfill_order(session)
-    order = Order.find_by(id: session.metadata.order_id)
+    order_id = session.metadata["order_id"]
+    order = Order.find_by(id: order_id)
+
     return unless order
-    return unless order.user_id.to_s == session.metadata.user_id.to_s
+
     should_send_emails = false
 
     Order.transaction do
-      # Pour prevenir d'une double modification SQL
       order.lock!
 
       return if order.status == "paid"
@@ -58,11 +59,9 @@ class StripeWebhooksController < ApplicationController
       should_send_emails = true
     end
 
-    # Envoie des 2 mails (admin + user) une fois la commande confirmé
     if should_send_emails
-      Rails.logger.info(
-        "[Mailer] paid_confirmation order_id=#{order.id}"
-      )
+      Rails.logger.info("[Mailer] paid_confirmation order_id=#{order.id}")
+
       OrderMailer.with(order: order).paid_confirmation.deliver_later
       OrderMailer.with(order: order).admin_paid_notification.deliver_later
     end
