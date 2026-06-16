@@ -27,7 +27,8 @@ module Admin
     def settings_params
       permitted = params.require(:ops3d_setting).permit(
         :shipping_mode,
-        :shipping_price_euros
+        :shipping_price_euros,
+        :registrations_enabled
       )
 
       if permitted[:shipping_mode] == "free"

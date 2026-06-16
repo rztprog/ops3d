@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_15_215841) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_16_212740) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -85,6 +85,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_15_215841) do
   create_table "ops3d_settings", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "free_shipping_threshold_cents", default: 2500, null: false
+    t.boolean "registrations_enabled", default: true, null: false
     t.string "shipping_mode", null: false
     t.integer "shipping_price_cents", default: 0, null: false
     t.datetime "updated_at", null: false
