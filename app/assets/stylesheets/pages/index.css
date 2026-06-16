@@ -1,0 +1,15 @@
+@keyframes promo-error-fade {
+  0% {
+    border-color: rgb(240, 63, 63);
+    background-color: rgb(254 242 242);
+  }
+
+  100% {
+    border-color: rgb(209 213 219);
+    background-color: white;
+  }
+}
+
+.animate-promo-error {
+  animation: promo-error-fade 2.0s ease-out forwards;
+}

@@ -33,7 +33,7 @@ class CartsController < ApplicationController
       @cart.update!(promo_code: promo)
       redirect_to cart_path, notice: "Code promo appliqué."
     else
-      redirect_to cart_path, alert: "Code promo invalide."
+      redirect_to cart_path, alert: "Code promo invalide.", flash: { promo_code_error: true }
     end
   end
 

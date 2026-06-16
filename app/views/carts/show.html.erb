@@ -250,6 +250,8 @@
                   </div>
                 </div>
               <% else %>
+                <% promo_error = flash[:promo_code_error].present? %>
+
                 <%= form_with url: apply_promo_code_cart_path,
                   method: :post,
                   local: true,
@@ -258,7 +260,7 @@
                   <%= text_field_tag :code,
                     nil,
                     placeholder: t('.code'),
-                    class: "block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+                    class: "block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none #{promo_error ? 'animate-promo-error' : ''}" %>
 
                   <%= submit_tag t('.apply'),
                     class: "cursor-pointer rounded-xl bg-gray-900 px-4 py-3 text-sm font-medium text-white hover:bg-gray-700" %>
