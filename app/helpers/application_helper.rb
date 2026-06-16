@@ -14,7 +14,7 @@ module ApplicationHelper
     when "shipped"
       "bg-green-100 text-green-800"
     when "refunded"
-      "bg-red-100 text-gray-800"
+      "bg-orange-100 text-orange-800"
     when "cancelled"
       "bg-red-100 text-red-800"
     else

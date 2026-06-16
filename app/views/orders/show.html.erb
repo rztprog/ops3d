@@ -19,21 +19,21 @@
       </div>
 
     <% when "paid" %>
-      <div class="rounded-2xl border border-green-200 bg-green-50 p-6 mb-8">
-        <h2 class="text-lg font-semibold text-green-800">
+      <div class="rounded-2xl border border-blue-200 bg-blue-50 p-6 mb-8">
+        <h2 class="text-lg font-semibold text-blue-800">
           <%= t('account.orders.show.paid') %>
         </h2>
-        <p class="mt-2 text-sm text-green-700">
+        <p class="mt-2 text-sm text-blue-700">
           <%= t('account.orders.show.paid_text') %>
         </p>
       </div>
 
     <% when "in_preparation" %>
-      <div class="rounded-2xl border border-blue-200 bg-blue-50 p-6 mb-8">
-        <h2 class="text-lg font-semibold text-blue-800">
+      <div class="rounded-2xl border border-lime-200 bg-lime-50 p-6 mb-8">
+        <h2 class="text-lg font-semibold text-lime-800">
           <%= t('account.orders.show.prep') %>
         </h2>
-        <p class="mt-2 text-sm text-blue-700">
+        <p class="mt-2 text-sm text-lime-700">
           <%= t('account.orders.show.prep_text') %>
         </p>
       </div>
@@ -49,11 +49,11 @@
       </div>
 
     <% when "refunded" %>
-      <div class="rounded-2xl border border-gray-200 bg-gray-50 p-6 mb-8">
-        <h2 class="text-lg font-semibold text-gray-800">
+      <div class="rounded-2xl border border-orange-200 bg-orange-50 p-6 mb-8">
+        <h2 class="text-lg font-semibold text-orange-800">
           <%= t('account.orders.show.refunded') %>
         </h2>
-        <p class="mt-2 text-sm text-gray-700">
+        <p class="mt-2 text-sm text-orange-700">
           <%= t('account.orders.show.refunded_text') %>
         </p>
       </div>
@@ -92,6 +92,20 @@
           <h2 class="text-lg font-semibold text-gray-900"><%= t('orders.new.sum') %></h2>
 
           <div class="mt-4 space-y-3 text-sm">
+            <div class="flex items-center justify-between gap-4">
+              <dt class="text-gray-500"><%= t('.status') %></dt>
+              <dd class="rounded-full px-3 py-1 text-xs font-medium <%= order_status_badge_class(@order.status) %>"><%= order_status_label(@order.status) %></dd>
+            </div>
+
+            <% if @order.payment_provider.present? %>
+              <div class="flex items-center justify-between gap-4">
+                <span class="text-gray-500">Mode de paiement</span>
+                <span class="font-medium text-gray-900">
+                  <%= @order.payment_provider == "paypal" ? "PayPal" : "Carte bancaire" %>
+                </span>
+              </div>
+            <% end %>
+
             <div class="flex items-center justify-between">
               <span class="text-gray-600"><%= t('orders.new.subtotal') %></span>
               <span><%= number_to_currency(@order.subtotal_price_cents / 100.0, unit: "€") %></span>

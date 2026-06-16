@@ -142,6 +142,15 @@
             <dd class="rounded-full px-3 py-1 text-xs font-medium <%= order_status_badge_class(@order.status) %>"><%= order_status_label(@order.status) %></dd>
           </div>
 
+          <% if @order.payment_provider.present? %>
+            <div class="flex items-center justify-between gap-4">
+              <span class="text-gray-500">Mode de paiement</span>
+              <span class="font-medium text-gray-900">
+                <%= @order.payment_provider == "paypal" ? "PayPal" : "Carte bancaire" %>
+              </span>
+            </div>
+          <% end %>
+
           <div class="flex items-center justify-between gap-4">
             <dt class="text-gray-500"><%= t('.subtotal') %></dt>
             <dd class="font-medium text-gray-900">
