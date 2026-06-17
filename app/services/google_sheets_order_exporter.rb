@@ -32,6 +32,8 @@ class GoogleSheetsOrderExporter
   def credentials
     json = JSON.parse(ENV.fetch("GOOGLE_SHEETS_PRIVATE_KEY_JSON"))
 
+    json["private_key"] = json["private_key"].gsub("\\n", "\n")
+
     Google::Auth::ServiceAccountCredentials.make_creds(
       json_key_io: StringIO.new(json.to_json),
       scope: Google::Apis::SheetsV4::AUTH_SPREADSHEETS
