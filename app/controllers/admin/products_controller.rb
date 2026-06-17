@@ -12,10 +12,12 @@ module Admin
     def new
       @product = Product.new
       7.times { @product.product_custom_fields.build }
+      3.times { @product.product_quantity_prices.build }
     end
 
     def create
-      @product = Product.new(product_params.except(:price_euros))
+      attrs = normalize_quantity_prices_attributes(product_params.except(:price_euros))
+      @product = Product.new(attrs)
       @product.price_cents = euros_to_cents(product_params[:price_euros])
 
       if @product.save
@@ -27,10 +29,14 @@ module Admin
 
     def edit
       (7 - @product.product_custom_fields.size).times { @product.product_custom_fields.build }
+
+      (3 - @product.product_quantity_prices.size).times do
+        @product.product_quantity_prices.build
+      end
     end
 
     def update
-      attrs = product_params.except(:price_euros, :images)
+      attrs = normalize_quantity_prices_attributes(product_params.except(:price_euros))
       attrs[:price_cents] = euros_to_cents(product_params[:price_euros])
 
       if @product.update(attrs)
@@ -65,6 +71,20 @@ module Admin
       @product = Product.find(params[:id])
     end
 
+    def normalize_quantity_prices_attributes(attrs)
+      return attrs unless attrs[:product_quantity_prices_attributes].present?
+
+      attrs[:product_quantity_prices_attributes].each do |_index, tier_attrs|
+        unit_price_euros = tier_attrs.delete(:unit_price_euros)
+
+        next if unit_price_euros.blank?
+
+        tier_attrs[:unit_price_cents] = euros_to_cents(unit_price_euros)
+      end
+
+      attrs
+    end
+
     def product_params
     params.require(:product).permit(
       :name,
@@ -76,6 +96,13 @@ module Admin
       :fulfillment_mode,
       :stock_quantity,
       images: [],
+        product_quantity_prices_attributes: [
+        :id,
+        :min_quantity,
+        :unit_price_cents,
+        :unit_price_euros,
+        :_destroy
+      ],
       product_custom_fields_attributes: [
         :id,
         :label,

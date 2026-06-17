@@ -94,6 +94,50 @@
         </div>
       </div>
 
+      <%# Prix degressif %>
+      <div class="md:col-span-2 rounded-2xl border border-gray-200 bg-gray-50 p-5">
+        <h2 class="text-lg font-semibold text-gray-900">
+          Prix dégressifs
+        </h2>
+
+        <p class="mt-1 text-sm text-gray-500">
+          Ajoute un prix unitaire réduit à partir d'une quantité donnée.
+        </p>
+
+        <div class="mt-5 space-y-4">
+          <%= f.fields_for :product_quantity_prices do |price_form| %>
+            <div class="grid grid-cols-1 gap-4 rounded-xl border border-gray-200 bg-white p-4 md:grid-cols-3">
+              <%= price_form.hidden_field :id %>
+
+              <div>
+                <%= price_form.label :min_quantity, "À partir de", class: "block text-sm font-medium text-gray-700" %>
+                <%= price_form.number_field :min_quantity,
+                  min: 2,
+                  placeholder: "5",
+                  class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+              </div>
+
+              <div>
+                <%= price_form.label :unit_price_cents, "Prix unitaire (€)", class: "block text-sm font-medium text-gray-700" %>
+                <%= price_form.text_field :unit_price_euros,
+                  value: price_form.object.unit_price_cents.present? ? number_with_precision(price_form.object.unit_price_cents / 100.0, precision: 2) : nil,
+                  name: "#{price_form.object_name}[unit_price_euros]",
+                  placeholder: "2.40",
+                  class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
+              </div>
+
+              <% if price_form.object.persisted? %>
+                <label class="mt-8 flex items-center gap-2 text-sm text-red-600">
+                  <%= price_form.check_box :_destroy,
+                    class: "rounded border-gray-300 text-red-600 focus:ring-red-600" %>
+                  Supprimer
+                </label>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
       <div class="md:col-span-2">
         <%= f.label :description, "Description", class: "block text-sm font-medium text-gray-700" %>
         <%= f.text_area :description, rows: 6, class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>

@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
     # Rails.logger.info "[IP DEBUG] remote_ip=#{request.remote_ip} ip=#{request.ip} xff=#{request.headers['X-Forwarded-For']}"
   end
 
+
   def show
     @product = Product
       .includes(:category, images_attachments: :blob)
