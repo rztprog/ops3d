@@ -21,9 +21,12 @@
   </div>
 </div>
 
+<div class="mb-6">
+  <%= link_to "← Retour aux commandes", admin_orders_path, class: "text-sm font-medium text-gray-600 hover:text-gray-900 hover:underline" %>
+</div>
+
 <div class="grid grid-cols-1 gap-8 xl:grid-cols-3">
   <div class="xl:col-span-2 space-y-8">
-
     <% if @order.status == "refunded" %>
       <div class="rounded-xl border border-red-200 bg-red-50 p-4">
         <dd class="mt-2 text-sm text-red-700">
