@@ -147,10 +147,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_17_144729) do
 
   create_table "product_quantity_prices", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "min_quantity"
+    t.integer "min_quantity", null: false
     t.bigint "product_id", null: false
-    t.integer "unit_price_cents"
+    t.integer "unit_price_cents", null: false
     t.datetime "updated_at", null: false
+    t.index ["product_id", "min_quantity"], name: "index_product_quantity_prices_on_product_id_and_min_quantity", unique: true
     t.index ["product_id"], name: "index_product_quantity_prices_on_product_id"
   end
 
