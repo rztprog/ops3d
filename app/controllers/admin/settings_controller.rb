@@ -31,17 +31,23 @@ module Admin
         :registrations_enabled
       )
 
+      attrs = {
+        registrations_enabled: permitted[:registrations_enabled]
+      }
+
       if permitted[:shipping_mode] == "free"
-        {
+        attrs.merge!(
           shipping_mode: "free",
           shipping_price_cents: 0
-        }
+        )
       else
-        {
+        attrs.merge!(
           shipping_mode: "flat_rate",
           shipping_price_cents: euros_to_cents(permitted[:shipping_price_euros])
-        }
+        )
       end
+
+      attrs
     end
 
     def euros_to_cents(value)
