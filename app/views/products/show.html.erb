@@ -99,9 +99,34 @@
         <%= @product.name %>
       </h1>
 
-      <p class="mt-4 text-3xl font-bold text-gray-900">
+      <p class="mt-4 text-3xl font-black text-gray-900">
         <%= number_to_currency(@product.price_cents / 100.0, unit: "€") %>
       </p>
+
+      <% if @product.product_quantity_prices.any? %>
+        <div class="mt-4 rounded-xl border border-green-200 bg-green-50 p-4">
+          <p class="text-sm font-semibold text-green-900">
+            Prix dégressifs
+          </p>
+
+          <div class="mt-2 space-y-1 text-sm text-green-800">
+            <% @product.product_quantity_prices.order(:min_quantity).each do |tier| %>
+              <div class="flex items-center justify-between">
+                <span>
+                  <%= tier.min_quantity %>+ exemplaires
+                </span>
+
+                <span class="font-semibold">
+                  <%= number_to_currency(
+                    tier.unit_price_cents / 100.0,
+                    unit: "€"
+                  ) %> / unité
+                </span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
 
       <div class="mt-6 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
         <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500">
