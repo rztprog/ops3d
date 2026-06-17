@@ -9,7 +9,7 @@ class Cart < ApplicationRecord
 
   def subtotal_cents
     cart_items.includes(:product).sum do |item|
-      item.quantity * item.product.price_cents
+      item.quantity * item.product.unit_price_cents_for(item.quantity)
     end
   end
 

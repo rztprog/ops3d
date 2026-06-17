@@ -72,7 +72,7 @@ class OrdersController < ApplicationController
           product: item.product,
           product_name: item.product.name,
           quantity: item.quantity,
-          unit_price_cents: item.product.price_cents,
+          unit_price_cents: item.product.unit_price_cents_for(item.quantity),
           customizations: customizations
         )
       end
@@ -207,7 +207,9 @@ class OrdersController < ApplicationController
   end
 
   def cart_subtotal_cents(cart_items)
-    cart_items.sum { |item| item.quantity * item.product.price_cents }
+    cart_items.sum do |item|
+      item.quantity * item.product.unit_price_cents_for(item.quantity)
+    end
   end
 
   def current_shipping_mode
