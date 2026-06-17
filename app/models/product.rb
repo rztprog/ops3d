@@ -5,6 +5,11 @@ class Product < ApplicationRecord
   has_many_attached :images
   has_many :order_items, dependent: :nullify
 
+  has_many :product_quantity_prices, dependent: :destroy
+  accepts_nested_attributes_for :product_quantity_prices,
+  allow_destroy: true,
+  reject_if: ->(attrs) { attrs["min_quantity"].blank? || attrs["unit_price_cents"].blank? }
+
   validates :name, presence: true
   validates :price_cents, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :published, inclusion: { in: [ true, false ] }

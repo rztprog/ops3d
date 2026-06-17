@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_16_212740) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_17_144729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -145,6 +145,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_212740) do
     t.index ["product_id"], name: "index_product_custom_fields_on_product_id"
   end
 
+  create_table "product_quantity_prices", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "min_quantity"
+    t.bigint "product_id", null: false
+    t.integer "unit_price_cents"
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_quantity_prices_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.boolean "available", default: true, null: false
     t.bigint "category_id", null: false
@@ -200,5 +209,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_212740) do
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "product_custom_fields", "products"
+  add_foreign_key "product_quantity_prices", "products"
   add_foreign_key "products", "categories"
 end
