@@ -36,13 +36,14 @@ module Admin
     end
 
     def update
-      attrs = normalize_quantity_prices_attributes(product_params.except(:price_euros))
-      attrs[:price_cents] = euros_to_cents(product_params[:price_euros])
+      params = product_params
+
+      attrs = params.except(:price_euros, :images)
+      attrs = normalize_quantity_prices_attributes(attrs)
+      attrs[:price_cents] = euros_to_cents(params[:price_euros])
 
       if @product.update(attrs)
-        if product_params[:images].present?
-          @product.images.attach(product_params[:images])
-        end
+        @product.images.attach(params[:images]) if params[:images].present?
 
         redirect_to admin_products_path, notice: "Produit mis à jour avec succès."
       else
@@ -72,9 +73,10 @@ module Admin
     end
 
     def normalize_quantity_prices_attributes(attrs)
-      return attrs unless attrs[:product_quantity_prices_attributes].present?
+      quantity_prices = attrs[:product_quantity_prices_attributes]
+      return attrs if quantity_prices.blank?
 
-      attrs[:product_quantity_prices_attributes].each do |_index, tier_attrs|
+      quantity_prices.each do |_index, tier_attrs|
         unit_price_euros = tier_attrs.delete(:unit_price_euros)
 
         next if unit_price_euros.blank?
@@ -86,33 +88,33 @@ module Admin
     end
 
     def product_params
-    params.require(:product).permit(
-      :name,
-      :description,
-      :price_euros,
-      :category_id,
-      :published,
-      :available,
-      :fulfillment_mode,
-      :stock_quantity,
-      images: [],
-      product_quantity_prices_attributes: [
-        :id,
-        :min_quantity,
-        :unit_price_cents,
-        :unit_price_euros,
-        :_destroy
-      ],
-      product_custom_fields_attributes: [
-        :id,
-        :label,
-        :field_type,
-        :required,
-        :position,
-        :placeholder,
-        :_destroy
-      ]
-    )
+      params.require(:product).permit(
+        :name,
+        :description,
+        :price_euros,
+        :category_id,
+        :published,
+        :available,
+        :fulfillment_mode,
+        :stock_quantity,
+        images: [],
+        product_quantity_prices_attributes: [
+          :id,
+          :min_quantity,
+          :unit_price_cents,
+          :unit_price_euros,
+          :_destroy
+        ],
+        product_custom_fields_attributes: [
+          :id,
+          :label,
+          :field_type,
+          :required,
+          :position,
+          :placeholder,
+          :_destroy
+        ]
+      )
     end
 
     def euros_to_cents(value)
