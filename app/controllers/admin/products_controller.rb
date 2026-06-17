@@ -96,7 +96,7 @@ module Admin
       :fulfillment_mode,
       :stock_quantity,
       images: [],
-        product_quantity_prices_attributes: [
+      product_quantity_prices_attributes: [
         :id,
         :min_quantity,
         :unit_price_cents,
