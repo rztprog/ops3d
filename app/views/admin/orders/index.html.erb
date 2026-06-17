@@ -28,13 +28,17 @@
           <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Statut</th>
           <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Paiement</th>
           <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Date</th>
-          <th class="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">Actions</th>
         </tr>
       </thead>
 
       <tbody class="divide-y divide-gray-200 bg-white">
         <% @orders.each do |order| %>
-          <tr class="hover:bg-gray-50">
+          <tr
+            class="cursor-pointer hover:bg-gray-50"
+            data-controller="row-link"
+            data-row-link-url-value="<%= admin_order_path(order) %>"
+            data-action="click->row-link#go"
+          >
             <td class="px-6 py-4">
               <p class="font-medium text-gray-900">Commande #<%= order.id %></p>
               <p class="text-sm text-gray-500">
@@ -75,12 +79,6 @@
 
             <td class="px-6 py-4 text-sm text-gray-600">
               <%= l(order.created_at, format: :short) %>
-            </td>
-
-            <td class="px-6 py-4 text-right">
-              <%= link_to "Voir",
-                admin_order_path(order),
-                class: "text-sm font-medium text-indigo-600 hover:text-indigo-800" %>
             </td>
           </tr>
         <% end %>
