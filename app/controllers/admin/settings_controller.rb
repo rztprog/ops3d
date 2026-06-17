@@ -3,8 +3,22 @@ module Admin
     before_action :set_settings
 
     def edit
+      valid_promo_statuses = %w[paid in_preparation shipped
+      ]
       @promo_codes = PromoCode.order(created_at: :desc)
       @promo_code = PromoCode.new
+
+      @promo_usage_counts = Order
+        .where(status: valid_promo_statuses)
+        .where.not(promo_code: [ nil, "" ])
+        .group(:promo_code)
+        .count
+
+      @promo_orders_by_code = Order
+        .where(status: valid_promo_statuses)
+        .where.not(promo_code: [ nil, "" ])
+        .order(created_at: :desc)
+        .group_by(&:promo_code)
     end
 
     def update
