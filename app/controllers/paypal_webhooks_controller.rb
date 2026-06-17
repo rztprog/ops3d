@@ -54,6 +54,7 @@ class PaypalWebhooksController < ApplicationController
     if should_send_emails
       OrderMailer.with(order: order).paid_confirmation.deliver_later
       OrderMailer.with(order: order).admin_paid_notification.deliver_later
+      ExportOrderToGoogleSheetsJob.perform_later(order.id)
     end
   end
 end
