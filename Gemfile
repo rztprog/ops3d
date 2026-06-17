@@ -40,14 +40,6 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 2.0"
 
-# Style
-gem "autoprefixer-rails"
-gem "tailwindcss-rails"
-gem "devise"
-gem "cloudinary"
-gem "activestorage-cloudinary-service"
-gem "stripe"
-
 group :development, :test do
   gem "dotenv-rails"
   gem "faker"
@@ -78,9 +70,18 @@ group :test do
   gem "selenium-webdriver"
 end
 
+# OPS3D Production
+gem "autoprefixer-rails"
+gem "tailwindcss-rails"
+gem "devise"
+gem "cloudinary"
+gem "activestorage-cloudinary-service"
+gem "stripe"
 gem "sentry-ruby", "~> 6.5"
 gem "sentry-rails", "~> 6.5"
 gem "rack-attack"
 gem "sitemap_generator"
 gem "commonmarker"
 gem "httparty"
+gem "google-apis-sheets_v4"
+gem "googleauth"
