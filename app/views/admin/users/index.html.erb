@@ -8,7 +8,7 @@
   </div>
 
   <p class="text-sm font-medium text-gray-500">
-    <%= pluralize(@users.count, "utilisateur", plural: "utilisateurs") %>
+    <%= pluralize(@customers.count, "client", plural: "clients") %>  
   </p>
 </div>
 
@@ -21,13 +21,19 @@
         <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Rôle</th>
         <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Commandes</th>
         <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Date d'inscription</th>
-        <th class="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">Action</th>
       </tr>
     </thead>
 
     <tbody class="divide-y divide-gray-200 bg-white">
-      <% @users.each do |user| %>
-        <tr class="hover:bg-gray-50">
+      <% @customers.each do |user| %>
+
+        <% path = user.path %>
+        <tr
+          class="cursor-pointer hover:bg-gray-50"
+          data-controller="row-link"
+          data-row-link-url-value="<%= path %>"
+          data-action="click->row-link#go"
+        >
           <td class="px-6 py-4">
             <p class="font-medium text-gray-900">
               <%= [user.first_name, user.last_name].compact_blank.join(" ").presence || "Pas de nom renseigné" %>
@@ -36,25 +42,27 @@
           </td>
 
           <td class="px-6 py-4">
-            <% if user.admin? %>
-              <span class="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800">Admin</span>
+            <% if user.guest? %>
+              <span class="rounded-full bg-orange-100 px-3 py-1 text-xs font-medium text-amber-800">
+                Invité
+              </span>
+            <% elsif user.admin? %>
+              <span class="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800">
+                Admin
+              </span>
             <% else %>
-              <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">Client</span>
+              <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                Client
+              </span>
             <% end %>
           </td>
 
           <td class="px-6 py-4 text-sm text-gray-700">
-            <%= user.orders.size %>
+            <%= user.orders_count %>
           </td>
 
           <td class="px-6 py-4 text-sm text-gray-600">
             <%= l(user.created_at, format: :short) %>
-          </td>
-
-          <td class="px-6 py-4 text-right">
-            <%= link_to "Voir",
-              admin_user_path(user),
-              class: "text-sm font-medium text-indigo-600 hover:text-indigo-800" %>
           </td>
         </tr>
       <% end %>
@@ -64,8 +72,8 @@
 
 <!-- MOBILE CARDS -->
 <div class="space-y-4 lg:hidden">
-  <% @users.each do |user| %>
-    <%= link_to admin_user_path(user),
+  <% @customers.each do |user| %>
+    <%= link_to user.guest? ? user.path : admin_user_path(user),
       class: "block rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition hover:bg-gray-50" do %>
 
       <div class="flex items-start justify-between gap-4">
@@ -94,7 +102,7 @@
         <div>
           <p class="text-xs uppercase tracking-wide text-gray-400">Commandes</p>
           <p class="mt-1 text-lg font-semibold text-gray-900">
-            <%= user.orders.size %>
+            <%= user.orders_count %>
           </p>
         </div>
 
@@ -104,19 +112,6 @@
             <%= l(user.created_at, format: :short) %>
           </p>
         </div>
-      </div>
-
-      <div class="mt-4 flex items-center justify-end text-gray-400">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
-          class="w-3 h-3 text-gray-600 fill-current"
-        >
-          <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
-            <path d="M1282 4768 l-352 -353 927 -927 928 -928 -928 -928 -927 -927 353
-              -353 352 -352 1280 1280 1280 1280 -1280 1280 -1280 1280 -353 -352z"/>
-          </g>
-        </svg>
       </div>
 
     <% end %>
