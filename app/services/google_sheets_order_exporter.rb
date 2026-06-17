@@ -2,7 +2,7 @@ require "google/apis/sheets_v4"
 require "googleauth"
 
 class GoogleSheetsOrderExporter
-  RANGE = "Commandes!A:H"
+  RANGE = "Horodateur!A:N"
 
   def initialize(order)
     @order = order
