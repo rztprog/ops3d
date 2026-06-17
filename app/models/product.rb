@@ -48,11 +48,17 @@ class Product < ApplicationRecord
   end
 
   def unit_price_cents_for(quantity)
+    quantity = quantity.to_i
+
     tier = product_quantity_prices
       .where("min_quantity <= ?", quantity)
       .order(min_quantity: :desc)
       .first
 
     tier&.unit_price_cents || price_cents
+  end
+
+  def has_quantity_prices?
+    product_quantity_prices.any?
   end
 end
