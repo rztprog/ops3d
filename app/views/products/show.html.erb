@@ -1,6 +1,6 @@
 <% content_for :title, "#{@product.name} - Impression 3D | OPS3D" %>
 <% content_for :description,
-  truncate(@product.description.to_s, length: 150) %>
+  truncate(@product.description.to_s.gsub(/[#*_`>\-\[\]\(\)]/, ""), length: 125) %>
 <% content_for :og_image do %>
   <%= cl_image_path(@product.images.first.key, width: 1200, height: 630, crop: :fill, quality: "auto:eco", fetch_format: "jpg") if @product.images.attached? %>
 <% end %>
@@ -25,7 +25,6 @@
 
     <% end %>
   </nav>
-
   <div class="mb-6">
     <%= link_to t(".back"), products_path, class: "text-sm font-medium text-gray-600 hover:text-gray-900 hover:underline" %>
   </div>
