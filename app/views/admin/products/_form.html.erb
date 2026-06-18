@@ -21,10 +21,11 @@
       </div>
 
       <%# Wrapper  %>
-      <div class="md:col-span-2 grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div class="md:col-span-2 grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
+
         <%# Champs personnalisés %>
         <% custom_fields_count = @product.product_custom_fields.reject(&:new_record?).count %>
-        <div class="rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-sm" data-controller="toggle-fields">          
+        <div class="self-start min-h-[120px] rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-sm" data-controller="toggle-section">          
           <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 class="text-lg font-semibold text-gray-900">Champs personnalisés</h2>
@@ -35,8 +36,8 @@
 
             <button
               type="button"
-              data-action="click->toggle-fields#toggle"
-              class="relative cursor-pointer gap-2 inline-flex w-full items-center justify-center rounded-xl border border-gray-300 px-4 py-3 text-sm font-medium text-gray-700 bg-[color:var(--dark)] text-white hover:bg-[color:var(--light)] sm:w-auto">
+              data-action="click->toggle-section#toggle"
+              class="min-h-[70px] relative cursor-pointer gap-2 inline-flex w-full items-center justify-center rounded-xl border border-gray-300 px-4 py-3 text-sm font-medium text-gray-700 bg-[color:var(--dark)] text-white hover:bg-[color:var(--light)] sm:w-auto">
               <span>Configurer les champs</span>
 
               <% if custom_fields_count.positive? %>
@@ -47,7 +48,7 @@
             </button>
           </div>
 
-          <div data-toggle-fields-target="content" class="mt-6 space-y-5 <%= @product.product_custom_fields.reject(&:new_record?).any? ? '' : 'hidden' %>">
+          <div data-toggle-section-target="content" class="mt-6 space-y-5 hidden">
             <%= f.fields_for :product_custom_fields do |field_form| %>
               <div class="rounded-xl border border-gray-200 bg-gray-50 p-4">
                 <%= field_form.hidden_field :id %>
@@ -105,7 +106,7 @@
 
         <%# Prix degressif %>
         <% quantity_prices_count = @product.product_quantity_prices.reject(&:new_record?).count %>
-        <div class="rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-sm" data-controller="toggle-fields">
+        <div class="self-start min-h-[120px] rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-sm" data-controller="toggle-section">
           <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 class="text-lg font-semibold text-gray-900">
@@ -119,8 +120,8 @@
 
             <button
               type="button"
-              data-action="click->toggle-fields#toggle"
-              class="relative cursor-pointer inline-flex w-full items-center justify-center gap-2 rounded-xl border border-gray-300 bg-[color:var(--dark)] px-4 py-3 text-sm font-medium text-white hover:bg-[color:var(--light)] sm:w-auto">
+              data-action="click->toggle-section#toggle"
+              class="min-h-[70px] relative cursor-pointer inline-flex w-full items-center justify-center gap-2 rounded-xl border border-gray-300 bg-[color:var(--dark)] px-4 py-3 text-sm font-medium text-white hover:bg-[color:var(--light)] sm:w-auto">
               <span>Configurer les prix</span>
 
               <% if quantity_prices_count.positive? %>
@@ -131,7 +132,7 @@
             </button>
           </div>
 
-          <div data-toggle-fields-target="content" class="mt-6 space-y-4 <%= quantity_prices_count.positive? ? '' : 'hidden' %>">
+          <div data-toggle-section-target="content" class="mt-6 space-y-5 hidden">
             <%= f.fields_for :product_quantity_prices do |price_form| %>
               <div class="grid grid-cols-1 gap-4 rounded-xl border border-gray-200 bg-white p-4 md:grid-cols-3">
                 <%= price_form.hidden_field :id %>
