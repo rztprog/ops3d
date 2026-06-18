@@ -2,7 +2,7 @@ require "google/apis/sheets_v4"
 require "googleauth"
 
 class GoogleSheetsOrderExporter
-  RANGE = "Horodateur!A:N"
+  RANGE = "Réponses au formulaire 1!A:K"
 
   def initialize(order)
     @order = order
@@ -49,9 +49,9 @@ class GoogleSheetsOrderExporter
       values: [
         [
           I18n.l(order.created_at, format: :short),
-          order.id,
-          "#{order.first_name} #{order.last_name}",
           order.email,
+          order.first_name,
+          order.last_name,
           order.order_items.map { |item| "#{item.product_name} x#{item.quantity}" }.join(", "),
           order.payment_provider,
           order.status,
