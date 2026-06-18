@@ -51,7 +51,7 @@ class GoogleSheetsOrderExporter
     Google::Apis::SheetsV4::ValueRange.new(
       values: [
         [
-          "OPS3D - #{I18n.l(order.created_at, format: :short)}",
+          "(OPS3D) #{I18n.l(order.created_at, format: :short)}",
           order.email,
           order.first_name,
           order.last_name,
