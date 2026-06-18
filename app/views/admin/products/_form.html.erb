@@ -26,7 +26,7 @@
 
         <%# Champs personnalisés %>
         <% custom_fields_count = @product.product_custom_fields.reject(&:new_record?).count %>
-        <div class="self-start min-h-[120px] rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-sm" data-controller="toggle-section">          
+        <div class="self-start min-h-[120px] rounded-2xl border border-gray-700 bg-gray-200 p-6 shadow-sm" data-controller="toggle-section">          
           <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 class="text-lg font-semibold text-gray-900">Champs personnalisés</h2>
@@ -107,7 +107,7 @@
 
         <%# Prix degressif %>
         <% quantity_prices_count = @product.product_quantity_prices.reject(&:new_record?).count %>
-        <div class="self-start min-h-[120px] rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-sm" data-controller="toggle-section">
+        <div class="self-start min-h-[120px] rounded-2xl border border-gray-700 bg-gray-200 p-6 shadow-sm" data-controller="toggle-section">
           <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 class="text-lg font-semibold text-gray-900">
