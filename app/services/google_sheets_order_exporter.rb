@@ -55,7 +55,7 @@ class GoogleSheetsOrderExporter
           order.email,
           order.first_name,
           order.last_name,
-          customizations["Votre numéro RIO à 7 chiffres "], 
+          customizations["Votre numéro RIO à 7 chiffres"], 
           customizations["Nombre d'exemplaires RIO souhaités"], 
           customizations["Numéro de téléphone"], 
           customizations["Service / Unité"],
