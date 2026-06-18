@@ -55,16 +55,16 @@ class GoogleSheetsOrderExporter
           order.email,
           order.first_name,
           order.last_name,
-          customizations["Votre numéro RIO à 7 chiffres"], 
-          customizations["Nombre d'exemplaires RIO souhaités"], 
-          customizations["Numéro de téléphone"], 
+          customizations["Votre numéro RIO à 7 chiffres"],
+          customizations["Nombre d'exemplaires RIO souhaités"],
+          customizations["Numéro de téléphone"],
           customizations["Service / Unité"],
-          if order.payment_provider? 
+          if order.payment_provider?
             order.payment_provider == "paypal" ? "Oui (Paypal)" : "Oui (Stripe)"
-          else 
+          else
             "Non"
           end,
-          customizations['Commentaire ou demande spécifique'] ? customizations['Commentaire ou demande spécifique'] : "",
+          customizations["Commentaire ou demande spécifique"] ? customizations["Commentaire ou demande spécifique"] : "",
           "",
           customizations["Nigend"],
           "#{order.address_line} #{order.address_line2 ? order.address_line2 : ""}, #{order.city} #{order.postal_code}",
