@@ -45,7 +45,7 @@
     </div>
 
   <% when "shipped" %>
-    <div class="rounded-2xl border border-green-300 bg-green-50 p-6 mb-8">
+    <div class="rounded-2xl border border-green-300 bg-green-50 p-6 mb-4">
       <h2 class="text-lg font-semibold text-green-800">
         <%= t('.shipped') %>
       </h2>
@@ -54,6 +54,19 @@
       </p>
     </div>
 
+  <% if @order.tracking_number.present? %>
+    <div class="flex rounded-xl border border-green-300 bg-green-50 p-4 mb-4">
+      <p class="font-semibold text-green-900">
+        Numéro de suivi :
+      </p>
+
+      <%= link_to @order.tracking_number,
+        "https://www.laposte.fr/outils/suivre-vos-envois?code=#{@order.tracking_number}",
+        target: "_blank",
+        class: "ml-2 text-green-700 underline" %>
+    </div>
+  <% end %>
+  
   <% when "refunded" %>
     <div class="rounded-2xl border border-orange-200 bg-orange-50 p-6 mb-8">
       <h2 class="text-lg font-semibold text-orange-800">

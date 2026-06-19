@@ -12,6 +12,15 @@ module Admin
     def update
       attrs = order_params.to_h
 
+      if order_params[:status] == "shipped" &&
+        @order.tracking_number.blank? &&
+        order_params[:tracking_number].blank?
+
+        redirect_to admin_order_path(@order),
+          alert: "Ajoute un numéro de suivi avant de marquer la commande comme expédiée."
+        return
+      end
+
       if attrs[:status] == "refunded" && @order.refunded_at.blank?
         attrs[:refunded_at] = Time.current
       end
