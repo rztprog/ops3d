@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_17_221946) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_19_152244) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -122,6 +122,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_17_221946) do
     t.string "promo_code"
     t.text "refund_reason"
     t.datetime "refunded_at"
+    t.datetime "shipped_at"
     t.string "shipping_mode", null: false
     t.integer "shipping_price_cents", null: false
     t.string "status", null: false
@@ -129,6 +130,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_17_221946) do
     t.string "stripe_payment_intent_id"
     t.integer "subtotal_price_cents", null: false
     t.integer "total_price_cents", null: false
+    t.string "tracking_number"
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
