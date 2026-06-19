@@ -17,6 +17,9 @@ module Admin
       end
 
       if @order.update(attrs)
+        if @order.status == "shipped" && @order.shipped_at.blank?
+          @order.update_column(:shipped_at, Time.current)
+        end
         redirect_to admin_order_path(@order), notice: "Statut de la commande mis à jour."
       else
         redirect_to admin_order_path(@order), alert: "Impossible de mettre à jour la commande."
@@ -30,7 +33,7 @@ module Admin
     end
 
     def order_params
-      params.require(:order).permit(:status, :refund_reason)
+      params.require(:order).permit(:status, :refund_reason, :tracking_number)
     end
   end
 end
