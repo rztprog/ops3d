@@ -22,4 +22,22 @@ class OrderMailer < ApplicationMailer
       subject: "OPS3D - Nouvelle commande payée ##{@order.id}"
     )
   end
+
+  def in_preparation
+    @order = params[:order]
+
+    mail(
+      to: @order.email,
+      subject: "Votre commande OPS3D est en préparation"
+    )
+  end
+
+  def shipped
+    @order = params[:order]
+
+    mail(
+      to: @order.email,
+      subject: "Votre commande OPS3D a été expédiée"
+    )
+  end
 end
