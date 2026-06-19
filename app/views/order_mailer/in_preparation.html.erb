@@ -1,0 +1,62 @@
+<div style="margin:0;padding:40px 20px;background:#f5f5f5;font-family:Arial,sans-serif;color:#111827;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center">
+        <table
+          role="presentation"
+          width="100%"
+          cellspacing="0"
+          cellpadding="0"
+          style="max-width:640px;background:#ffffff;border-radius:24px;overflow:hidden;border:1px solid #e5e7eb;"
+        >
+          <tr>
+            <td style="padding:32px 40px;background:#1F3046;color:#ffffff;">
+              <h1 style="margin:0;font-size:28px;font-weight:700;">
+                OPS3D
+              </h1>
+
+              <p style="margin:12px 0 0;font-size:15px;line-height:1.6;color:#d1d5db;">
+                Commande en préparation
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:40px;">
+              <p style="margin:0 0 24px;font-size:16px;line-height:1.7;">
+                Bonjour <strong><%= @order.first_name %></strong>,
+              </p>
+
+              <p style="margin:0 0 24px;font-size:16px;line-height:1.7;color:#374151;">
+                Nous avons bien reçu ta commande
+                <strong>#<%= @order.id %></strong>
+                et celle-ci est actuellement en cours de préparation.
+              </p>
+
+              <div
+                style="padding:24px;background:#f9fafb;border-radius:16px;border:1px solid #e5e7eb;"
+              >
+                <p style="margin:0;font-size:15px;line-height:1.8;color:#4b5563;">
+                  Notre équipe prépare actuellement ta commande avant son expédition.
+                  Tu recevras un nouvel email dès qu'elle sera remise au transporteur.
+                </p>
+              </div>
+
+              <p style="margin:32px 0 0;font-size:14px;line-height:1.7;color:#6b7280;">
+                Merci pour ta confiance.
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td
+              style="padding:24px 40px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center;"
+            >
+              © OPS3D 2026 — L'exigence terrain appliquée à l'impression 3D
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,17 @@
+Commande expédiée
+
+Bonjour <%= @order.first_name %>,
+
+Ta commande #<%= @order.id %> a été expédiée.
+
+<% if @order.tracking_number.present? %>
+Numéro de suivi :
+<%= @order.tracking_number %>
+
+Suivi :
+https://www.laposte.fr/outils/suivre-vos-envois?code=<%= @order.tracking_number %>
+<% end %>
+
+Merci pour ta confiance.
+
+OPS3D
