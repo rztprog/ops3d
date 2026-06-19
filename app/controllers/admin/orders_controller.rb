@@ -25,9 +25,19 @@ module Admin
         attrs[:refunded_at] = Time.current
       end
 
+      previous_status = @order.status
+
       if @order.update(attrs)
         if @order.status == "shipped" && @order.shipped_at.blank?
           @order.update_column(:shipped_at, Time.current)
+        end
+
+        if previous_status != @order.status
+          if @order.status == "in_preparation"
+            OrderMailer.with(order: @order).in_preparation.deliver_later
+          elsif @order.status == "shipped"
+            OrderMailer.with(order: @order).shipped.deliver_later
+          end
         end
         redirect_to admin_order_path(@order), notice: "Statut de la commande mis à jour."
       else
