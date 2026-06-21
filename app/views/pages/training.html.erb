@@ -1,4 +1,10 @@
+<% breadcrumbs = [
+  breadcrumb_home,
+  breadcrumb_item("Formation 3D", training_url(locale: I18n.locale))
+] %>
+
 <div class="mx-auto max-w-5xl py-10">
+  <%= render "shared/breadcrumbs", items: breadcrumbs %>
   <div class="text-center">
     <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">
       Formation & Cours d'impression 3D
@@ -75,3 +81,9 @@
       class: "mt-6 inline-flex rounded-xl bg-white px-6 py-3 font-semibold text-[color:var(--dark)] hover:bg-gray-100" %>
   </div>
 </div>
+
+<% content_for :head do %>
+  <script type="application/ld+json" nonce="<%= content_security_policy_nonce %>">
+    <%= json_escape(breadcrumbs_json_ld(breadcrumbs).to_json).html_safe %>
+  </script>
+<% end %>

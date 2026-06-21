@@ -1,7 +1,13 @@
 <% content_for :title, "Catalogue impression 3D personnalisée - OPS3D" %>
 <% content_for :description,
   "Découvrez notre catalogue d'objets personnalisés en impression 3D. Produits sur mesure, qualité professionnelle et fabrication précise." %>
+<% breadcrumbs = [
+  breadcrumb_home,
+  breadcrumb_item("Produits", products_url(locale: I18n.locale))
+] %>
+
 <div class="py-10">
+  <%= render "shared/breadcrumbs", items: breadcrumbs %>
   <div class="mb-8 flex items-end justify-between gap-4">
     <div>
       <h1 class="text-3xl font-bold text-gray-900"><%= t(".title") %></h1>

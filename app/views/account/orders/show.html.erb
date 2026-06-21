@@ -1,4 +1,11 @@
+<% breadcrumbs = [
+  breadcrumb_home,
+  breadcrumb_item("Mon compte", account_url(locale: I18n.locale)),
+  breadcrumb_item("Mes commandes", account_orders_url(locale: I18n.locale)),
+  breadcrumb_item("Commande ##{@order.id}")
+] %>
 <div class="mx-auto container py-10">
+  <%= render "shared/breadcrumbs", items: breadcrumbs %>
   <div class="mb-8 flex flex-col gap-4">
     <div>
       <h1 class="text-3xl font-bold text-gray-900"><%= t('.title') %> #<%= @order.id %></h1>
@@ -271,3 +278,9 @@
     </div>
   </div>
 </div>
+
+<% content_for :head do %>
+  <script type="application/ld+json" nonce="<%= content_security_policy_nonce %>">
+    <%= json_escape(breadcrumbs_json_ld(breadcrumbs).to_json).html_safe %>
+  </script>
+<% end %>

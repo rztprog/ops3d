@@ -1,0 +1,17 @@
+<nav aria-label="Fil d'Ariane" class="mb-6 text-sm text-gray-500">
+  <% items.each_with_index do |item, index| %>
+    <% unless index.zero? %>
+      <span class="mx-2">></span>
+    <% end %>
+
+    <% if index == items.size - 1 || item[:url].blank? %>
+      <span class="font-medium text-gray-900">
+        <%= item[:name] %>
+      </span>
+    <% else %>
+      <%= link_to item[:name],
+        item[:url],
+        class: "hover:text-gray-900 hover:underline" %>
+    <% end %>
+  <% end %>
+</nav>

@@ -5,26 +5,14 @@
   <%= cl_image_path(@product.images.first.key, width: 1200, height: 630, crop: :fill, quality: "auto:eco", fetch_format: "jpg") if @product.images.attached? %>
 <% end %>
 
+<% breadcrumbs = [
+  breadcrumb_home,
+  breadcrumb_item("Produits", products_url(locale: I18n.locale)),
+  breadcrumb_item(@product.name, product_url(@product, locale: I18n.locale))
+] %>
+
 <div class="py-10">
-  <nav class="mb-6 text-sm text-gray-500">
-    <% breadcrumbs_for(@product).each_with_index do |item, index| %>
-
-      <% unless index.zero? %>
-        <span class="mx-2"> > </span>
-      <% end %>
-
-      <% if index == breadcrumbs_for(@product).size - 1 %>
-        <span class="font-medium text-gray-900">
-          <%= item[:name] %>
-        </span>
-      <% else %>
-        <%= link_to item[:name],
-          item[:url],
-          class: "hover:text-gray-900 hover:underline" %>
-      <% end %>
-
-    <% end %>
-  </nav>
+  <%= render "shared/breadcrumbs", items: breadcrumbs %>
   <div class="mb-6">
     <%= link_to t(".back"), products_path, class: "text-sm font-medium text-gray-600 hover:text-gray-900 hover:underline" %>
   </div>
@@ -275,26 +263,12 @@
   }
 %>
 
-<% breadcrumb_schema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": breadcrumbs_for(@product).each_with_index.map do |item, index|
-    {
-      "@type": "ListItem",
-      "position": index + 1,
-      "name": item[:name],
-      "item": item[:url]
-    }
-  end
-}
-%>
-
 <% content_for :head do %>
   <script type="application/ld+json" nonce="<%= content_security_policy_nonce %>">
     <%= json_escape(product_schema.to_json).html_safe %>
   </script>
 
   <script type="application/ld+json" nonce="<%= content_security_policy_nonce %>">
-    <%= json_escape(breadcrumb_schema.to_json).html_safe %>
+    <%= json_escape(breadcrumbs_json_ld(breadcrumbs).to_json).html_safe %>
   </script>
 <% end %>

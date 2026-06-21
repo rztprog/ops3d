@@ -1,4 +1,10 @@
+<% breadcrumbs = [
+  breadcrumb_home,
+  breadcrumb_item("Mon compte", account_url(locale: I18n.locale)),
+  breadcrumb_item("Mes commandes", account_orders_url(locale: I18n.locale))
+] %>
 <div class="mx-auto container py-10">
+  <%= render "shared/breadcrumbs", items: breadcrumbs %>
   <div class="mb-8 flex items-end justify-between gap-4">
     <div>
       <h1 class="text-3xl font-bold text-gray-900"><%= t(".title") %> (<%= @orders.count()%>)</h1>

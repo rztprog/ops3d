@@ -1,4 +1,9 @@
+<% breadcrumbs = [
+  breadcrumb_home,
+  breadcrumb_item("Mon compte", account_url(locale: I18n.locale))
+] %>
 <div class="mx-auto container py-10">
+  <%= render "shared/breadcrumbs", items: breadcrumbs %>
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900"><%= t(".title") %></h1>
     <p class="mt-2 text-sm text-gray-500">

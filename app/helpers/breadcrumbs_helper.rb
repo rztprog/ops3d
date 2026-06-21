@@ -1,24 +1,30 @@
 module BreadcrumbsHelper
-  def breadcrumbs_for(product = nil)
-    items = [
-      {
-        name: "Accueil",
-        url: root_url(locale: I18n.locale)
-      }
-    ]
+  def breadcrumb_home
+    {
+      name: "Accueil",
+      url: root_url(locale: I18n.locale)
+    }
+  end
 
-    if product.present?
-      items << {
-        name: "Produits",
-        url: products_url(locale: I18n.locale)
-      }
+  def breadcrumb_item(name, url = nil)
+    {
+      name: name,
+      url: url
+    }
+  end
 
-      items << {
-        name: product.name,
-        url: product_url(product, locale: I18n.locale)
-      }
-    end
-
-    items
+  def breadcrumbs_json_ld(items)
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": items.each_with_index.map do |item, index|
+        {
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item[:name],
+          "item": item[:url]
+        }.compact
+      end
+    }
   end
 end

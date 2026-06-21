@@ -1,5 +1,9 @@
+<% breadcrumbs = [
+  breadcrumb_home,
+  breadcrumb_item("À propos")
+] %>
 <div class="mx-auto container py-12">
-
+  <%= render "shared/breadcrumbs", items: breadcrumbs %>
   <!-- Header -->
   <div class="mb-12">
     <p class="text-sm font-semibold uppercase tracking-wide text-[color:var(--light)]">
@@ -87,3 +91,9 @@
 
   </div>
 </div>
+
+<% content_for :head do %>
+  <script type="application/ld+json" nonce="<%= content_security_policy_nonce %>">
+    <%= json_escape(breadcrumbs_json_ld(breadcrumbs).to_json).html_safe %>
+  </script>
+<% end %>

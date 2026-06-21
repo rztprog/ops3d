@@ -1,4 +1,10 @@
+faq
+<% breadcrumbs = [
+  breadcrumb_home,
+  breadcrumb_item("FAQ")
+] %>
 <div class="mx-auto container py-12">
+  <%= render "shared/breadcrumbs", items: breadcrumbs %>
   <div class="mb-10">
     <p class="text-sm font-semibold uppercase tracking-wide text-[color:var(--light)]">OPS3D</p>
     <h1 class="mt-2 text-3xl font-black uppercase tracking-wide text-gray-900">FAQ</h1>
@@ -22,3 +28,9 @@
     <% end %>
   </div>
 </div>
+
+<% content_for :head do %>
+  <script type="application/ld+json" nonce="<%= content_security_policy_nonce %>">
+    <%= json_escape(breadcrumbs_json_ld(breadcrumbs).to_json).html_safe %>
+  </script>
+<% end %>
