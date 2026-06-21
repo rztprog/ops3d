@@ -1,77 +1,141 @@
+<% content_for :title, "Formation Impression 3D | Cours pratiques avec OPS3D" %>
+<% content_for :description,
+  "Apprenez l'impression 3D avec OPS3D : prise en main imprimante, Cura optimisation des réglages, matériaux et production efficace." %>
+<% content_for :og_image,
+  cl_image_path("ultis5v1og", width: 1200, height: 630, crop: :fill, quality: "auto:eco", gravity: :auto, fetch_format: "jpg") %>
+
 <% breadcrumbs = [
   breadcrumb_home,
   breadcrumb_item("Formation 3D", training_url(locale: I18n.locale))
 ] %>
 
-<div class="mx-auto max-w-5xl py-10">
+<div class="mx-auto container py-10">
   <%= render "shared/breadcrumbs", items: breadcrumbs %>
-  <div class="text-center">
-    <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">
-      Formation & Cours d'impression 3D
+
+  <section class="rounded-3xl bg-[color:var(--dark)] px-6 py-12 text-center text-white shadow-sm sm:px-10">
+    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-gray-300">
+      Cours & accompagnement
+    </p>
+
+    <h1 class="mx-auto mt-4 max-w-4xl text-3xl font-black leading-tight sm:text-5xl">
+      Formation impression 3D pratique, concrète et orientée production
     </h1>
 
-    <p class="mx-auto mt-4 max-w-3xl text-lg text-gray-600">
-      Apprenez l'impression 3D avec un expert : modélisation, réglages d'impression,
-      optimisation, matériaux et production efficace.
+    <p class="mx-auto mt-6 max-w-3xl text-base leading-8 text-gray-200 sm:text-lg">
+      Apprenez à créer, régler, optimiser et produire efficacement avec une imprimante 3D.
+      Les cours sont adaptés à votre niveau, de la première prise en main jusqu’à l’optimisation avancée.
     </p>
-  </div>
 
-  <div class="mt-10 rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
-    <h2 class="text-xl font-semibold text-gray-900">
+    <%= link_to "Réserver un cours sur Superprof",
+      "https://www.superprof.fr/expert-impression-apprenez-creer-optimiser-produire-efficacement.html",
+      target: "_blank",
+      rel: "noopener noreferrer",
+      class: "mt-8 inline-flex rounded-xl bg-white px-6 py-3 text-sm font-semibold text-[color:var(--dark)] hover:bg-gray-100" %>
+  </section>
+
+  <section class="mt-10 grid gap-6 md:grid-cols-3">
+    <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      <p class="text-sm font-semibold text-gray-400">Format</p>
+      <p class="mt-2 font-bold text-gray-900">En ligne ou présentiel</p>
+      <p class="mt-2 text-sm leading-6 text-gray-600">
+        Accompagnement possible à distance ou autour de Rosny-sous-Bois selon les disponibilités.
+      </p>
+    </div>
+
+    <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      <p class="text-sm font-semibold text-gray-400">Niveau</p>
+      <p class="mt-2 font-bold text-gray-900">Débutant à avancé</p>
+      <p class="mt-2 text-sm leading-6 text-gray-600">
+        Les cours s’adaptent à votre matériel, vos objectifs et votre rythme d’apprentissage.
+      </p>
+    </div>
+
+    <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      <p class="text-sm font-semibold text-gray-400">Objectif</p>
+      <p class="mt-2 font-bold text-gray-900">Produire mieux</p>
+      <p class="mt-2 text-sm leading-6 text-gray-600">
+        Moins d’échecs, de meilleurs réglages, des pièces plus fiables et une production plus efficace.
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-10 rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
+    <h2 class="text-2xl font-bold text-gray-900">
       Ce que vous pouvez apprendre
     </h2>
 
     <div class="mt-6 grid gap-4 sm:grid-cols-2">
-      <div class="rounded-2xl bg-gray-50 p-5">
-        <h3 class="font-semibold text-gray-900">Modélisation 3D</h3>
-        <p class="mt-2 text-sm text-gray-600">
-          Concevoir et préparer des modèles adaptés à l'impression 3D.
-        </p>
-      </div>
-
-      <div class="rounded-2xl bg-gray-50 p-5">
-        <h3 class="font-semibold text-gray-900">Réglages du slicer</h3>
-        <p class="mt-2 text-sm text-gray-600">
-          Comprendre les paramètres pour améliorer qualité et vitesse.
-        </p>
-      </div>
-
-      <div class="rounded-2xl bg-gray-50 p-5">
-        <h3 class="font-semibold text-gray-900">Matériaux</h3>
-        <p class="mt-2 text-sm text-gray-600">
-          PLA, PETG, TPU et autres matériaux selon les usages.
-        </p>
-      </div>
-
-      <div class="rounded-2xl bg-gray-50 p-5">
-        <h3 class="font-semibold text-gray-900">Optimisation</h3>
-        <p class="mt-2 text-sm text-gray-600">
-          Réduire les coûts, les temps d'impression et les échecs.
-        </p>
-      </div>
+      <% [
+        ["Prise en main imprimante 3D", "Comprendre le fonctionnement de votre machine, les premières impressions et les erreurs fréquentes."],
+        ["Réglages Cura / slicer", "Température, supports, remplissage, adhérence, vitesse, qualité et profils d’impression."],
+        ["Modélisation 3D", "Créer ou adapter des modèles avec Fusion 360, FreeCAD ou d’autres outils selon votre besoin."],
+        ["Matériaux", "Choisir entre PLA, PETG, TPU et autres matériaux selon l’usage réel de la pièce."],
+        ["Optimisation qualité / coût", "Réduire les temps d’impression, limiter les ratés et améliorer la fiabilité des pièces."],
+        ["Production en série", "Organiser une petite production, fiabiliser les paramètres et gagner du temps."]
+      ].each do |title, text| %>
+        <div class="rounded-2xl bg-gray-50 p-5">
+          <h3 class="font-semibold text-gray-900"><%= title %></h3>
+          <p class="mt-2 text-sm leading-6 text-gray-600"><%= text %></p>
+        </div>
+      <% end %>
     </div>
-  </div>
+  </section>
 
-  <div class="mt-8 rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
-    <h2 class="text-xl font-semibold text-gray-900">
+  <section class="mt-8 rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
+    <h2 class="text-2xl font-bold text-gray-900">
       Pour qui ?
     </h2>
 
-    <ul class="mt-4 space-y-2 text-gray-600">
-      <li>✓ Débutants souhaitant découvrir l'impression 3D</li>
-      <li>✓ Makers désirant améliorer leurs résultats</li>
+    <ul class="mt-5 grid gap-3 text-gray-600 sm:grid-cols-2">
+      <li>✓ Débutants souhaitant découvrir l’impression 3D</li>
+      <li>✓ Makers voulant améliorer leurs résultats</li>
       <li>✓ Professionnels ayant des besoins techniques</li>
-      <li>✓ Personnes souhaitant produire efficacement</li>
+      <li>✓ Personnes souhaitant produire ou vendre leurs créations</li>
     </ul>
-  </div>
+  </section>
 
-  <div class="mt-8 rounded-3xl bg-[color:var(--dark)] p-8 text-center text-white">
+  <section class="mt-8 rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
+    <h2 class="text-2xl font-bold text-gray-900">
+      Questions fréquentes
+    </h2>
+
+    <div class="mt-6 space-y-6">
+      <div>
+        <h3 class="font-semibold text-gray-900">
+          Faut-il déjà posséder une imprimante 3D ?
+        </h3>
+        <p class="mt-2 text-sm leading-6 text-gray-600">
+          Non. La formation peut commencer par les bases avant de passer aux réglages, aux matériaux et à la production.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-gray-900">
+          Quels logiciels peuvent être abordés ?
+        </h3>
+        <p class="mt-2 text-sm leading-6 text-gray-600">
+          Les cours peuvent couvrir Cura, Fusion 360, FreeCAD et les réglages de slicing selon votre niveau.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-gray-900">
+          Le cours est-il adapté aux professionnels ?
+        </h3>
+        <p class="mt-2 text-sm leading-6 text-gray-600">
+          Oui. L’accompagnement peut porter sur la fiabilisation des impressions, les coûts, les délais et la production en série.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-8 rounded-3xl bg-[color:var(--dark)] p-8 text-center text-white">
     <h2 class="text-2xl font-bold">
-      Réserver un cours personnalisé
+      Besoin d’un accompagnement personnalisé ?
     </h2>
 
     <p class="mx-auto mt-3 max-w-2xl text-gray-200">
-      Les cours sont proposés via Superprof avec un accompagnement adapté à votre niveau et vos objectifs.
+      Réservez un cours directement via Superprof pour définir votre besoin, votre niveau et vos objectifs.
     </p>
 
     <%= link_to "Voir le profil Superprof",
@@ -79,11 +143,46 @@
       target: "_blank",
       rel: "noopener noreferrer",
       class: "mt-6 inline-flex rounded-xl bg-white px-6 py-3 font-semibold text-[color:var(--dark)] hover:bg-gray-100" %>
-  </div>
+  </section>
 </div>
+
+<% faq_schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Faut-il déjà posséder une imprimante 3D ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non. La formation peut commencer par les bases avant de passer aux réglages, aux matériaux et à la production."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quels logiciels peuvent être abordés ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les cours peuvent couvrir Cura, Fusion 360, FreeCAD et les réglages de slicing selon votre niveau."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le cours est-il adapté aux professionnels ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. L'accompagnement peut porter sur la fiabilisation des impressions, les coûts, les délais et la production en série."
+      }
+    }
+  ]
+} %>
 
 <% content_for :head do %>
   <script type="application/ld+json" nonce="<%= content_security_policy_nonce %>">
     <%= json_escape(breadcrumbs_json_ld(breadcrumbs).to_json).html_safe %>
+  </script>
+
+  <script type="application/ld+json" nonce="<%= content_security_policy_nonce %>">
+    <%= json_escape(faq_schema.to_json).html_safe %>
   </script>
 <% end %>
