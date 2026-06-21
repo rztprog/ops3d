@@ -9,7 +9,7 @@
 
           <% if settings.announcement_link_url.present? && settings.announcement_link_label.present? %>
             <%= link_to settings.announcement_link_label,
-              settings.announcement_link_url,
+              settings.announcement_link_url.to_s,
               class: "ml-4 underline underline-offset-4 text-[color:var(--light)] hover:text-[color:var(--dark)]" %>
           <% end %>
         </div>
