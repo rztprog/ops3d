@@ -295,7 +295,7 @@ en:
         shipped: 'Order shipped'
         shipped_text: 'Your order has been shipped.'
         refunded: 'Order refunded'
-        refunded_text: 'This order has been refunded.'
+        refunded_text: 'This order has been refunded '
         cancelled: 'Order cancelled'
         cancelled_text: 'This order has been cancelled.'
         commands: '← Back to orders'

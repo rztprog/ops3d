@@ -75,13 +75,21 @@
   <% end %>
   
   <% when "refunded" %>
-    <div class="rounded-2xl border border-orange-200 bg-orange-50 p-6 mb-8">
+    <div class="rounded-2xl border border-orange-200 bg-orange-50 p-6 mb-4">
       <h2 class="text-lg font-semibold text-orange-800">
         <%= t('.refunded') %>
       </h2>
       <p class="mt-2 text-sm text-orange-700">
-        <%= t('.refunded_text') %>
+        <%= t('.refunded_text') %> le <%= l(@order.refunded_at, format: :long) %>
       </p>
+      <dd class="mt-2 text-sm text-orange-700">
+        <% if @order.refund_reason.present? %>
+          <p class="mt-2">
+            <strong>Raison :</strong>
+            <%= @order.refund_reason %>
+          </p>
+        <% end %>
+      </dd>
     </div>
 
   <% when "cancelled" %>

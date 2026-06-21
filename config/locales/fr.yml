@@ -276,7 +276,7 @@ fr:
         shipped: 'Commande expédiée'
         shipped_text: 'Ta commande a été expédiée.'
         refunded: 'Commande remboursée'
-        refunded_text: 'Cette commande a été remboursée.'
+        refunded_text: 'Cette commande a été remboursée '
         cancelled: 'Commande annulée'
         cancelled_text: 'Cette commande a été annulée.'
         commands: '← Retour aux commandes'
