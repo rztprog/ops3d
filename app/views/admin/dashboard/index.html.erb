@@ -45,14 +45,14 @@
   </div>
 
   <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-    <p class="text-sm text-gray-500">Commandes payées</p>
+    <p class="text-sm text-gray-500">Commandes validées</p>
     <p class="mt-2 text-2xl sm:text-3xl font-bold text-gray-900">
       <%= @paid_orders_count %>
     </p>
   </div>
 
   <%= link_to admin_orders_path, class: "order-first md:order-none rounded-2xl border border-lime-300 hover:border-green-300 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md" do %>
-    <p class="text-sm text-gray-500">À traiter</p>
+    <p class="text-sm text-gray-500">À préparer</p>
     <p class="mt-2 text-2xl sm:text-3xl font-bold text-gray-900">
       <%= @orders_to_process_count %>
     </p>
@@ -65,7 +65,7 @@
     <div class="mb-6 flex items-center justify-between">
       <div>
         <h2 class="text-lg font-semibold text-gray-900">Ventes sur 7 jours</h2>
-        <p class="mt-1 text-sm text-gray-500">Commandes payées uniquement.</p>
+        <p class="mt-1 text-sm text-gray-500">Commandes payées, en préparation ou expédiées.</p>
       </div>
     </div>
 
