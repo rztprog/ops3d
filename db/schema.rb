@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_19_152244) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_21_132134) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -83,6 +83,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_19_152244) do
   end
 
   create_table "ops3d_settings", force: :cascade do |t|
+    t.boolean "announcement_enabled", default: false, null: false
+    t.string "announcement_link_label"
+    t.string "announcement_link_url"
+    t.string "announcement_text"
     t.datetime "created_at", null: false
     t.integer "free_shipping_threshold_cents", default: 2500, null: false
     t.boolean "registrations_enabled", default: true, null: false
