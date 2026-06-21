@@ -1,0 +1,17 @@
+<% settings = Ops3dSetting.first %>
+
+<% if settings&.announcement_enabled? && settings.announcement_text.present? %>
+  <div class="overflow-hidden bg-[color:var(--dark)] text-white">
+    <div class="whitespace-nowrap py-2 text-sm font-medium">
+      <div class="inline-block animate-marquee px-4">
+        <span><%= settings.announcement_text %></span>
+
+        <% if settings.announcement_link_url.present? && settings.announcement_link_label.present? %>
+          <%= link_to settings.announcement_link_label,
+            settings.announcement_link_url,
+            class: "ml-4 underline underline-offset-4 hover:text-gray-200" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
