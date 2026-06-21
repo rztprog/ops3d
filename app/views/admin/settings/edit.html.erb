@@ -71,10 +71,10 @@
         </div>
 
         <%# Announcement %>
-        <div class="rounded-xl border border-gray-200 p-4">
+        <div class="rounded-xl border border-gray-200 p-4 border-yellow-600">
           <div class="flex items-center justify-between gap-4">
             <div>
-              <h3 class="font-medium text-gray-900">Bandeau d’annonce</h3>
+              <h3 class="font-medium text-gray-900">Bandeau d'annonce</h3>
               <p class="text-sm text-gray-500">
                 Affiche un message important au-dessus de la navbar.
               </p>
@@ -88,7 +88,7 @@
             <div>
               <%= f.label :announcement_text, "Texte du bandeau", class: "block text-sm font-medium text-gray-700" %>
               <%= f.text_field :announcement_text,
-                placeholder: "Ex : Déplacement à l’étranger — reprise des commandes le 12 août.",
+                placeholder: "Ex : Déplacement à l'étranger — Reprise des commandes le 12 août.",
                 class: "mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-gray-900 focus:outline-none" %>
             </div>
 
