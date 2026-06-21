@@ -42,11 +42,19 @@ module Admin
       permitted = params.require(:ops3d_setting).permit(
         :shipping_mode,
         :shipping_price_euros,
-        :registrations_enabled
+        :registrations_enabled,
+        :announcement_enabled,
+        :announcement_text,
+        :announcement_link_url,
+        :announcement_link_label
       )
 
       attrs = {
-        registrations_enabled: permitted[:registrations_enabled]
+        registrations_enabled: permitted[:registrations_enabled],
+        announcement_enabled: permitted[:announcement_enabled],
+        announcement_text: permitted[:announcement_text],
+        announcement_link_url: permitted[:announcement_link_url],
+        announcement_link_label: permitted[:announcement_link_label]
       }
 
       if permitted[:shipping_mode] == "free"
